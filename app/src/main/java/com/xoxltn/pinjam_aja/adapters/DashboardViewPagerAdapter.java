@@ -3,7 +3,7 @@
  * ONLY USE UNDER PERMISSION -OR- I AM GONNA CHOP YOUR HANDS OFF!
  */
 
-package com.xoxltn.pinjam_aja;
+package com.xoxltn.pinjam_aja.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.xoxltn.pinjam_aja.R;
+import com.xoxltn.pinjam_aja.models.DashboardScreenItem;
 
 import java.util.List;
 

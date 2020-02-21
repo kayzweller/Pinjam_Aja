@@ -17,24 +17,25 @@ import android.widget.TextView;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    // variabel
-    Animation logoAnim, sloganAnim, ojkAnim;
-    ImageView logoImage, logoOjk;
-    TextView judul, slogan;
-
-    @Override
-    public void onBackPressed() {
-        // kunci fungsi tombol kembali waktu splash screen
-        // WHILE NO METHOD HERE, IT'S MEAN DO NOTHING B*TCH !!!
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        // jalankan aplikasi dalam mode fullscreen
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        AnimationStart();
+        AnimationEnd();
+
+    }
+
+    //-------------------------------------------------------------------------------------------//
+
+    private void AnimationStart() {
+
+        // variabel
+        Animation logoAnim, sloganAnim, ojkAnim;
+        ImageView logoImage, logoOjk;
+        TextView judul, slogan;
+
 
         // animasi splash screen
         logoAnim = AnimationUtils.loadAnimation(this,R.anim.logo_anim);
@@ -55,18 +56,29 @@ public class SplashScreenActivity extends AppCompatActivity {
         judul.setAnimation(sloganAnim);
         slogan.setAnimation(sloganAnim);
         logoOjk.setAnimation(ojkAnim);
+    }
+
+    private void AnimationEnd() {
 
         // splash screen
         int SPLASH_SCREEN = 5000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, DashboardActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.
+                        this, DashboardActivity.class);
                 startActivity(intent);
                 finish();
             }
         }, SPLASH_SCREEN);
+    }
 
+    //-------------------------------------------------------------------------------------------//
+
+    @Override
+    public void onBackPressed() {
+        // kunci fungsi tombol kembali waktu splash screen
+        // WHILE NO METHOD HERE, IT'S MEAN DO NOTHING B*TCH !!!
     }
 
 }
