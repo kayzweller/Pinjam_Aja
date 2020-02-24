@@ -5,6 +5,7 @@
 
 package com.xoxltn.pinjam_aja.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,8 @@ import java.util.List;
 
 public class DashboardViewPagerAdapter extends PagerAdapter {
 
-    Context mContext;
-    List<DashboardScreenItem> mListScreen;
+    private Context mContext;
+    private List<DashboardScreenItem> mListScreen;
 
     public DashboardViewPagerAdapter(Context mContext, List<DashboardScreenItem> mListScreen) {
         this.mContext = mContext;
@@ -35,7 +36,8 @@ public class DashboardViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layoutScreen  = inflater.inflate(R.layout.layout_tab_dashboard, null);
+        assert inflater != null;
+        @SuppressLint("InflateParams") View layoutScreen  = inflater.inflate(R.layout.layout_tab_dashboard, null);
 
         ImageView imgSlide = layoutScreen.findViewById(R.id.intro_img);
         TextView title = layoutScreen.findViewById(R.id.intro_title);

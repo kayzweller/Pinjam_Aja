@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         AnimationStart();
-        AnimationEnd();
+        AnimationCount();
 
     }
 
@@ -58,7 +58,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         logoOjk.setAnimation(ojkAnim);
     }
 
-    private void AnimationEnd() {
+    private void AnimationCount() {
 
         // splash screen
         int SPLASH_SCREEN = 5000;

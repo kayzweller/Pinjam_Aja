@@ -6,19 +6,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
-import com.xoxltn.pinjam_aja.R;
+public class SignUpActivity extends AppCompatActivity {
 
-public class LoginActivity extends AppCompatActivity {
 
-    // variabel untuk fungsi tombol BACK
-    boolean doubleBackToExitPressedOnce = false;
-    int DELAY_PRESS = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_sign_up);
+
+
     }
+
+    //-------------------------------------------------------------------------------------------//
+
+
+    // variabel untuk fungsi tombol BACK
+    boolean doubleBackToExitPressedOnce = false;
+    int DELAY_PRESS = 2000;
 
     // method untuk tekan tombol BACK dua kali untuk keluar
     @Override

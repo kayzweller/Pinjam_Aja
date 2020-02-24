@@ -6,8 +6,8 @@
 package com.xoxltn.pinjam_aja.models;
 
 public class DashboardScreenItem {
-    int ScreenImg;
-    String Title, Description;
+    private int ScreenImg;
+    private String Title, Description;
 
     public
     DashboardScreenItem(int screenImg, String title, String description) {

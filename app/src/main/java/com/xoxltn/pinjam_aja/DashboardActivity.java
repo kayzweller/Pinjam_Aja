@@ -43,7 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
         // call activity checking!
         SecondComing();
 
-        // LIST VIEW
+        // Welcome list view
         WelcomeBriefing();
 
         // "DAFTAR SEKARANG" button listener
@@ -53,13 +53,12 @@ public class DashboardActivity extends AppCompatActivity {
 
     //-------------------------------------------------------------------------------------------//
 
-    // ACTIVITY CHECKING!
     // when this activity about to launch, check does this activity had been opened before
     private void SecondComing() {
 
         if (restorePrefsData()) {
             Intent loginActivity = new Intent(DashboardActivity.
-                    this, LoginActivity.class);
+                    this, SignUpActivity.class);
             startActivity(loginActivity);
             finish();
         }
@@ -197,15 +196,18 @@ public class DashboardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // menuju login activity
                 Intent loginActivity = new Intent(DashboardActivity.
-                        this, LoginActivity.class);
+                        this, SignUpActivity.class);
                 startActivity(loginActivity);
 
                 // save boolean value to storage, soo next time user run the apps
                 // we could know that he/she already checked the intro screen activity
                 // using shared preference.
 
-                // Intro only get hidden if user already goes into login menu of the apps!
+                // save value to the isIntroOpened = true
                 savePrefsData();
+
+                // call finish() after an intent you can't go back to the previous activity
+                // with the "back" button
                 finish();
 
             }
