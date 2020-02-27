@@ -17,27 +17,29 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.models.DashboardScreenItem;
+import com.xoxltn.pinjam_aja.models.WelcomeScreenItem;
 
 import java.util.List;
 
-public class DashboardViewPagerAdapter extends PagerAdapter {
+public class WelcomeViewPagerAdapter extends PagerAdapter {
 
     private Context mContext;
-    private List<DashboardScreenItem> mListScreen;
+    private List<WelcomeScreenItem> mListScreen;
 
-    public DashboardViewPagerAdapter(Context mContext, List<DashboardScreenItem> mListScreen) {
-        this.mContext = mContext;
-        this.mListScreen = mListScreen;
+    public WelcomeViewPagerAdapter(Context context, List<WelcomeScreenItem> listScreen) {
+        this.mContext = context;
+        this.mListScreen = listScreen;
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
-        @SuppressLint("InflateParams") View layoutScreen  = inflater.inflate(R.layout.layout_tab_dashboard, null);
+        @SuppressLint("InflateParams") View layoutScreen  = inflater.inflate
+                (R.layout.layout_tab_dashboard, null);
 
         ImageView imgSlide = layoutScreen.findViewById(R.id.intro_img);
         TextView title = layoutScreen.findViewById(R.id.intro_title);

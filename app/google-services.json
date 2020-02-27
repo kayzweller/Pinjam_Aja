@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1077670771060-89jc1stocbrp3n59nikmgbko6js39cms.apps.googleusercontent.com",
+          "client_id": "1077670771060-8beo8ht4jeb2q1165bkbbv0rqr99eg03.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.xoxltn.pinjam_aja",
-            "certificate_hash": "f21ee091fd62fac8a779f97564e569b059806f32"
+            "certificate_hash": "c807de82870f9225e03d3d2734fb1ba50f4ec6fe"
           }
         },
         {
@@ -51,6 +51,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1077670771060-fsk2d4nsictagj4lcb2v9ic71735bfdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xoxltn.pinjam_ajaadmin",
+            "certificate_hash": "7d0105f6bc32f2f7bd6611f68b6d80c553c48f22"
+          }
+        },
         {
           "client_id": "1077670771060-250qt0vslafgip5qs9tr8g5hpbnmmmls.apps.googleusercontent.com",
           "client_type": 3

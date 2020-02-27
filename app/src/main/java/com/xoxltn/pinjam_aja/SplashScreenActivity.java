@@ -33,29 +33,25 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         // variabel
         Animation logoAnim, sloganAnim, ojkAnim;
-        ImageView logoImage, logoOjk;
+        ImageView logoImage;
         TextView judul, slogan;
 
 
         // animasi splash screen
         logoAnim = AnimationUtils.loadAnimation(this,R.anim.logo_anim);
         sloganAnim = AnimationUtils.loadAnimation(this,R.anim.slogan_anim);
-        ojkAnim = AnimationUtils.loadAnimation(this, R.anim.ojk_anim);
 
         // delay animasi
         sloganAnim.setStartOffset(500);
-        ojkAnim.setStartOffset(700);
 
         // tautan animasi ke object
         logoImage = findViewById(R.id.logo_splash);
         judul = findViewById(R.id.judul);
         slogan = findViewById(R.id.slogan);
-        logoOjk = findViewById(R.id.logo_ojk);
 
         logoImage.setAnimation(logoAnim);
         judul.setAnimation(sloganAnim);
         slogan.setAnimation(sloganAnim);
-        logoOjk.setAnimation(ojkAnim);
     }
 
     private void AnimationCount() {
@@ -66,7 +62,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashScreenActivity.
-                        this, DashboardActivity.class);
+                        this, WelcomeActivity.class);
                 startActivity(intent);
                 finish();
             }

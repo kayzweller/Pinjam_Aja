@@ -6,4 +6,8 @@
     <string name="splash_logo">Pinjam Aja! Logo</string>
     <string name="button_next">NEXT</string>
     <string name="button_daftar">Daftar Sekarang</string>
+
+    <!-- bug fix, leave it there -->
+    <item name="visible" type="id" />
+    <item name="masked" type="id" />
 </resources>

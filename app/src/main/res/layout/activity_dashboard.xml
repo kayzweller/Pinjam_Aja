@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:theme="@style/AppTheme"
-    tools:context=".DashboardActivity">
+    tools:context=".WelcomeActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/screen_viewpager"
@@ -63,6 +63,7 @@
         android:layout_marginBottom="64dp"
         android:background="@drawable/button_round_bg"
         android:fontFamily="@font/fira_sans_extrabold"
+        android:onClick="onDaftarButtonClick"
         android:text="@string/button_daftar"
         android:textColor="@color/text_tertier"
         android:textSize="20sp"
