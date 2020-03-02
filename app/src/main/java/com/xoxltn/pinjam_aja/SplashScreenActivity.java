@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         AnimationStart();
-        AnimationCount();
+        DelayToWelcome();
 
     }
 
@@ -54,10 +54,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         slogan.setAnimation(sloganAnim);
     }
 
-    private void AnimationCount() {
+    private void DelayToWelcome() {
 
         // splash screen
-        int SPLASH_SCREEN = 5000;
+        int SPLASH_SCREEN_DELAY = 5000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -66,7 +66,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, SPLASH_SCREEN);
+        }, SPLASH_SCREEN_DELAY);
     }
 
     //-------------------------------------------------------------------------------------------//

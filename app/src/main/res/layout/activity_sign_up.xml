@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -87,7 +87,7 @@
             android:hint="No. Handphone"
             app:boxStrokeColor="@color/text_tertier"
             app:counterEnabled="true"
-            app:counterMaxLength="14">
+            app:counterMaxLength="15">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -116,6 +116,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
+            android:id="@+id/radio_group_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15sp"
@@ -149,6 +150,7 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/button_round_bg"
         android:fontFamily="@font/fira_sans_extrabold"
+        android:onClick="onDaftarButtonClick"
         android:text="DAFTAR"
         android:textSize="20sp" />
 

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,11 +26,14 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     //deklarasi variabel
-    Button mGoToSignupButton, mLoginButton, mLupaPassword;
     TextInputLayout mEmail, mPassword;
+
+    ProgressBar mProgressBar;
 
     //deklarasi firebase
     private FirebaseAuth mAuth;
+
+    //-------------------------------------------------------------------------------------------//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +41,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // set object from XML to Variable in java [HOOKS]
-        mGoToSignupButton = findViewById(R.id.login_to_signup_button);
         mEmail = findViewById(R.id.login_email);
         mPassword = findViewById(R.id.login_password);
-        mLupaPassword = findViewById(R.id.login_lupa_password_button);
-        mLoginButton = findViewById(R.id.login_button);
+        mProgressBar = findViewById(R.id.loginprogressBar);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -52,6 +54,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        mProgressBar.setMax(100);
+        mProgressBar.setAlpha(0f);
+        mProgressBar.setProgress(0);
+
         // is user signed?
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
@@ -87,8 +94,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onMasukButtonClick(View view) {
+        mProgressBar.setAlpha(1.0f);
+        mProgressBar.setProgress(100);
 
         if (!validateEmail() | !validatePassword()) {
+            mProgressBar.setAlpha(0f);
+            mProgressBar.setProgress(0);
             return;
         }
 
@@ -112,6 +123,8 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(pendanaLogin);
                             finish();
                         } else {
+                            mProgressBar.setAlpha(0f);
+                            mProgressBar.setProgress(0);
                             Toast.makeText(getApplicationContext(), task.getException().
                                     getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -122,15 +135,22 @@ public class LoginActivity extends AppCompatActivity {
 
     //-------------------------------------------------------------------------------------------//
 
-    public void onClicktoSignUp (View view) {
-        Intent signUpActivity = new Intent(LoginActivity.this,
-                SignUpActivity.class);
-        startActivity(signUpActivity);
+    public void onClickLupaButton (View v) {
+        Intent lupaPassword = new Intent(this, LupaPasswordActivity.class);
+        startActivity(lupaPassword);
     }
 
     //-------------------------------------------------------------------------------------------//
 
-    // variabel untuk fungsi tombol BACK
+    public void onClicktoSignUp (View view) {
+        Intent signUpActivity = new Intent(LoginActivity.this,
+                SignUpActivity.class);
+        startActivity(signUpActivity);
+        finish();
+    }
+
+    //-------------------------------------------------------------------------------------------//
+
     boolean doubleBackToExitPressedOnce = false;
     int DELAY_PRESS = 2000;
 

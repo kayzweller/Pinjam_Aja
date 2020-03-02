@@ -91,9 +91,10 @@
         android:background="#00000000"
         android:elevation="0dp"
         android:fontFamily="@font/fira_sans_bold_italic"
+        android:onClick="onClickLupaButton"
         android:text="Lupa Password?"
         android:textSize="16sp"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/login_button"
@@ -119,5 +120,12 @@
         android:text="Belum Punya Akun? Daftar Sekarang"
         android:textSize="16sp"
         android:textStyle="italic" />
+
+    <ProgressBar
+        android:id="@+id/loginprogressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"/>
 
 </LinearLayout>

@@ -39,7 +39,7 @@ public class WelcomeViewPagerAdapter extends PagerAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
         @SuppressLint("InflateParams") View layoutScreen  = inflater.inflate
-                (R.layout.layout_tab_dashboard, null);
+                (R.layout.layout_tab_welcome, null);
 
         ImageView imgSlide = layoutScreen.findViewById(R.id.intro_img);
         TextView title = layoutScreen.findViewById(R.id.intro_title);
