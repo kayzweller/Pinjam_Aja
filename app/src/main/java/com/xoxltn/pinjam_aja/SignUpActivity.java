@@ -99,7 +99,7 @@ public class SignUpActivity extends AppCompatActivity {
         } else if (!val.matches(phonePattern)) {
             mPhone.setError("Gunakan format internasional, contoh : +6281234567890");
             return false;
-        } else if (val.length() > 14 || val.length() < 10) {
+        } else if (val.length() > 15 || val.length() < 12) {
             mPhone.setError("Nomor handphone tidak valid");
             return false;
         } else {
@@ -151,8 +151,6 @@ public class SignUpActivity extends AppCompatActivity {
         String phone = mPhone.getEditText().getText().toString();
         String password = mPassword.getEditText().getText().toString();
         String userType = mRadioButton.getText().toString();
-
-        Toast.makeText(this, userType + " SELECTED", Toast.LENGTH_SHORT).show();
 
         // TODO : FIREBASE SIGNUP HERE
 
