@@ -122,20 +122,20 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/signup_radio_pendana"
+                android:id="@+id/signup_radio_peminjam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="48sp"
                 android:fontFamily="@font/fira_sans_bold"
-                android:text="PENDANA"
+                android:text="PEMINJAM"
                 android:textSize="18sp" />
 
             <RadioButton
-                android:id="@+id/signup_radio_peminjam"
+                android:id="@+id/signup_radio_pendana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fira_sans_bold"
-                android:text="PEMINJAM"
+                android:text="PENDANA"
                 android:textSize="18sp" />
         </RadioGroup>
 

@@ -18,12 +18,18 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -34,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
 
     FirebaseAuth mAuth;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore mFireStore;
 
     String mUserID;
 
@@ -52,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.loading);
 
         mAuth = FirebaseAuth.getInstance();
+        mFireStore = FirebaseFirestore.getInstance();
 
     }
 
@@ -61,8 +68,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        //[ CALL userType WITHIN THE DOCUMENT, CALLING IT WITH THE SPECIFIC UserID ]
-        mUserID = mAuth.getUid();
+        // TODO : CALL userType WITHIN THE DOCUMENT, CALLING IT WITH THE SPECIFIC UserID
+        mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         String userType = "";
 
         // what to do when activity started?
@@ -117,10 +124,10 @@ public class SignUpActivity extends AppCompatActivity {
         int SelectedId = mRadioGroup.getCheckedRadioButtonId();
         mRadioButton = findViewById(SelectedId);
 
-        String name = mFullName.getEditText().getText().toString().trim();
-        String email = mEmail.getEditText().getText().toString().trim();
-        String phone = mPhone.getEditText().getText().toString();
-        String password = mPassword.getEditText().getText().toString();
+        final String name = Objects.requireNonNull(mFullName.getEditText()).getText().toString();
+        final String email = Objects.requireNonNull(mEmail.getEditText()).getText().toString();
+        final String phone = Objects.requireNonNull(mPhone.getEditText()).getText().toString();
+        final String password = Objects.requireNonNull(mPassword.getEditText()).getText().toString();
         final String userType = mRadioButton.getText().toString();
 
         // SIGN-UP ACCOUNT
@@ -134,20 +141,37 @@ public class SignUpActivity extends AppCompatActivity {
                             //get USER ID
                             mUserID = mAuth.getUid();
 
+                            //STORE DATA TO FIREBASE
+                            DocumentReference docReference = mFireStore.collection(userType)
+                                    .document(mUserID);
+
+                            Map<String, String> user = new HashMap<>();
+                            user.put("name", name);
+                            user.put("email", email);
+                            user.put("phone", phone);
+                            user.put("userType", userType);
+
+                            docReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(SignUpActivity.this, "USER CREATED : "
+                                                    + userType + " " + mUserID, Toast.LENGTH_LONG).show();
+                                }
+
+                            });
+
                             //hide progressbar anim
                             mProgressBar.setAlpha(0f);
                             mProgressBar.setProgress(0);
 
-                            Toast.makeText(SignUpActivity.this, "SUCCESS! "
-                                            + userType + " UUID : " + mUserID,
-                                    Toast.LENGTH_LONG).show();
+                            //Toast.makeText(SignUpActivity.this, "SUCCESS! " + userType + " UUID : " + mUserID, Toast.LENGTH_LONG).show();
 
                         } else {
                             mProgressBar.setAlpha(0f);
                             mProgressBar.setProgress(0);
 
                             Toast.makeText(SignUpActivity.this, "FAILED! "
-                                    + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -157,7 +181,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private Boolean validateName() {
-        String val = mFullName.getEditText().getText().toString();
+        String val = Objects.requireNonNull(mFullName.getEditText()).getText().toString();
         String namePattern = "[a-zA-Z\\s]+";
 
         if (val.isEmpty()) {
@@ -174,7 +198,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private Boolean validateEmail() {
-        String val = mEmail.getEditText().getText().toString();
+        String val = Objects.requireNonNull(mEmail.getEditText()).getText().toString();
         String emailPattern = "([a-zA-Z0-9._-]+){3,}@([a-z.-]+){3,}\\.([a-z]+){3,}";
 
         if (val.isEmpty()) {
@@ -190,7 +214,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private Boolean validatePhone() {
-        String val = mPhone.getEditText().getText().toString();
+        String val = Objects.requireNonNull(mPhone.getEditText()).getText().toString();
         String phonePattern = "[+62][0-9]+";
 
         if (val.isEmpty()) {
@@ -209,7 +233,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private Boolean validatePassword() {
-        String val = mPassword.getEditText().getText().toString();
+        String val = Objects.requireNonNull(mPassword.getEditText()).getText().toString();
 
         if (val.isEmpty()) {
             mPassword.setError("Password tidak boleh kosong!");
