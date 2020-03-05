@@ -5,20 +5,25 @@
 
 package com.xoxltn.pinjam_aja;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -26,8 +31,12 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout mFullName, mEmail, mPhone, mPassword;
     RadioGroup mRadioGroup;
     RadioButton mRadioButton;
+    ProgressBar mProgressBar;
 
     FirebaseAuth mAuth;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    String mUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
         mPhone = findViewById(R.id.signup_phone);
         mPassword = findViewById(R.id.signup_password);
         mRadioGroup = findViewById(R.id.radio_group_user);
+        mProgressBar = findViewById(R.id.loading);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -50,11 +60,101 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        //[ CALL userType WITHIN THE DOCUMENT, CALLING IT WITH THE SPECIFIC UserID ]
+        mUserID = mAuth.getUid();
+        String userType = "";
+
         // what to do when activity started?
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        checkUser(currentUser, userType);
+    }
+
+    private void checkUser(FirebaseUser user, String type) {
+
+        // TODO : CREATE USER ACCOUNT TYPE CHECKING
+        //  >> userType < from onStart() > value called from user database in firestore
+        //  1. [ user != null && type.equals("PENDANA") ]
+        //  2. [ user != null && type.equals("PEMINJAM") ]
+
+        if (user != null && type.equals("PENDANA")) {
+            //user type "PENDANA" successfully login
+            Intent pendanaLogin = new Intent(this,
+                    PendanaDashboardActivity.class);
+            startActivity(pendanaLogin);
+            finish();
+
+        } else if (user != null && type.equals("PEMINJAM")) {
+
+            //user type "PEMINJAM" successfully login
+            Intent peminjamLogin = new Intent(this,
+                    PeminjamDashboardActivity.class);
+            startActivity(peminjamLogin);
+            finish();
+        } else {
+            mProgressBar.setMax(100);
+            mProgressBar.setAlpha(0f);
+            mProgressBar.setProgress(0);
+        }
+
     }
 
     //-------------------------------------------------------------------------------------------//
+
+    public void onDaftarButtonClick(View view) {
+
+        mProgressBar.setAlpha(1.0f);
+        mProgressBar.setProgress(100);
+
+        if (!validateName() | !validateEmail() | !validatePhone() | !validatePassword()
+                | !validateUserType()) {
+            mProgressBar.setAlpha(0f);
+            mProgressBar.setProgress(0);
+            return;
+        }
+
+        // ekstrak data dari radio button.
+        int SelectedId = mRadioGroup.getCheckedRadioButtonId();
+        mRadioButton = findViewById(SelectedId);
+
+        String name = mFullName.getEditText().getText().toString().trim();
+        String email = mEmail.getEditText().getText().toString().trim();
+        String phone = mPhone.getEditText().getText().toString();
+        String password = mPassword.getEditText().getText().toString();
+        final String userType = mRadioButton.getText().toString();
+
+        // SIGN-UP ACCOUNT
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()) {
+
+                            //get USER ID
+                            mUserID = mAuth.getUid();
+
+                            //hide progressbar anim
+                            mProgressBar.setAlpha(0f);
+                            mProgressBar.setProgress(0);
+
+                            Toast.makeText(SignUpActivity.this, "SUCCESS! "
+                                            + userType + " UUID : " + mUserID,
+                                    Toast.LENGTH_LONG).show();
+
+                        } else {
+                            mProgressBar.setAlpha(0f);
+                            mProgressBar.setProgress(0);
+
+                            Toast.makeText(SignUpActivity.this, "FAILED! "
+                                    + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+                });
+
+    }
 
     private Boolean validateName() {
         String val = mFullName.getEditText().getText().toString();
@@ -75,7 +175,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Boolean validateEmail() {
         String val = mEmail.getEditText().getText().toString();
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z.-]+\\.[a-z]+";
+        String emailPattern = "([a-zA-Z0-9._-]+){3,}@([a-z.-]+){3,}\\.([a-z]+){3,}";
 
         if (val.isEmpty()) {
             mEmail.setError("Alamat Email tidak boleh kosong!");
@@ -133,26 +233,6 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             return true;
         }
-
-    }
-
-    public void onDaftarButtonClick(View view) {
-        if (!validateName() | !validateEmail() | !validatePhone() | !validatePassword()
-                | !validateUserType()) {
-            return;
-        }
-
-        // ekstrak data dari radio button.
-        int SelectedId = mRadioGroup.getCheckedRadioButtonId();
-        mRadioButton = findViewById(SelectedId);
-
-        String name = mFullName.getEditText().getText().toString();
-        String email = mEmail.getEditText().getText().toString();
-        String phone = mPhone.getEditText().getText().toString();
-        String password = mPassword.getEditText().getText().toString();
-        String userType = mRadioButton.getText().toString();
-
-        // TODO : FIREBASE SIGNUP HERE
 
     }
 

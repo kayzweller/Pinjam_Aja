@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Boolean validateEmail() {
         String val = mEmail.getEditText().getText().toString();
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z.-]+\\.[a-z]+";
+        String emailPattern = "([a-zA-Z0-9._-]+){3,}@([a-z.-]+){3,}\\.([a-z]+){3,}";
 
         if (val.isEmpty()) {
             mEmail.setError("Masukan alamat email Anda!");

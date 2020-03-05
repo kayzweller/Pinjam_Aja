@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/logo_signup"
-        android:layout_width="150dp"
-        android:layout_height="140dp"
+        android:layout_width="130dp"
+        android:layout_height="120dp"
         android:layout_gravity="center"
         android:contentDescription="logo"
         android:src="@drawable/splash_logo" />
@@ -26,7 +26,7 @@
         android:fontFamily="@font/fira_sans_extrabold"
         android:text="DAFTAR AKUN"
         android:textColor="@color/text_tertier"
-        android:textSize="48sp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <TextView
@@ -85,9 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="No. Handphone"
-            app:boxStrokeColor="@color/text_tertier"
-            app:counterEnabled="true"
-            app:counterMaxLength="15">
+            app:boxStrokeColor="@color/text_tertier" >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -167,5 +165,12 @@
         android:text="Sudah Punya Akun? Login"
         android:textSize="16sp"
         android:textStyle="italic" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:visibility="visible" />
 
 </LinearLayout>

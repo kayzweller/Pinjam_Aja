@@ -50,12 +50,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
     //-------------------------------------------------------------------------------------------//
 
-    // when this activity about to launch, check does this activity had been opened before
+    // when this activity about to launch, check if this activity had been opened before
     private void SecondComing() {
 
         if (restorePrefsData()) {
             Intent loginActivity = new Intent(WelcomeActivity.this,
-                    SignUpActivity.class);
+                    LoginActivity.class);
             startActivity(loginActivity);
             finish();
         }
