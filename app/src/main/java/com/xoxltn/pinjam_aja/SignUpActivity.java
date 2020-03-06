@@ -25,6 +25,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -43,6 +44,9 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseFirestore mFireStore;
 
     String mUserID;
+    String mUserType;
+
+    //-------------------------------------------------------------------------------------------//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,42 +72,11 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        // TODO : CALL userType WITHIN THE DOCUMENT, CALLING IT WITH THE SPECIFIC UserID
-        mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-        String userType = "";
+        mProgressBar.setMax(100);
+        mProgressBar.setAlpha(0f);
+        mProgressBar.setProgress(0);
 
-        // what to do when activity started?
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        checkUser(currentUser, userType);
-    }
-
-    private void checkUser(FirebaseUser user, String type) {
-
-        // TODO : CREATE USER ACCOUNT TYPE CHECKING
-        //  >> userType < from onStart() > value called from user database in firestore
-        //  1. [ user != null && type.equals("PENDANA") ]
-        //  2. [ user != null && type.equals("PEMINJAM") ]
-
-        if (user != null && type.equals("PENDANA")) {
-            //user type "PENDANA" successfully login
-            Intent pendanaLogin = new Intent(this,
-                    PendanaDashboardActivity.class);
-            startActivity(pendanaLogin);
-            finish();
-
-        } else if (user != null && type.equals("PEMINJAM")) {
-
-            //user type "PEMINJAM" successfully login
-            Intent peminjamLogin = new Intent(this,
-                    PeminjamDashboardActivity.class);
-            startActivity(peminjamLogin);
-            finish();
-        } else {
-            mProgressBar.setMax(100);
-            mProgressBar.setAlpha(0f);
-            mProgressBar.setProgress(0);
-        }
-
     }
 
     //-------------------------------------------------------------------------------------------//
@@ -133,45 +106,55 @@ public class SignUpActivity extends AppCompatActivity {
         // SIGN-UP ACCOUNT
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
 
-                        if(task.isSuccessful()) {
+                    //get USER ID
+                    mUserID = mAuth.getUid();
 
-                            //get USER ID
-                            mUserID = mAuth.getUid();
+                    //STORE DATA TO FIREBASE
+                    DocumentReference docReference = mFireStore.collection("USER")
+                            .document(mUserID);
 
-                            //STORE DATA TO FIREBASE
-                            DocumentReference docReference = mFireStore.collection(userType)
-                                    .document(mUserID);
+                    Map<String, String> user = new HashMap<>();
+                    user.put("name", name);
+                    user.put("email", email);
+                    user.put("phone", phone);
+                    user.put("userType", userType);
 
-                            Map<String, String> user = new HashMap<>();
-                            user.put("name", name);
-                            user.put("email", email);
-                            user.put("phone", phone);
-                            user.put("userType", userType);
+                    docReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // SIGN-IN BERHASIL!!
+                            Toast.makeText(SignUpActivity.this, "NEW USER CREATED : "
+                                    + userType + " UUID : " + mUserID, Toast.LENGTH_LONG).show();
 
-                            docReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(SignUpActivity.this, "USER CREATED : "
-                                                    + userType + " " + mUserID, Toast.LENGTH_LONG).show();
-                                }
+                            if (userType.equals("PENDANA")) {
+                                //user successfully login
+                                Intent pendanaLogin = new Intent(SignUpActivity.this,
+                                        PendanaDashboardActivity.class);
+                                startActivity(pendanaLogin);
+                                finish();
 
-                            });
+                            } else if (userType.equals("PEMINJAM")) {
+                                //user successfully login
+                                Intent peminjamLogin = new Intent(SignUpActivity.this,
+                                        PeminjamDashboardActivity.class);
+                                startActivity(peminjamLogin);
+                                finish();
+                            }
+                        }
 
-                            //hide progressbar anim
-                            mProgressBar.setAlpha(0f);
-                            mProgressBar.setProgress(0);
-
-                            //Toast.makeText(SignUpActivity.this, "SUCCESS! " + userType + " UUID : " + mUserID, Toast.LENGTH_LONG).show();
+                    });
 
                         } else {
                             mProgressBar.setAlpha(0f);
                             mProgressBar.setProgress(0);
 
                             Toast.makeText(SignUpActivity.this, "FAILED! "
-                                    + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                                    + Objects.requireNonNull(task.getException()).getMessage(),
+                                    Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -199,7 +182,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Boolean validateEmail() {
         String val = Objects.requireNonNull(mEmail.getEditText()).getText().toString();
-        String emailPattern = "([a-zA-Z0-9._-]+){3,}@([a-z.-]+){3,}\\.([a-z]+){3,}";
+        String emailPattern = "([a-zA-Z0-9._-]+){3,}@([a-z.-]+){3,}\\.([a-z]+){2,}";
 
         if (val.isEmpty()) {
             mEmail.setError("Alamat Email tidak boleh kosong!");
