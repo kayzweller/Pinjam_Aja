@@ -23,9 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -44,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseFirestore mFireStore;
 
     String mUserID;
-    String mUserType;
 
     //-------------------------------------------------------------------------------------------//
 
@@ -75,8 +72,6 @@ public class SignUpActivity extends AppCompatActivity {
         mProgressBar.setMax(100);
         mProgressBar.setAlpha(0f);
         mProgressBar.setProgress(0);
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     //-------------------------------------------------------------------------------------------//

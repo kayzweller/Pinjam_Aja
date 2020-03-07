@@ -6,46 +6,29 @@
 package com.xoxltn.pinjam_aja;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //deklarasi variabel
     TextInputLayout mEmail, mPassword;
-
     ProgressBar mProgressBar;
 
-    //deklarasi firebase
     private FirebaseAuth mAuth;
-    private FirebaseFirestore mFireStore;
-
-    String mUserType;
-    String mUserID;
 
     //-------------------------------------------------------------------------------------------//
 
@@ -78,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     private Boolean validateEmail() {
-        String val = mEmail.getEditText().getText().toString();
+        String val = Objects.requireNonNull(mEmail.getEditText()).getText().toString();
         String emailPattern = "([a-zA-Z0-9._-]+){3,}@([a-z.-]+){3,}\\.([a-z]+){2,}";
 
         if (val.isEmpty()) {
@@ -94,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private Boolean validatePassword() {
-        String val = mPassword.getEditText().getText().toString();
+        String val = Objects.requireNonNull(mPassword.getEditText()).getText().toString();
 
         if (val.isEmpty()) {
             mPassword.setError("Masukan password Anda!");
@@ -123,33 +106,40 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        // CHECKING THE TYPE OF USER ACCOUNT LOGIN
+                        // TODO : CHECKING THE TYPE OF USER ACCOUNT LOGIN
                         //  >> mUserType value called from user database in firestore
                         //  1. [task.isSucessful() && mUserType == "PENDANA"]
                         //  2. [task.isSucessful() && mUserType == "PEMINJAM"]
 
                         if (task.isSuccessful()) {
 
-                            mUserID = mAuth.getUid();
+                            // CHECK USER TYPE (ADMIN or REGULAR USER)
+
+                            String userID = mAuth.getUid();
                             String keyAdmin = "vNSDP534cgPHAbqocLjJmgQm68d2";
 
-                            assert mUserID != null;
-                            if (mUserID.matches(keyAdmin)) {
+                            assert userID != null;
+                            if (userID.matches(keyAdmin)) {
                                 mProgressBar.setAlpha(0f);
                                 mProgressBar.setProgress(0);
                                 Toast.makeText(getApplicationContext(),
-                                        "GUNAKAN APLIKASI ADMIN UNTUK LOGIN!!",
+                                        "GUNAKAN 'Pinjam Aja! : ADMIN' UNTUK LOGIN!!",
                                         Toast.LENGTH_SHORT).show();
-                            } else if (!mUserID.matches(keyAdmin)) {
+                                
+                            } else if (!userID.matches(keyAdmin)) {
                                 mProgressBar.setAlpha(0f);
                                 mProgressBar.setProgress(0);
                                 Toast.makeText(getApplicationContext(), "LOG-IN SUKSES!!",
                                         Toast.LENGTH_SHORT).show();
+
+                                // TODO :: LOGIN OTP?
+
                             } else {
                                 mProgressBar.setAlpha(0f);
                                 mProgressBar.setProgress(0);
-                                Toast.makeText(getApplicationContext(), task.getException().
-                                        getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),Objects
+                                        .requireNonNull(task.getException()).getMessage(),
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -160,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //-------------------------------------------------------------------------------------------//
 
+    // TODO :: LUPA PASSWORD??
     public void onClickLupaButton (View v) {
         Intent lupaPassword = new Intent(this, LupaPasswordActivity.class);
         startActivity(lupaPassword);
