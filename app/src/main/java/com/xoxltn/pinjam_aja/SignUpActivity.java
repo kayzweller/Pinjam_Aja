@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2020 Albert Kristaen (DBC 113 008)
  * ONLY USE UNDER PERMISSION -OR- I AM GONNA CHOP YOUR HANDS OFF!
  */
@@ -122,8 +122,8 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             // SIGN-IN BERHASIL!!
-                            Toast.makeText(SignUpActivity.this, "NEW USER CREATED : "
-                                    + userType + " UUID : " + mUserID, Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity.this,
+                                    "AKUN BERHASIL DIBUAT!",Toast.LENGTH_LONG).show();
 
                             if (userType.equals("PENDANA")) {
                                 //user successfully login
@@ -147,7 +147,7 @@ public class SignUpActivity extends AppCompatActivity {
                             mProgressBar.setAlpha(0f);
                             mProgressBar.setProgress(0);
 
-                            Toast.makeText(SignUpActivity.this, "FAILED! "
+                            Toast.makeText(SignUpActivity.this, "GAGAL! "
                                     + Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();
 

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2020 Albert Kristaen (DBC 113 008)
  * ONLY USE UNDER PERMISSION -OR- I AM GONNA CHOP YOUR HANDS OFF!
  */
@@ -16,10 +16,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
@@ -29,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
 
     private FirebaseAuth mAuth;
+
+    String mUserID;
+
 
     //-------------------------------------------------------------------------------------------//
 
@@ -55,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         mProgressBar.setMax(100);
         mProgressBar.setAlpha(0f);
         mProgressBar.setProgress(0);
-
     }
 
     //-------------------------------------------------------------------------------------------//
@@ -89,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onMasukButtonClick(View view) {
+
         mProgressBar.setAlpha(1.0f);
         mProgressBar.setProgress(100);
 
@@ -106,41 +113,40 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        // TODO : CHECKING THE TYPE OF USER ACCOUNT LOGIN
-                        //  >> mUserType value called from user database in firestore
-                        //  1. [task.isSucessful() && mUserType == "PENDANA"]
-                        //  2. [task.isSucessful() && mUserType == "PEMINJAM"]
+                        // SET STATEMENT TO CHECK WHO'S TRY TO LOG-IN!!
 
                         if (task.isSuccessful()) {
 
-                            // CHECK USER TYPE (ADMIN or REGULAR USER)
+                            // CHECK USER TYPE (ADMIN or REGULAR USER [PEMINJAM or PENDANA)
+                            mUserID = mAuth.getUid(); assert mUserID != null;
+                            String keyAdmin = "(vNSDP534cgPHAbqocLjJmgQm68d2)";
 
-                            String userID = mAuth.getUid();
-                            String keyAdmin = "vNSDP534cgPHAbqocLjJmgQm68d2";
-
-                            assert userID != null;
-                            if (userID.matches(keyAdmin)) {
+                            if (mUserID.matches(keyAdmin)) {
                                 mProgressBar.setAlpha(0f);
                                 mProgressBar.setProgress(0);
                                 Toast.makeText(getApplicationContext(),
-                                        "GUNAKAN 'Pinjam Aja! : ADMIN' UNTUK LOGIN!!",
+                                        "GUNAKAN 'Pinjam Aja! ADMIN' UNTUK LOGIN.",
                                         Toast.LENGTH_SHORT).show();
-                                
-                            } else if (!userID.matches(keyAdmin)) {
+
+                            } else if (!mUserID.matches(keyAdmin)) {
                                 mProgressBar.setAlpha(0f);
                                 mProgressBar.setProgress(0);
                                 Toast.makeText(getApplicationContext(), "LOG-IN SUKSES!!",
                                         Toast.LENGTH_SHORT).show();
 
-                                // TODO :: LOGIN OTP?
-
-                            } else {
-                                mProgressBar.setAlpha(0f);
-                                mProgressBar.setProgress(0);
-                                Toast.makeText(getApplicationContext(),Objects
-                                        .requireNonNull(task.getException()).getMessage(),
-                                        Toast.LENGTH_SHORT).show();
+                                // GO TO ACTIVITY FOR CHECK USER TYPE, IS IT 'PENDANA' OR 'PEMINJAM'
+                                Intent checkUser = new Intent(LoginActivity.this,
+                                        CheckUserActivity.class);
+                                startActivity(checkUser);
+                                finish();
                             }
+
+                        } else {
+                            mProgressBar.setAlpha(0f);
+                            mProgressBar.setProgress(0);
+                            Toast.makeText(getApplicationContext(), Objects
+                                            .requireNonNull(task.getException()).getMessage(),
+                                    Toast.LENGTH_SHORT).show();
                         }
 
                     }
