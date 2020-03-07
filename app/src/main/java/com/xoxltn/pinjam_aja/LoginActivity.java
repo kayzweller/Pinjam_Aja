@@ -33,9 +33,13 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore mFire;
 
-    String mUserID;
+    String mUserID, mUserType;
 
+    String PENDANA = "PENDANA";
+    String PEMINJAM = "PEMINJAM";
+    String mKeyAdmin = "(vNSDP534cgPHAbqocLjJmgQm68d2)";
 
     //-------------------------------------------------------------------------------------------//
 
@@ -50,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.loginprogressBar);
 
         mAuth = FirebaseAuth.getInstance();
+        mFire = FirebaseFirestore.getInstance();
 
     }
 
@@ -114,31 +119,65 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         // SET STATEMENT TO CHECK WHO'S TRY TO LOG-IN!!
-
                         if (task.isSuccessful()) {
 
                             // CHECK USER TYPE (ADMIN or REGULAR USER [PEMINJAM or PENDANA)
                             mUserID = mAuth.getUid(); assert mUserID != null;
-                            String keyAdmin = "(vNSDP534cgPHAbqocLjJmgQm68d2)";
 
-                            if (mUserID.matches(keyAdmin)) {
+                            if (mUserID.matches(mKeyAdmin)) {
                                 mProgressBar.setAlpha(0f);
                                 mProgressBar.setProgress(0);
                                 Toast.makeText(getApplicationContext(),
                                         "GUNAKAN 'Pinjam Aja! ADMIN' UNTUK LOGIN.",
                                         Toast.LENGTH_SHORT).show();
 
-                            } else if (!mUserID.matches(keyAdmin)) {
+                            } else if (!mUserID.matches(mKeyAdmin)) {
                                 mProgressBar.setAlpha(0f);
                                 mProgressBar.setProgress(0);
                                 Toast.makeText(getApplicationContext(), "LOG-IN SUKSES!!",
                                         Toast.LENGTH_SHORT).show();
 
-                                // GO TO ACTIVITY FOR CHECK USER TYPE, IS IT 'PENDANA' OR 'PEMINJAM'
-                                Intent checkUser = new Intent(LoginActivity.this,
-                                        CheckUserActivity.class);
-                                startActivity(checkUser);
-                                finish();
+                                mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+                                DocumentReference docRef = mFire.collection("USER").document(mUserID);
+
+                                // CALL THE USER TYPE (using document reference)
+                                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot doc = task.getResult();
+                                            assert doc != null;
+                                            mUserType = doc.getString("userType");
+                                        } else {
+                                            mUserType = null;
+                                        }
+
+                                        // AUTO JUMP TO DASHBOARD ACCORDING TO USER TYPE!
+                                        if (Objects.equals(mUserType, PENDANA)) {
+                                            //user successfully login
+                                            Intent pendanaLogin = new Intent(LoginActivity.this,
+                                                    PendanaDashboardActivity.class);
+                                            startActivity(pendanaLogin);
+                                            finish();
+
+                                        } else if (Objects.equals(mUserType, PEMINJAM)) {
+                                            //user successfully login
+                                            Intent peminjamLogin = new Intent(LoginActivity.this,
+                                                    PeminjamDashboardActivity.class);
+                                            startActivity(peminjamLogin);
+                                            finish();
+                                        }
+
+                                    }
+                                })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(getApplicationContext(), "DATA MISSING!!",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                             }
 
                         } else {
