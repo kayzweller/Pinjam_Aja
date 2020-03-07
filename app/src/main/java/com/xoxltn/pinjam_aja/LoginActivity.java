@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2020 Albert Kristaen (DBC 113 008)
  * ONLY USE UNDER PERMISSION -OR- I AM GONNA CHOP YOUR HANDS OFF!
  */
@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             // CHECK USER TYPE (ADMIN or REGULAR USER [PEMINJAM or PENDANA)
-                            mUserID = mAuth.getUid(); assert mUserID != null;
+                            mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
                             if (mUserID.matches(mKeyAdmin)) {
                                 mProgressBar.setAlpha(0f);
@@ -137,10 +137,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "LOG-IN SUKSES!!",
                                         Toast.LENGTH_SHORT).show();
 
-                                mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-                                DocumentReference docRef = mFire.collection("USER").document(mUserID);
-
                                 // CALL THE USER TYPE (using document reference)
+                                DocumentReference docRef = mFire.collection("USER").document(mUserID);
                                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
