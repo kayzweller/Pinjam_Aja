@@ -71,6 +71,18 @@ public class LoginActivity extends AppCompatActivity {
 
     //-------------------------------------------------------------------------------------------//
 
+    public void progressBarLoad() {
+        mProgressBar.setAlpha(1.0f);
+        mProgressBar.setProgress(100);
+    }
+
+    public void progressBarUnload() {
+        mProgressBar.setAlpha(0f);
+        mProgressBar.setProgress(0);
+    }
+
+    //-------------------------------------------------------------------------------------------//
+
     private Boolean validateEmail() {
         String val = Objects.requireNonNull(mEmail.getEditText()).getText().toString();
         String emailPattern = "([a-zA-Z0-9._-]+){3,}@([a-z.-]+){3,}\\.([a-z]+){2,}";
@@ -101,12 +113,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onMasukButtonClick(View v) {
 
-        mProgressBar.setAlpha(1.0f);
-        mProgressBar.setProgress(100);
+        progressBarLoad();
 
         if (!validateEmail() | !validatePassword()) {
-            mProgressBar.setAlpha(0f);
-            mProgressBar.setProgress(0);
+            progressBarUnload();
             return;
         }
 
@@ -125,15 +135,13 @@ public class LoginActivity extends AppCompatActivity {
                             mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
                             if (mUserID.matches(mKeyAdmin)) {
-                                mProgressBar.setAlpha(0f);
-                                mProgressBar.setProgress(0);
+                                progressBarUnload();
                                 Toast.makeText(getApplicationContext(),
                                         "GUNAKAN 'Pinjam Aja! ADMIN' UNTUK LOGIN.",
                                         Toast.LENGTH_SHORT).show();
 
                             } else if (!mUserID.matches(mKeyAdmin)) {
-                                mProgressBar.setAlpha(0f);
-                                mProgressBar.setProgress(0);
+                                progressBarUnload();
                                 Toast.makeText(getApplicationContext(), "LOG-IN SUKSES!!",
                                         Toast.LENGTH_SHORT).show();
 
@@ -180,8 +188,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
 
                         } else {
-                            mProgressBar.setAlpha(0f);
-                            mProgressBar.setProgress(0);
+                            progressBarUnload();
                             Toast.makeText(getApplicationContext(), Objects
                                             .requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();

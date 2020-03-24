@@ -76,15 +76,25 @@ public class SignUpActivity extends AppCompatActivity {
 
     //-------------------------------------------------------------------------------------------//
 
-    public void onDaftarButtonClick(View view) {
-
+    public void progressBarLoad() {
         mProgressBar.setAlpha(1.0f);
         mProgressBar.setProgress(100);
+    }
+
+    public void progressBarUnload() {
+        mProgressBar.setAlpha(0f);
+        mProgressBar.setProgress(0);
+    }
+
+    //-------------------------------------------------------------------------------------------//
+
+    public void onDaftarButtonClick(View view) {
+
+        progressBarLoad();
 
         if (!validateName() | !validateEmail() | !validatePhone() | !validatePassword()
                 | !validateUserType()) {
-            mProgressBar.setAlpha(0f);
-            mProgressBar.setProgress(0);
+            progressBarUnload();
             return;
         }
 
@@ -144,9 +154,8 @@ public class SignUpActivity extends AppCompatActivity {
                     });
 
                         } else {
-                            mProgressBar.setAlpha(0f);
-                            mProgressBar.setProgress(0);
 
+                            progressBarUnload();
                             Toast.makeText(SignUpActivity.this, "GAGAL! "
                                     + Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();
