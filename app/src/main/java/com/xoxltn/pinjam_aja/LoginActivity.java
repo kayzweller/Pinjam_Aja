@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         // set object from XML to Variable in java [HOOKS]
         mEmail = findViewById(R.id.login_email);
         mPassword = findViewById(R.id.login_password);
-        mProgressBar = findViewById(R.id.loginprogressBar);
+        mProgressBar = findViewById(R.id.login_progress_bar);
 
         mAuth = FirebaseAuth.getInstance();
         mFire = FirebaseFirestore.getInstance();
@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void onMasukButtonClick(View view) {
+    public void onMasukButtonClick(View v) {
 
         mProgressBar.setAlpha(1.0f);
         mProgressBar.setProgress(100);
@@ -138,7 +138,8 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
 
                                 // CALL THE USER TYPE (using document reference)
-                                DocumentReference docRef = mFire.collection("USER").document(mUserID);
+                                DocumentReference docRef = mFire.collection("USER")
+                                        .document(mUserID);
                                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -193,15 +194,15 @@ public class LoginActivity extends AppCompatActivity {
 
     //-------------------------------------------------------------------------------------------//
 
-    // TODO :: LUPA PASSWORD??
     public void onClickLupaButton (View v) {
         Intent lupaPassword = new Intent(this, LupaPasswordActivity.class);
         startActivity(lupaPassword);
+        finish();
     }
 
     //-------------------------------------------------------------------------------------------//
 
-    public void onClicktoSignUp (View view) {
+    public void onClicktoSignUp (View v) {
         Intent signUpActivity = new Intent(LoginActivity.this,
                 SignUpActivity.class);
         startActivity(signUpActivity);

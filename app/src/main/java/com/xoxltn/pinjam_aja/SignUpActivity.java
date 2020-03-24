@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2020 Albert Kristaen (DBC 113 008)
  * ONLY USE UNDER PERMISSION -OR- I AM GONNA CHOP YOUR HANDS OFF!
  */

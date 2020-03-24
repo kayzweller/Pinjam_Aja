@@ -122,7 +122,7 @@
         android:textStyle="italic" />
 
     <ProgressBar
-        android:id="@+id/loginprogressBar"
+        android:id="@+id/login_progress_bar"
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
         android:layout_width="match_parent"
         android:layout_height="28dp"
