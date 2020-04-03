@@ -11,4 +11,9 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <!--Base Nav Bottom theme-->
+    <style name="NavView" parent="Widget.Design.BottomNavigationView">
+        <item name="android:fontFamily">@font/fira_sans_bold_italic</item>
+    </style>
+
 </resources>

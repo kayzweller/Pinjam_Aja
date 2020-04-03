@@ -5,8 +5,15 @@
     <string name="splash_logo">Pinjam Aja! Logo</string>
     <string name="button_next">NEXT</string>
     <string name="button_daftar">Daftar Sekarang</string>
+    <string name="nav_home">Beranda</string>
+    <string name="nav_fund">Dana</string>
+    <string name="nav_user">Profil</string>
 
     <!-- bug fix, leave it there -->
     <item name="visible" type="id" />
     <item name="masked" type="id" />
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

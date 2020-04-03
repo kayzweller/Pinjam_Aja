@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LupaPasswordActivity" />
-        <activity android:name=".PeminjamDashboardActivity" />
-        <activity android:name=".PendanaDashboardActivity" />
+        <activity android:name=".peminjam_system.PeminjamDashboardActivity" />
+        <activity android:name=".pendana_system.PendanaDashboardActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".WelcomeActivity" />

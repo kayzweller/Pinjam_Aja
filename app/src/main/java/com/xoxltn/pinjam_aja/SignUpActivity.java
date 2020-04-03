@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,12 +24,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.xoxltn.pinjam_aja.peminjam_system.PeminjamDashboardActivity;
+import com.xoxltn.pinjam_aja.pendana_system.PendanaDashboardActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import io.opencensus.stats.AggregationData;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -37,9 +43,11 @@ public class SignUpActivity extends AppCompatActivity {
     RadioGroup mRadioGroup;
     RadioButton mRadioButton;
     ProgressBar mProgressBar;
+    Button mSignUpButton;
 
-    FirebaseAuth mAuth;
-    FirebaseFirestore mFireStore;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUserVer;
+    private FirebaseFirestore mFireStore;
 
     String mUserID;
 
@@ -57,6 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.signup_password);
         mRadioGroup = findViewById(R.id.radio_group_user);
         mProgressBar = findViewById(R.id.loading);
+        mSignUpButton = findViewById(R.id.signup_button);
 
         mAuth = FirebaseAuth.getInstance();
         mFireStore = FirebaseFirestore.getInstance();
@@ -79,11 +88,15 @@ public class SignUpActivity extends AppCompatActivity {
     public void progressBarLoad() {
         mProgressBar.setAlpha(1.0f);
         mProgressBar.setProgress(100);
+
+        mSignUpButton.setEnabled(false);
     }
 
     public void progressBarUnload() {
         mProgressBar.setAlpha(0f);
         mProgressBar.setProgress(0);
+
+        mSignUpButton.setEnabled(true);
     }
 
     //-------------------------------------------------------------------------------------------//
@@ -131,12 +144,22 @@ public class SignUpActivity extends AppCompatActivity {
                     docReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            // SIGN-IN BERHASIL!!
-                            Toast.makeText(SignUpActivity.this,
-                                    "AKUN BERHASIL DIBUAT!",Toast.LENGTH_LONG).show();
+
+                            // SIGN-IN BERHASIL!! KIRIM EMAIL VERIFIKASI!
+                            mUserVer = Objects.requireNonNull(mAuth.getCurrentUser());
+                            mUserVer.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(SignUpActivity.this,
+                                            "Pendaftaran sukses, email verifikasi sudah terkirim!",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            });
+
 
                             if (userType.equals("PENDANA")) {
                                 //user successfully login
+                                toastLoginSuccess();
                                 Intent pendanaLogin = new Intent(SignUpActivity.this,
                                         PendanaDashboardActivity.class);
                                 startActivity(pendanaLogin);
@@ -144,6 +167,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             } else if (userType.equals("PEMINJAM")) {
                                 //user successfully login
+                                toastLoginSuccess();
                                 Intent peminjamLogin = new Intent(SignUpActivity.this,
                                         PeminjamDashboardActivity.class);
                                 startActivity(peminjamLogin);
@@ -245,6 +269,11 @@ public class SignUpActivity extends AppCompatActivity {
             return true;
         }
 
+    }
+
+    private void toastLoginSuccess() {
+        Toast.makeText(getApplicationContext(), "Selamat Datang!",
+                Toast.LENGTH_SHORT).show();
     }
 
     //-------------------------------------------------------------------------------------------//

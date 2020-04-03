@@ -98,7 +98,7 @@ public class LupaPasswordActivity extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
 
                 progressBarUnload();
-                Toast.makeText(getApplicationContext(), "Reset link telah terkirim ke email anda!!",
+                Toast.makeText(getApplicationContext(), "Reset link telah dikirim ke email anda!!",
                         Toast.LENGTH_LONG).show();
 
                 Intent loginActivity = new Intent(LupaPasswordActivity.this,

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:measureAllChildren="true"
+    android:background="@color/transparent"
+    tools:context=".peminjam_system.PeminjamHomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/peminjam_judul_beranda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:text="BERANDA"
+            android:fontFamily="@font/fira_sans_bold"
+            android:textSize="24dp"
+            android:textColor="@color/text_tertier"
+            android:textAlignment="center" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardViewPinjam1"
+            android:layout_below="@id/peminjam_judul_beranda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:theme="@style/Base.CardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/welcome_3"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_opsi_1_judul"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="OPSI PINJAMAN #1"
+                        android:fontFamily="@font/fira_sans_bold"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textColor="@color/text_tertier"/>
+
+                    <TextView
+                        android:id="@+id/text_opsi_1_nominal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rp. 500.000,-"
+                        android:fontFamily="@font/fira_sans_bold_italic"
+                        android:textAlignment="center"
+                        android:textSize="28dp"
+                        android:textColor="@color/text_tertier"/>
+
+                    <Button
+                        android:id="@+id/button_opsi_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_round_bg"
+                        android:fontFamily="@font/fira_sans_bold"
+                        android:text="PILIH"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardViewPinjam2"
+            android:layout_below="@id/CardViewPinjam1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:theme="@style/Base.CardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/welcome_3"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_opsi_2_judul"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="OPSI PINJAMAN #2"
+                        android:fontFamily="@font/fira_sans_bold"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textColor="@color/text_tertier"/>
+
+                    <TextView
+                        android:id="@+id/text_opsi_2_nominal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rp. 1.000.000,-"
+                        android:fontFamily="@font/fira_sans_bold_italic"
+                        android:textAlignment="center"
+                        android:textSize="28dp"
+                        android:textColor="@color/text_tertier"/>
+
+                    <Button
+                        android:id="@+id/button_opsi_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_round_bg"
+                        android:fontFamily="@font/fira_sans_bold"
+                        android:text="PILIH"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardViewPinjam3"
+            android:layout_below="@id/CardViewPinjam2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:theme="@style/Base.CardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/welcome_3"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_opsi_3_judul"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="OPSI PINJAMAN #3"
+                        android:fontFamily="@font/fira_sans_bold"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textColor="@color/text_tertier"/>
+
+                    <TextView
+                        android:id="@+id/text_opsi_3_nominal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rp. 1.500.000,-"
+                        android:fontFamily="@font/fira_sans_bold_italic"
+                        android:textAlignment="center"
+                        android:textSize="28dp"
+                        android:textColor="@color/text_tertier"/>
+
+                    <Button
+                        android:id="@+id/button_opsi_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_round_bg"
+                        android:fontFamily="@font/fira_sans_bold"
+                        android:text="PILIH"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</FrameLayout>

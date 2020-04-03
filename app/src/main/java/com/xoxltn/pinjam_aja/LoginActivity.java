@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -21,9 +22,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.xoxltn.pinjam_aja.peminjam_system.PeminjamDashboardActivity;
+import com.xoxltn.pinjam_aja.pendana_system.PendanaDashboardActivity;
 
 import java.util.Objects;
 
@@ -31,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputLayout mEmail, mPassword;
     ProgressBar mProgressBar;
+    Button mMasukButton;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFire;
@@ -52,9 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.login_email);
         mPassword = findViewById(R.id.login_password);
         mProgressBar = findViewById(R.id.login_progress_bar);
-
-        mAuth = FirebaseAuth.getInstance();
-        mFire = FirebaseFirestore.getInstance();
+        mMasukButton = findViewById(R.id.login_button);
 
     }
 
@@ -67,6 +70,55 @@ public class LoginActivity extends AppCompatActivity {
         mProgressBar.setMax(100);
         mProgressBar.setAlpha(0f);
         mProgressBar.setProgress(0);
+
+        mAuth = FirebaseAuth.getInstance();
+        mFire = FirebaseFirestore.getInstance();
+
+        executeAutoLogin();
+    }
+
+    public void executeAutoLogin() {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+
+            progressBarLoad();
+
+            mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+            DocumentReference docRefLog = mFire.collection("USER").document(mUserID);
+
+            docRefLog.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot docLog = Objects.requireNonNull(task.getResult());
+                        mUserType = docLog.getString("userType");
+                    } else {
+                        mUserType = null;
+                    }
+
+                    if (Objects.equals(mUserType, PENDANA)) {
+                        //user successfully login
+                        toastLoginSuccess();
+                        Intent pendanaLogin = new Intent(LoginActivity.this,
+                                PendanaDashboardActivity.class);
+                        startActivity(pendanaLogin);
+                        finish();
+
+                    } else if (Objects.equals(mUserType, PEMINJAM)) {
+                        //user successfully login
+                        toastLoginSuccess();
+                        Intent peminjamLogin = new Intent(LoginActivity.this,
+                                PeminjamDashboardActivity.class);
+                        startActivity(peminjamLogin);
+                        finish();
+                    }
+
+                }
+            });
+
+        }
     }
 
     //-------------------------------------------------------------------------------------------//
@@ -74,11 +126,15 @@ public class LoginActivity extends AppCompatActivity {
     public void progressBarLoad() {
         mProgressBar.setAlpha(1.0f);
         mProgressBar.setProgress(100);
+
+        mMasukButton.setEnabled(false);
     }
 
     public void progressBarUnload() {
         mProgressBar.setAlpha(0f);
         mProgressBar.setProgress(0);
+
+        mMasukButton.setEnabled(true);
     }
 
     //-------------------------------------------------------------------------------------------//
@@ -111,6 +167,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void toastLoginSuccess() {
+        Toast.makeText(getApplicationContext(), "Selamat Datang!",
+                Toast.LENGTH_SHORT).show();
+    }
+
     public void onMasukButtonClick(View v) {
 
         progressBarLoad();
@@ -123,8 +184,8 @@ public class LoginActivity extends AppCompatActivity {
         String email = Objects.requireNonNull(mEmail.getEditText()).getText().toString();
         String password = Objects.requireNonNull(mPassword.getEditText()).getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email, password).
-                addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -141,9 +202,6 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
 
                             } else if (!mUserID.matches(mKeyAdmin)) {
-                                progressBarUnload();
-                                Toast.makeText(getApplicationContext(), "LOG-IN SUKSES!!",
-                                        Toast.LENGTH_SHORT).show();
 
                                 // CALL THE USER TYPE (using document reference)
                                 DocumentReference docRef = mFire.collection("USER")
@@ -153,8 +211,7 @@ public class LoginActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                                         if (task.isSuccessful()) {
-                                            DocumentSnapshot doc = task.getResult();
-                                            assert doc != null;
+                                            DocumentSnapshot doc = Objects.requireNonNull(task.getResult());
                                             mUserType = doc.getString("userType");
                                         } else {
                                             mUserType = null;
@@ -163,6 +220,7 @@ public class LoginActivity extends AppCompatActivity {
                                         // AUTO JUMP TO DASHBOARD ACCORDING TO USER TYPE!
                                         if (Objects.equals(mUserType, PENDANA)) {
                                             //user successfully login
+                                            toastLoginSuccess();
                                             Intent pendanaLogin = new Intent(LoginActivity.this,
                                                     PendanaDashboardActivity.class);
                                             startActivity(pendanaLogin);
@@ -170,6 +228,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         } else if (Objects.equals(mUserType, PEMINJAM)) {
                                             //user successfully login
+                                            toastLoginSuccess();
                                             Intent peminjamLogin = new Intent(LoginActivity.this,
                                                     PeminjamDashboardActivity.class);
                                             startActivity(peminjamLogin);
@@ -181,8 +240,9 @@ public class LoginActivity extends AppCompatActivity {
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(getApplicationContext(), "DATA MISSING!!",
-                                                        Toast.LENGTH_SHORT).show();
+                                                progressBarUnload();
+                                                Toast.makeText(getApplicationContext(), "DATA MISSING!! "
+                                                                + e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         });
                             }
