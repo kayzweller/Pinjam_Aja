@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.xoxltn.pinjam_aja">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -10,8 +12,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup">
+        <activity android:name=".register.InfoRekeningActivity" />
+        <activity android:name=".register.InfoKontakActivity" />
+        <activity android:name=".register.InfoPekerjaanActivity" />
+        <activity android:name=".register.InfoPribadiActivity" />
+        <activity android:name=".register.InfoIdentitasActivity" />
+        <activity android:name=".register.ActivityUserProfile" />
+        <activity android:name=".PembayaranActivity" />
+        <activity android:name=".PembayaranPeminjamActivity" />
+        <activity android:name=".AboutActivity" />
         <activity android:name=".LupaPasswordActivity" />
+        <activity android:name=".peminjam_system.PermintaanPinjamanActivity"/>
         <activity android:name=".peminjam_system.PeminjamDashboardActivity" />
         <activity android:name=".pendana_system.PendanaDashboardActivity" />
         <activity android:name=".LoginActivity" />

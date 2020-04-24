@@ -1,0 +1,245 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_grey"
+    android:orientation="vertical"
+    tools:context=".register.ActivityUserProfile">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="16dp">
+
+            <ImageButton
+                android:onClick="ButtonBackArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back_icon"
+                android:layout_margin="4dp"
+                android:background="#00FFFFFF"
+                android:scaleType="center"
+                android:scaleX="2.2"
+                android:scaleY="2.2"
+                android:contentDescription="BackButton"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profil Saya."
+                android:fontFamily="@font/fira_sans_bold"
+                android:textSize="24sp"
+                android:textColor="@color/text_tertier"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:theme="@style/Base.CardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="285dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:text="1. INFORMASI IDENTITAS"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_tertier"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/button_lengkapi_identitas"
+                            android:layout_width="285dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="0dp"
+                            android:background="@drawable/button_round_bg"
+                            android:fontFamily="@font/fira_sans_bold"
+                            android:onClick="ButtonLengkapiIdentitas"
+                            android:text="Lihat Data"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:theme="@style/Base.CardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:text="2. INFORMASI PRIBADI"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_tertier"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/button_lengkapi_pribadi"
+                            android:layout_width="285dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="0dp"
+                            android:background="@drawable/button_round_bg"
+                            android:fontFamily="@font/fira_sans_bold"
+                            android:onClick="ButtonLengkapiPribadi"
+                            android:text="Lihat Data"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:theme="@style/Base.CardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:text="3. INFORMASI PEKERJAAN"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_tertier"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/button_lengkapi_pekerjaan"
+                            android:layout_width="285dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="0dp"
+                            android:background="@drawable/button_round_bg"
+                            android:fontFamily="@font/fira_sans_bold"
+                            android:onClick="ButtonLengkapiPekerjaan"
+                            android:text="Lihat Data"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:theme="@style/Base.CardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:text="4. INFORMASI KONTAK"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_tertier"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/button_lengkapi_kontak"
+                            android:layout_width="285dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="0dp"
+                            android:background="@drawable/button_round_bg"
+                            android:fontFamily="@font/fira_sans_bold"
+                            android:onClick="ButtonLengkapiKontak"
+                            android:text="Lihat Data"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:theme="@style/Base.CardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:text="5. INFORMASI REKENING"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_tertier"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/button_lengkapi_rekening"
+                            android:layout_width="285dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="0dp"
+                            android:background="@drawable/button_round_bg"
+                            android:fontFamily="@font/fira_sans_bold"
+                            android:onClick="ButtonLengkapiRekening"
+                            android:text="Lihat Data"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+</LinearLayout>

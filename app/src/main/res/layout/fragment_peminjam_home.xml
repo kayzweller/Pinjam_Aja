@@ -19,16 +19,18 @@
             android:id="@+id/peminjam_judul_beranda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
-            android:text="BERANDA"
+            android:layout_marginBottom="24dp"
+            android:text="Pinjam Aja!"
             android:fontFamily="@font/fira_sans_bold"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textColor="@color/text_tertier"
             android:textAlignment="center" />
 
+        <!-- TODO : PILIHAN PINJAMAN -->
+
         <androidx.cardview.widget.CardView
             android:id="@+id/CardViewPinjam1"
-            android:layout_below="@id/peminjam_judul_beranda"
+            android:layout_below="@+id/peminjam_judul_beranda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -51,34 +53,32 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_opsi_1_judul"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="OPSI PINJAMAN #1"
                         android:fontFamily="@font/fira_sans_bold"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textColor="@color/text_tertier"/>
 
                     <TextView
-                        android:id="@+id/text_opsi_1_nominal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Rp. 500.000,-"
                         android:fontFamily="@font/fira_sans_bold_italic"
                         android:textAlignment="center"
-                        android:textSize="28dp"
+                        android:textSize="28sp"
                         android:textColor="@color/text_tertier"/>
 
                     <Button
-                        android:id="@+id/button_opsi_1"
+                        android:id="@+id/button_opsi_500K"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/button_round_bg"
                         android:fontFamily="@font/fira_sans_bold"
                         android:text="PILIH"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -111,34 +111,32 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_opsi_2_judul"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="OPSI PINJAMAN #2"
                         android:fontFamily="@font/fira_sans_bold"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textColor="@color/text_tertier"/>
 
                     <TextView
-                        android:id="@+id/text_opsi_2_nominal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Rp. 1.000.000,-"
                         android:fontFamily="@font/fira_sans_bold_italic"
                         android:textAlignment="center"
-                        android:textSize="28dp"
+                        android:textSize="28sp"
                         android:textColor="@color/text_tertier"/>
 
                     <Button
-                        android:id="@+id/button_opsi_2"
+                        android:id="@+id/button_opsi_1000K"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/button_round_bg"
                         android:fontFamily="@font/fira_sans_bold"
                         android:text="PILIH"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -171,36 +169,134 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_opsi_3_judul"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="OPSI PINJAMAN #3"
                         android:fontFamily="@font/fira_sans_bold"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textColor="@color/text_tertier"/>
 
                     <TextView
-                        android:id="@+id/text_opsi_3_nominal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Rp. 1.500.000,-"
                         android:fontFamily="@font/fira_sans_bold_italic"
                         android:textAlignment="center"
-                        android:textSize="28dp"
+                        android:textSize="28sp"
                         android:textColor="@color/text_tertier"/>
 
                     <Button
-                        android:id="@+id/button_opsi_3"
+                        android:id="@+id/button_opsi_1500K"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:background="@drawable/button_round_bg"
                         android:fontFamily="@font/fira_sans_bold"
                         android:text="PILIH"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- TODO : RINCIAN BIAYA LAYANAN-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/RincianBiaya"
+            android:layout_below="@id/CardViewPinjam3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:theme="@style/Base.CardView">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="RINCIAN BIAYA LAYANAN"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_tertier"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:outlineProvider="paddedBounds"
+                    android:stretchColumns="1">
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dip"
+                            android:text="Jangka Waktu Pinjaman"
+                            android:textColor="@color/unselected"
+                            />
+
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="center"
+                            android:padding="3dip"
+                            android:text="3 Bulan"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dip"
+                            android:text="Bunga Pinjaman"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="center"
+                            android:padding="3dip"
+                            android:text="20%"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dip"
+                            android:text="Bunga Keterlambatan"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="center"
+                            android:padding="3dip"
+                            android:text="0.8%/Hari"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dip"
+                            android:text="Akumulasi Denda Maksimal"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="center"
+                            android:padding="3dip"
+                            android:text="+100%"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                </TableLayout>
+
 
             </LinearLayout>
 

@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fira_sans"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="No. Handphone"
-            app:boxStrokeColor="@color/text_tertier" >
+            app:boxStrokeColor="@color/text_tertier">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fira_sans"
                 android:inputType="textPassword"
-                android:transitionName="email_transition"/>
+                android:transitionName="email_transition" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_grey"
+    android:orientation="vertical"
+    tools:context=".peminjam_system.PermintaanPinjamanActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:onClick="ButtonBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_icon"
+            android:layout_margin="4dp"
+            android:background="#00FFFFFF"
+            android:scaleType="center"
+            android:scaleX="2.2"
+            android:scaleY="2.2"
+            android:contentDescription="BackButton"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Permintaan Pinjaman"
+            android:fontFamily="@font/fira_sans_bold"
+            android:textSize="24sp"
+            android:textColor="@color/text_tertier"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Baca secara seksama detail pinjaman yang akan Anda ajukan."
+                    android:fontFamily="@font/fira_sans"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_tertier"
+                    android:textAlignment="center" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:outlineProvider="paddedBounds"
+                    android:padding="8dp"
+                    android:stretchColumns="1">
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Waktu Pinjaman"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:id="@+id/text_TenorPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:text="90 Hari (3 Bulan)"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Besar Pinjaman"
+                            android:textColor="@color/unselected"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_Pinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:text="Rp1.500.000"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Bunga Pinjaman"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:text="20%"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Total Harus Bayar"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:id="@+id/text_TotalBayarPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:text="Rp1.800.000"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Mode Pembayaran"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:text="Cicilan per Bulan"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Denda Keterlambatan Bayar"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:text="0,8% per hari"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fira_sans"
+                    android:layout_marginHorizontal="8dp"
+                    android:textSize="12sp"
+                    android:text="1. Dengan menekan tombol dibawah untuk mengajukan pinjaman, anda menyetujui persyaratan yang di berikan oleh pihak 'Pinjam Aja'."
+                    android:textColor="#EF6C00"
+                    android:textAlignment="textStart" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:fontFamily="@font/fira_sans"
+                    android:text="2. Anda bertanggung jawab untuk membayar cicilan Anda tepat waktu."
+                    android:textAlignment="textStart"
+                    android:textColor="#EF6C00"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/button_load_req"
+                    android:onClick="OnClickAjukanPinjaman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_round_bg"
+                    android:fontFamily="@font/fira_sans_bold"
+                    android:text="AJUKAN PERMINTAAN PINJAMAN"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/notif_load"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:text="Permintaan Pinjaman Anda telah dikirim!"
+                    android:fontFamily="@font/fira_sans"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_tertier"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_marginVertical="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

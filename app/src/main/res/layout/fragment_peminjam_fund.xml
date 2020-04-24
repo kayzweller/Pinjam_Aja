@@ -12,19 +12,261 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        tools:ignore="UselessParent">
+        android:layout_margin="16dp">
 
         <TextView
-            android:id="@+id/peminjam_judul_fund"
+            android:id="@+id/peminjam_judul_beranda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
-            android:text="DANA"
+            android:layout_marginBottom="24dp"
+            android:text="Rincian Pinjaman."
             android:fontFamily="@font/fira_sans_bold"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textColor="@color/text_tertier"
             android:textAlignment="center" />
+
+        <!-- TODO : RINCIAN BIAYA LAYANAN-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/RincianBiaya"
+            android:layout_below="@id/peminjam_judul_beranda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:theme="@style/Base.CardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="RINCIAN PINJAMAN ANDA"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_tertier"/>
+
+                <TextView
+                    android:id="@+id/text_opsi_1_judul"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fira_sans_bold"
+                    android:padding="8dp"
+                    android:text="TIDAK ADA PINJAMAN"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_tertier"
+                    android:textSize="24sp"
+                    android:visibility="gone" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:outlineProvider="paddedBounds"
+                    android:stretchColumns="1"
+                    android:visibility="visible">
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dip"
+                            android:text="ID Pinjaman"
+                            android:textColor="@color/unselected"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_IDPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Status Pinjaman"
+                            android:textColor="@color/unselected"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_StatusPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Tanggal Pencairan"
+                            android:textColor="@color/unselected"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_TglDanaCair"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Sisa Waktu Pinjaman"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:id="@+id/text_TenorPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Paket Pinjaman"
+                            android:textColor="@color/unselected"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_Pinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Total Harus Bayar"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:id="@+id/text_TotalBayarPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Terbayarkan"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:id="@+id/text_TerbayarPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Denda"
+                            android:textColor="@color/unselected" />
+
+                        <TextView
+                            android:id="@+id/text_DendaPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/RincianAkunPeminjam"
+            android:layout_below="@id/RincianBiaya"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:theme="@style/Base.CardView"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="TANGGAL JATUH TEMPO"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_tertier"/>
+
+                <TextView
+                    android:id="@+id/text_TglJatuhTempo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="36sp"
+                    android:textColor="@color/colorPrimaryDark"/>
+
+                <TextView
+                    android:id="@+id/text_TotalBayarCicilan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textColor="@color/colorPrimaryDark"/>
+
+                <TextView
+                    android:id="@+id/text_StatusPembayaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textColor="@color/unselected"/>
+
+                <Button
+                    android:id="@+id/button_BayarCicilan"
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_round_bg"
+                    android:fontFamily="@font/fira_sans_bold"
+                    android:text="BAYAR"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

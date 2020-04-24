@@ -34,8 +34,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import io.opencensus.stats.AggregationData;
-
 public class SignUpActivity extends AppCompatActivity {
 
     // Deklarasi Variabel
@@ -155,7 +153,6 @@ public class SignUpActivity extends AppCompatActivity {
                                             Toast.LENGTH_LONG).show();
                                 }
                             });
-
 
                             if (userType.equals("PENDANA")) {
                                 //user successfully login
