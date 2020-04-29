@@ -17,5 +17,10 @@
     <!-- color navigation bar -->
     <color name="selected">#271431</color>
     <color name="unselected">#74697A</color>
+    <color name="type1">#EDEFD3</color>
+    <color name="type2">#D3EFEB</color>
+    <color name="type3">#EFD3DC</color>
+    <color name="type4">#E0D3EF</color>
+    <color name="type5">#EFD3EE</color>
 
 </resources>

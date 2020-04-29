@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.xoxltn.pinjam_aja.PembayaranPeminjamActivity;
 import com.xoxltn.pinjam_aja.R;
 
 import java.text.DateFormat;
@@ -48,7 +48,7 @@ public class PeminjamFundFragment extends Fragment {
     private TextView mTextDendaPinjaman, mTextTglJatuhTempo, mTextStatusPembayaran;
     private TextView mTextTotalBayarCicilan;
 
-    private String mIDPinjaman;
+    private String mIDPinjaman = "0";
     private String mStatusPinjaman, mTglDanaCair, mTenorPinjaman, mPinjaman, mBayarPinjaman;
     private String mTerbayarPinjaman, mDendaPinjaman,mTglJatuhTempo, mStatusPembayaran;
 
@@ -68,10 +68,11 @@ public class PeminjamFundFragment extends Fragment {
 
     private NumberFormat formatter;
 
+    //------------------------------------------------------------------------------------------//
+
     public PeminjamFundFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,9 +94,9 @@ public class PeminjamFundFragment extends Fragment {
         mTextStatusPembayaran = mView.findViewById(R.id.text_StatusPembayaran);
         mTextTotalBayarCicilan = mView.findViewById(R.id.text_TotalBayarCicilan);
 
-        FormatRupiah(); //FORMATTING TO RUPIAH //
+        formatRupiah(); //FORMATTING TO RUPIAH //
 
-        InitPinjamanInfo();
+        initPinjamanInfo();
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mFire = FirebaseFirestore.getInstance();
@@ -104,11 +105,11 @@ public class PeminjamFundFragment extends Fragment {
         mDocRef = mFire.collection("USER").document(userID);
         mDocRef2 = mFire.collection("PEMINJAM").document(mIDPinjaman);
 
-        CallIDPinjaman();
+        callIDPinjaman();
 
-        LoadPinjamanInfo(); // LOAD DATA INFO DARI FIRESTORE //
+        loadPinjamanInfo(); // LOAD DATA INFO DARI FIRESTORE //
 
-        Denda_TotalPinjaman(); // KALKULASI DENDA + TOTAL BAYAR //
+        denda_TotalPinjaman(); // KALKULASI DENDA + TOTAL BAYAR //
 
         ButtonBayarCicilanClick();
 
@@ -117,7 +118,7 @@ public class PeminjamFundFragment extends Fragment {
 
     //------------------------------------------------------------------------------------------//
 
-    private void FormatRupiah() {
+    private void formatRupiah() {
         formatter = NumberFormat.getCurrencyInstance();
         formatter.setMaximumFractionDigits(0);
         formatter.setCurrency(Currency.getInstance("IDR"));
@@ -129,12 +130,12 @@ public class PeminjamFundFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        LoadPrevData();
+        loadPrevData();
         CallStatusPembayaran();
     }
 
-    private void InitPinjamanInfo() {
-        mIDPinjaman = "0";
+    private void initPinjamanInfo() {
+        //mIDPinjaman = "0";
         mStatusPinjaman = "-";
         mTglDanaCair = "-";
         mTenorPinjaman = "0 Hari";
@@ -148,7 +149,7 @@ public class PeminjamFundFragment extends Fragment {
 
     //------------------------------------------------------------------------------------------//
 
-    private void LoadPinjamanInfo() {
+    private void loadPinjamanInfo() {
 
         Handler delay2 = new Handler();
         delay2.postDelayed(new Runnable() {
@@ -168,7 +169,7 @@ public class PeminjamFundFragment extends Fragment {
         }, 888);
     }
 
-    private void LoadPrevData() {
+    private void loadPrevData() {
         Handler delay1 = new Handler();
         delay1.postDelayed(new Runnable() {
             @Override
@@ -191,7 +192,7 @@ public class PeminjamFundFragment extends Fragment {
 
     //------------------------------------------------------------------------------------------//
 
-    private void Denda_TotalPinjaman() {
+    private void denda_TotalPinjaman() {
 
         Handler fuckyou = new Handler();
         fuckyou.postDelayed(new Runnable() {
@@ -225,26 +226,11 @@ public class PeminjamFundFragment extends Fragment {
             }
         }, 1600);
 
-        /*
-        mDocRef2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    Long done = doc.getLong("pinjaman_denda");
-                    if (done != null) {
-                        mDendaPinjaman = formatter.format(done);
-                        mTextDendaPinjaman.setText(mDendaPinjaman); //denda pinjaman
-                    }
-                }
-            }
-        });
-         */
     }
 
     //------------------------------------------------------------------------------------------//
 
-    private void CallIDPinjaman() {
+    private void callIDPinjaman() {
         mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -256,6 +242,10 @@ public class PeminjamFundFragment extends Fragment {
                         mTextIDPinjaman.setText(mIDPinjaman); //id_pinjaman
                         mDocRef2 = mFire.collection("PEMINJAM").document(mIDPinjaman);
                         mIDPinjamanTransfer = done; // PREPARE ID PINJAMAN
+                    }
+
+                    if (done != null && done.equals("0")) {
+                        mTextIDPinjaman.setText("-");
                     }
                 }
             }
@@ -424,14 +414,19 @@ public class PeminjamFundFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                mDocRef2.update("pinjaman_cicilan", mTotalBayarCicilan);
-                mDocRef2.update("pinjaman_denda", mNomDenda);
+                if (!mIDPinjamanTransfer.equals("0") && !mTglDanaCair.equals("-")) {
 
-                if (mIDPinjamanTransfer != null) {
-                    //SENT INTENT
+                    mDocRef2.update("pinjaman_cicilan", mTotalBayarCicilan);
+                    mDocRef2.update("pinjaman_denda", mNomDenda);
+
+                    //SENT DATA THROUGH EXTRA INTENT
                     Intent goToBayar = new Intent(getActivity(), PembayaranPeminjamActivity.class);
                     goToBayar.putExtra(EXTRA_ID, mIDPinjamanTransfer);
                     startActivity(goToBayar);
+
+                } else {
+                    Toast.makeText(getActivity(), "ANDA BELUM MEMILIKI PINJAMAN AKTIF!",
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -77,11 +77,10 @@
                             android:textColor="@color/unselected" />
 
                         <TextView
-                            android:id="@+id/text_TenorPinjaman"
                             android:fontFamily="@font/fira_sans_bold_italic"
                             android:gravity="end"
                             android:padding="3dp"
-                            android:text="90 Hari (3 Bulan)"
+                            android:text="90 Hari"
                             android:textColor="@color/text_tertier" />
                     </TableRow>
 
@@ -99,7 +98,6 @@
                             android:fontFamily="@font/fira_sans_bold_italic"
                             android:gravity="end"
                             android:padding="3dp"
-                            android:text="Rp1.500.000"
                             android:textColor="@color/text_tertier" />
                     </TableRow>
 
@@ -130,7 +128,6 @@
                             android:fontFamily="@font/fira_sans_bold_italic"
                             android:gravity="end"
                             android:padding="3dp"
-                            android:text="Rp1.800.000"
                             android:textColor="@color/text_tertier" />
                     </TableRow>
 

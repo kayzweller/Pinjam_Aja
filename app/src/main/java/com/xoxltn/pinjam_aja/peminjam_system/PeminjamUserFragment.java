@@ -39,7 +39,7 @@ public class PeminjamUserFragment extends Fragment {
 
     private TextView mUserEmailPeminjam, mUserNamePeminjam;
 
-    private String mUserID, mName;
+    private String mUserID, mNama, mEmail;
 
     public PeminjamUserFragment() {
         // Required empty public constructor
@@ -58,7 +58,7 @@ public class PeminjamUserFragment extends Fragment {
         mUserEmailPeminjam = mView.findViewById(R.id.email_user_peminjam);
         mUserNamePeminjam = mView.findViewById(R.id.nama_user_peminjam);
 
-        mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+        mUserID = mFireUser.getUid();
 
         CallUserName();
         CallUserEmail();
@@ -75,7 +75,8 @@ public class PeminjamUserFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        mUserNamePeminjam.setText(mName);
+        mUserNamePeminjam.setText(mNama);
+        mUserEmailPeminjam.setText(mEmail);
     }
 
     //-------------------------------------------------------------------------------------------//
@@ -87,15 +88,16 @@ public class PeminjamUserFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot docLog = Objects.requireNonNull(task.getResult());
-                mName = docLog.getString("name");
-                mUserNamePeminjam.setText(mName);
+                mNama = docLog.getString("name");
+                mUserNamePeminjam.setText(mNama);
             }
         });
 
     }
 
     private void CallUserEmail() {
-        mUserEmailPeminjam.setText(Objects.requireNonNull(mFireUser).getEmail());
+        mEmail = mFireUser.getEmail();
+        mUserEmailPeminjam.setText(mEmail);
     }
 
     //-------------------------------------------------------------------------------------------//

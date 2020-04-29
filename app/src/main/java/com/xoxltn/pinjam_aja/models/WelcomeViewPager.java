@@ -5,11 +5,11 @@
 
 package com.xoxltn.pinjam_aja.models;
 
-public class WelcomeScreenItem {
+public class WelcomeViewPager {
     private int mScreenImg;
     private String mTitle, mDescription;
 
-    public WelcomeScreenItem(int screenImg, String title, String description) {
+    public WelcomeViewPager(int screenImg, String title, String description) {
         mScreenImg = screenImg;
         mTitle = title;
         mDescription = description;

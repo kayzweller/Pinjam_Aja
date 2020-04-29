@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:focusable="false"
-                        android:hint="Hubungan Dengan Peminjam"
+                        android:hint="Hubungan/Relasi"
                         app:boxStrokeColor="@color/text_tertier">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -154,7 +154,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:focusable="false"
-                        android:hint="Hubungan Dengan Peminjam"
+                        android:hint="Hubungan/Relasi"
                         app:boxStrokeColor="@color/text_tertier">
 
                         <com.google.android.material.textfield.TextInputEditText

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_grey"
-    tools:context=".PembayaranActivity">
+    tools:context=".pendana_system.PendanaanPendanaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="Pembayaran."
+                android:text="Pendanaan."
                 android:fontFamily="@font/fira_sans_bold"
                 android:textSize="24sp"
                 android:textColor="@color/text_tertier"
@@ -103,8 +103,30 @@
                     android:textSize="23sp"
                     android:textColor="@color/colorPrimaryDark"/>
 
+                <TextView
+                    android:id="@+id/kode_pinjaman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Kode Pinjaman : -"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_tertier"/>
+
+                <TextView
+                    android:id="@+id/pinjaman_dana"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Nominal Transfer : -"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_tertier"/>
+
                 <Button
-                    android:onClick="onCLickKonfimasiBayar"
+                    android:onClick="onCLickKonfimasiDanai"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

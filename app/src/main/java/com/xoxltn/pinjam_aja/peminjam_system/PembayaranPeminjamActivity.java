@@ -1,4 +1,4 @@
-package com.xoxltn.pinjam_aja;
+package com.xoxltn.pinjam_aja.peminjam_system;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.xoxltn.pinjam_aja.peminjam_system.PeminjamFundFragment;
-import com.xoxltn.pinjam_aja.peminjam_system.PeminjamHomeFragment;
+import com.xoxltn.pinjam_aja.R;
 
 import java.text.NumberFormat;
 import java.util.Currency;
@@ -31,9 +29,10 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
 
     private DocumentReference mDocRef;
 
-    private TextView mIDPinjaman;
+    private TextView mIDPinjaman, mBayarPinjaman;
 
-    private String mSetIDPinjaman;
+    private String mSetIDPinjaman, mSetBayarPinjaman;
+
     private Date mTanggalCair;
 
     @Override
@@ -44,7 +43,8 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
         FormatRupiah(); //FORMATTING TO RUPIAH //
 
         // TODO : OBJECT LINKING ARE HERE!! WATCH IT.
-        mIDPinjaman = findViewById(R.id.id_pinjaman_bayar);
+        mIDPinjaman = findViewById(R.id.kode_pinjaman);
+        mBayarPinjaman = findViewById(R.id.pinjaman_bayar);
 
         // TODO :: GET DATA SENT FROM INTENT
         Bundle extras = this.getIntent().getExtras();
@@ -83,11 +83,10 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
 
                     if (done != null && mTanggalCair != null) {
                         // TODO : SET VALUE HERE!!
-                        mSetIDPinjaman = "Nominal Transfer : " + formatter.format(done);
-                        ;
-                        mIDPinjaman.setText(mSetIDPinjaman);
-                    } else {
-                        mSetIDPinjaman = "Nominal Transfer : Rp0";
+                        mSetBayarPinjaman = "Nominal Transfer : " + formatter.format(done);
+                        mBayarPinjaman.setText(mSetBayarPinjaman);
+
+                        mSetIDPinjaman = "Kode Pinjaman : " + passdata;
                         mIDPinjaman.setText(mSetIDPinjaman);
                     }
 
@@ -114,7 +113,7 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
                     });
         } else {
             Toast.makeText(PembayaranPeminjamActivity.this,
-                    "TIDAK ADA PINJAMAN AKTIF!",
+                    "ERROR!",
                     Toast.LENGTH_SHORT).show();
         }
 

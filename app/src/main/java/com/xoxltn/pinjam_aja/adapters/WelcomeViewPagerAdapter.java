@@ -17,16 +17,16 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.models.WelcomeScreenItem;
+import com.xoxltn.pinjam_aja.models.WelcomeViewPager;
 
 import java.util.List;
 
 public class WelcomeViewPagerAdapter extends PagerAdapter {
 
     private Context mContext;
-    private List<WelcomeScreenItem> mListScreen;
+    private List<WelcomeViewPager> mListScreen;
 
-    public WelcomeViewPagerAdapter(Context context, List<WelcomeScreenItem> listScreen) {
+    public WelcomeViewPagerAdapter(Context context, List<WelcomeViewPager> listScreen) {
         this.mContext = context;
         this.mListScreen = listScreen;
     }

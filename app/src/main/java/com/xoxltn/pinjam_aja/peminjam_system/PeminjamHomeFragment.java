@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +31,12 @@ public class PeminjamHomeFragment extends Fragment {
 
     static final String EXTRA_NUMBER = "com.xoxltn.pinjam_aja.EXTRA_NUMBER";
 
-    private View mView;
-
     private DocumentReference mDocRef;
+    private View view;
 
-    private String info_id, info_pribadi, info_pekerjaan, info_kontak;
-    private String info_rekening;
+    private String info_id, info_pribadi, info_pekerjaan, info_kontak, info_rekening = "null";
+
+    //-------------------------------------------------------------------------------------------//
 
     public PeminjamHomeFragment() {
         // Required empty public constructor
@@ -45,11 +46,10 @@ public class PeminjamHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_peminjam_home, container, false);
+        view = inflater.inflate(R.layout.fragment_peminjam_home, container, false);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore mFire = FirebaseFirestore.getInstance();
-
         String userID = mAuth.getUid();
         if (userID != null) {
             mDocRef = mFire.collection("USER").document(userID);
@@ -61,19 +61,18 @@ public class PeminjamHomeFragment extends Fragment {
 
         loadRegVerification();
 
-        return mView;
+        return view;
     }
 
     //-------------------------------------------------------------------------------------------//
 
     private void ButtonOpsi500KClick() {
-        Button buttonOpsi500K = mView.findViewById(R.id.button_opsi_500K);
+        Button buttonOpsi500K = view.findViewById(R.id.button_opsi_500K);
         buttonOpsi500K.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (CheckRegStatus()) {
-
                     //TODO : SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
                             PermintaanPinjamanActivity.class);
@@ -86,13 +85,12 @@ public class PeminjamHomeFragment extends Fragment {
     }
 
     private void ButtonOpsi1000KClick() {
-        Button buttonOpsi1000K = mView.findViewById(R.id.button_opsi_1000K);
+        Button buttonOpsi1000K = view.findViewById(R.id.button_opsi_1000K);
         buttonOpsi1000K.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (CheckRegStatus()) {
-
                     //TODO : SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
                             PermintaanPinjamanActivity.class);
@@ -105,13 +103,12 @@ public class PeminjamHomeFragment extends Fragment {
     }
 
     private void ButtonOpsi1500KClick() {
-        Button buttonOpsi1500K = mView.findViewById(R.id.button_opsi_1500K);
+        Button buttonOpsi1500K = view.findViewById(R.id.button_opsi_1500K);
         buttonOpsi1500K.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (CheckRegStatus()) {
-
                     //TODO : SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
                             PermintaanPinjamanActivity.class);
@@ -126,73 +123,54 @@ public class PeminjamHomeFragment extends Fragment {
     //-------------------------------------------------------------------------------------------//
 
     private void loadRegVerification() {
-
         mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    info_id = doc.getString("info_id");
+
+                    DocumentSnapshot doc = Objects.requireNonNull(task.getResult());
+
+                    String done1 = doc.getString("info_id");
+                    if (done1 != null) {
+                        info_id = done1;
+                    }
+
+                    String done2 = doc.getString("info_pribadi");
+                    if (done2 != null) {
+                        info_pribadi = done2;
+                    }
+
+                    String done3 = doc.getString("info_pekerjaan");
+                    if (done3 != null) {
+                        info_pekerjaan = done3;
+                    }
+
+                    String done4 = doc.getString("info_kontak");
+                    if (done4 != null) {
+                        info_kontak = done4;
+                    }
+
+                    String done5 = doc.getString("info_rekening");
+                    if (done5 != null) {
+                        info_rekening = done5;
+                    }
+
                 }
             }
         });
 
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    info_pribadi = doc.getString("info_pribadi");
-                }
-            }
-        });
-
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    info_pekerjaan = doc.getString("info_pekerjaan");
-                }
-            }
-        });
-
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    info_kontak = doc.getString("info_kontak");
-                }
-            }
-        });
-
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    info_rekening = doc.getString("info_rekening");
-                }
-            }
-        });
     }
 
     private boolean CheckRegStatus() {
-
-        assert info_id != null;
-        assert info_pribadi != null;
-        assert info_pekerjaan != null;
-        assert info_kontak != null;
-        assert info_rekening != null;
-
-        if (!info_id.equals("done") | !info_pribadi.equals("done") | !info_pekerjaan.equals("done")
-        | !info_kontak.equals("done") | !info_rekening.equals("done")) {
+        if (!"done".equalsIgnoreCase(info_id) | !"done".equalsIgnoreCase(info_pribadi)
+                | !"done".equalsIgnoreCase(info_pekerjaan) | !"done".equalsIgnoreCase(info_kontak)
+                | !"done".equalsIgnoreCase(info_rekening)) {
 
             if (getFragmentManager() != null) {
                 UserRegisterDialog peminjamDialog = new UserRegisterDialog();
-                peminjamDialog.show(getFragmentManager(), "Dialog Peminjam");
-            } return false;
+                peminjamDialog.show(getFragmentManager(), "00");
+            }
+            return false;
 
         } else {
             return true;

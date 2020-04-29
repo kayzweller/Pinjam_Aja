@@ -17,7 +17,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
-import com.xoxltn.pinjam_aja.models.WelcomeScreenItem;
+import com.xoxltn.pinjam_aja.models.WelcomeViewPager;
 import com.xoxltn.pinjam_aja.adapters.WelcomeViewPagerAdapter;
 
 import java.util.ArrayList;
@@ -85,16 +85,16 @@ public class WelcomeActivity extends AppCompatActivity {
     private void WelcomeBriefing() {
 
         // informasi dalam list screen
-        final List<WelcomeScreenItem> mList = new ArrayList<>();
-        mList.add(new WelcomeScreenItem(R.drawable.welcome_1,
+        final List<WelcomeViewPager> mList = new ArrayList<>();
+        mList.add(new WelcomeViewPager(R.drawable.welcome_1,
                 "REGISTRASI MUDAH",
                 "REGISTRASI AKUN DENGAN MENGGUNAKAN EMAIL DAN NO. HANDPHONE, " +
                         "KEMUDIAN LENGKAPI DATA ANDA UNTUK DAPAT MENGAJUKAN PINJAMAN"));
-        mList.add(new WelcomeScreenItem(R.drawable.welcome_2,
+        mList.add(new WelcomeViewPager(R.drawable.welcome_2,
                 "DATA PENGGUNA AMAN",
                 "HANYA DATA YANG DIPERBOLEHKAN MENURUT ATURAN OJK YANG DAPAT " +
                         "DIAKSES OLEH PLATFORM DAN PENDANA"));
-        mList.add(new WelcomeScreenItem(R.drawable.welcome_3,
+        mList.add(new WelcomeViewPager(R.drawable.welcome_3,
                 "MUDAH DIAKSES",
                 "NIKMATI KEMUDAHAN MENJADI PENDANA ATAUPUN PEMINJAM DALAM " +
                         "PLATFORM KAMI"));

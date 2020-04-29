@@ -51,7 +51,7 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
 
         mCurrentDate = Calendar.getInstance().getTime();
 
-        // TODO : USEFULL FOR PENDANA
+        // TODO :: USEFULL FOR PENDANA
         mPayDate1 = Calendar.getInstance();
         mPayDate2 = Calendar.getInstance();
         mTenorDate = Calendar.getInstance();
@@ -71,7 +71,7 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
         mLoading.setAlpha(0);
         mNotifLoad.setVisibility(View.GONE);
 
-        // TODO :: GET DATA SENT FROM INTENT
+        // :: GET DATA SENT FROM INTENT
         Bundle extras = this.getIntent().getExtras();
         passdata = Objects.requireNonNull(extras)
                 .getInt(PeminjamHomeFragment.EXTRA_NUMBER, 0);
@@ -153,6 +153,7 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
                     data.put("id_pinjaman", mIDPinjaman);
                     data.put("id_peminjam", mUserID);
                     data.put("pendanaan_status", false);
+                    data.put("pendanaan_req", false);
 
                     data.put("pinjaman_status", "MENUNGGU PENDANAAN");
                     data.put("pinjaman_status_pembayaran", null);
@@ -161,13 +162,13 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
 
                     data.put("pinjaman_tanggal_cair", null); //NULL [mCurrentDate]
 
-                    mPayDate1.add(Calendar.MONTH, 1); // PAY DATE 1
+                    mPayDate1.add(Calendar.MONTH, 1); // TODO :: PAY DATE 1
                     data.put("pinjaman_tanggal_bayar", null); //NULL [mPayDate1.getTime()]
 
-                    mPayDate2.add(Calendar.MONTH, 2); // PAY DATE 2
+                    mPayDate2.add(Calendar.MONTH, 2); // TODO :: PAY DATE 2
                     data.put("pinjaman_tanggal_bayar_kedua", null); //NULL [mPayDate2.getTime()]
 
-                    mTenorDate.add(Calendar.MONTH, 3); // LAST TENOR DATE
+                    mTenorDate.add(Calendar.MONTH, 3); // TODO :: LAST TENOR DATE
                     data.put("pinjaman_tanggal_akhir", null); //NULL [mTenorDate.getTime()]
 
                     data.put("pinjaman_besar", passdata);

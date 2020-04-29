@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_grey"
-    tools:context=".PembayaranPeminjamActivity">
+    tools:context=".peminjam_system.PembayaranPeminjamActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,11 +104,22 @@
                     android:textColor="@color/colorPrimaryDark"/>
 
                 <TextView
-                    android:id="@+id/id_pinjaman_bayar"
+                    android:id="@+id/kode_pinjaman"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:text="Nominal Transfer : Rp0"
+                    android:layout_marginTop="8dp"
+                    android:text="Kode Pinjaman : -"
+                    android:fontFamily="@font/fira_sans_bold_italic"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_tertier"/>
+
+                <TextView
+                    android:id="@+id/pinjaman_bayar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Nominal Transfer : -"
                     android:fontFamily="@font/fira_sans_bold_italic"
                     android:textAlignment="center"
                     android:textSize="16sp"

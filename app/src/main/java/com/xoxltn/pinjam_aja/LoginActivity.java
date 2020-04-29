@@ -38,13 +38,14 @@ public class LoginActivity extends AppCompatActivity {
     Button mMasukButton;
 
     private FirebaseAuth mAuth;
+    private FirebaseUser mFireUser;
     private FirebaseFirestore mFire;
 
     String mUserID, mUserType;
 
-    String PENDANA = "PENDANA";
-    String PEMINJAM = "PEMINJAM";
-    String mKeyAdmin = "(vNSDP534cgPHAbqocLjJmgQm68d2)";
+    private String PENDANA = "PENDANA";
+    private String PEMINJAM = "PEMINJAM";
+    private String mKeyAdmin = "(vNSDP534cgPHAbqocLjJmgQm68d2)";
 
     //-------------------------------------------------------------------------------------------//
 
@@ -52,6 +53,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mAuth = FirebaseAuth.getInstance();
+        mFireUser = mAuth.getCurrentUser();
 
         // set object from XML to Variable in java [HOOKS]
         mEmail = findViewById(R.id.login_email);
@@ -78,13 +82,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void executeAutoLogin() {
-        FirebaseUser user = mAuth.getCurrentUser();
 
-        if (user != null) {
+        if (mFireUser != null) {
 
             progressBarLoad();
 
-            mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+            mUserID = mFireUser.getUid();
             DocumentReference docRefLog = mFire.collection("USER").document(mUserID);
 
             docRefLog.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
