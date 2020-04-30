@@ -1,3 +1,9 @@
+/*
+ * Created by Albert Kristaen (Kayzweller) on 30/04/20 20:11
+ * Copyright (c) 2020 . All rights reserved.
+ * Last modified 30/04/20 20:11
+ */
+
 package com.xoxltn.pinjam_aja.adapters;
 
 import android.view.LayoutInflater;
@@ -13,26 +19,35 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.models.FundReq;
+import com.xoxltn.pinjam_aja.models.FundDetail;
 
 import java.text.DateFormat;
 import java.util.Date;
 
-public class FundReqAdapter extends FirestoreRecyclerAdapter<FundReq, FundReqAdapter.FundReqHolder> {
+public class FundDetailAdapter extends FirestoreRecyclerAdapter
+        <FundDetail, FundDetailAdapter.FundDetailHolder> {
 
     private OnItemClickListener listener;
 
-    public FundReqAdapter(@NonNull FirestoreRecyclerOptions<FundReq> options) {
+    public FundDetailAdapter(@NonNull FirestoreRecyclerOptions<FundDetail> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull FundReqHolder holder,int position,
-                                    @NonNull FundReq model) {
+    protected void onBindViewHolder(@NonNull FundDetailHolder holder,int position,
+                                    @NonNull FundDetail model) {
 
-        Date date = model.getPinjaman_tanggal_req();
-        String date_now = DateFormat.getDateInstance(DateFormat.FULL).format(date);
-        holder.mTextViewTanggal.setText(date_now);
+        String status = model.getPinjaman_status();
+        holder.mTextViewStatusPinjaman.setText(status);
+
+        Date date = model.getPinjaman_tanggal_bayar();
+        if (date == null) {
+            String date_missing = "--";
+            holder.mTextViewTanggalBayar.setText(date_missing);
+        } else {
+            String date_call = DateFormat.getDateInstance(DateFormat.FULL).format(date);
+            holder.mTextViewTanggalBayar.setText(date_call);
+        }
 
         int pinjaman = model.getPinjaman_besar();
         switch (pinjaman) {
@@ -57,30 +72,32 @@ public class FundReqAdapter extends FirestoreRecyclerAdapter<FundReq, FundReqAda
                 break;
             }
         }
-
     }
 
     @NonNull
     @Override
-    public FundReqHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pendana_fund_req,
+    public FundDetailHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pendana_fund_detail,
                 parent, false);
-        return new FundReqHolder(v);
+        return new FundDetailHolder(v);
     }
 
     //-------------------------------------------------------------------------------------------//
 
-    class FundReqHolder extends RecyclerView.ViewHolder {
-        TextView mTextViewTanggal;
+    class FundDetailHolder extends RecyclerView.ViewHolder {
+
+        TextView mTextViewStatusPinjaman;
+        TextView mTextViewTanggalBayar;
         TextView mTextViewNominalPinjaman;
         CardView mCardFundRef;
 
-        public FundReqHolder(@NonNull final View itemView) {
+        public FundDetailHolder(@NonNull View itemView) {
             super(itemView);
 
-            mTextViewTanggal = itemView.findViewById(R.id.home_tanggal_permintaan);
-            mTextViewNominalPinjaman = itemView.findViewById(R.id.home_nominal_pinjaman);
-            mCardFundRef = itemView.findViewById(R.id.home_req_card);
+            mTextViewStatusPinjaman = itemView.findViewById(R.id.fund_status_pinjaman);
+            mTextViewTanggalBayar = itemView.findViewById(R.id.fund_tanggal_bayar);
+            mTextViewNominalPinjaman = itemView.findViewById(R.id.fund_nominal_pinjaman);
+            mCardFundRef = itemView.findViewById(R.id.fund_req_card);
 
             // ON CLICK LISTENER
             itemView.setOnClickListener(new View.OnClickListener() {

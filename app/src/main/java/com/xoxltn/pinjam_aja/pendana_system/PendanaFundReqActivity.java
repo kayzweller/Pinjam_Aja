@@ -19,7 +19,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class PendanaFundReqDetail extends AppCompatActivity {
+public class PendanaFundReqActivity extends AppCompatActivity {
 
     public static final String FUND_ID_PATH = "com.xoxltn.pinjam_aja.FUND_ID_PATH";
     public static final String FUND_ID_DOC = "com.xoxltn.pinjam_aja.FUND_ID_DOC";
@@ -36,11 +36,10 @@ public class PendanaFundReqDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pendana_fund_req_detail);
+        setContentView(R.layout.activity_pendana_fund_req);
 
         // call data sent trought intent~
-        Bundle extras = this.getIntent().getExtras();
-        assert extras != null;
+        Bundle extras = this.getIntent().getExtras(); assert extras != null;
         id_pinjaman = extras.getString(PendanaHomeFragment.SEND_DOCUMENT_DOC);
         mDocPath = extras.getString(PendanaHomeFragment.SEND_DOCUMENT_PATH);
 
@@ -99,7 +98,6 @@ public class PendanaFundReqDetail extends AppCompatActivity {
                 mBesarKembali.setText(set3);
                 break;
         }
-
     }
 
     //-------------------------------------------------------------------------------------------//

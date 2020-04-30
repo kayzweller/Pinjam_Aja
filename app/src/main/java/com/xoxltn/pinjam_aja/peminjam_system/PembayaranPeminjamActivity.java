@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.xoxltn.pinjam_aja.R;
 
 import java.text.NumberFormat;
+import java.util.Calendar;
 import java.util.Currency;
 import java.util.Date;
 import java.util.Objects;
@@ -35,23 +36,27 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
 
     private Date mTanggalCair;
 
+    private Date mCurrentDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peminjam_pembayaran);
 
+        mCurrentDate = Calendar.getInstance().getTime();
+
         FormatRupiah(); //FORMATTING TO RUPIAH //
 
-        // TODO : OBJECT LINKING ARE HERE!! WATCH IT.
+        //  OBJECT LINKING ARE HERE!! WATCH IT.
         mIDPinjaman = findViewById(R.id.kode_pinjaman);
         mBayarPinjaman = findViewById(R.id.pinjaman_bayar);
 
-        // TODO :: GET DATA SENT FROM INTENT
+        // GET DATA SENT FROM INTENT
         Bundle extras = this.getIntent().getExtras();
         passdata = Objects.requireNonNull(extras)
                 .getString(PeminjamFundFragment.EXTRA_ID);
 
-        // TODO : FIREBASE ARE HERE YOU DUMBASS!!!
+        // FIREBASE ARE HERE YOU DUMBASS!!!
         FirebaseFirestore fire = FirebaseFirestore.getInstance();
 
         mDocRef = fire.collection("PEMINJAM").document(passdata);
@@ -82,7 +87,6 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
                     Long done = doc.getLong("pinjaman_cicilan");
 
                     if (done != null && mTanggalCair != null) {
-                        // TODO : SET VALUE HERE!!
                         mSetBayarPinjaman = "Nominal Transfer : " + formatter.format(done);
                         mBayarPinjaman.setText(mSetBayarPinjaman);
 
@@ -101,7 +105,8 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
     public void onCLickKonfimasiBayar(View view) {
 
         if (!passdata.equals("0") && mTanggalCair != null) {
-            //TODO :: BUAT KONFIRMASI BAYAR
+            //TODO :: BUAT KONFIRMASI BAYAR DI ADMIN && UBAH TAHAP CICILAN
+            mDocRef.update("pinjaman_tanggal_transfer", mCurrentDate);
             mDocRef.update("pinjaman_status_pembayaran", "MENUNGGU KONFIRMASI")
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

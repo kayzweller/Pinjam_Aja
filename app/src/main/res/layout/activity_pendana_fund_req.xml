@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Albert Kristaen (Kayzweller) on 30/04/20 23:30
+  ~ Copyright (c) 2020 . All rights reserved.
+  ~ Last modified 30/04/20 16:48
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +12,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_grey"
     android:orientation="vertical"
-    tools:context=".pendana_system.PendanaFundReqDetail">
+    tools:context=".pendana_system.PendanaFundReqActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

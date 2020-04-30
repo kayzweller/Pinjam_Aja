@@ -23,16 +23,15 @@ import java.util.Objects;
 
 public class PendanaanPendanaActivity extends AppCompatActivity {
 
-    private String passdata, passdata2, mUserID;
-
     private NumberFormat formatter;
 
-    FirebaseFirestore mFire;
+    private FirebaseFirestore mFire;
     private DocumentReference mDocRef;
 
+    private String passdata, passdata2, mUserID;
     private TextView mIDPinjaman, mPinjamanDana;
-
     private String mSetIDPinjaman, mSetPendanaan;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +46,8 @@ public class PendanaanPendanaActivity extends AppCompatActivity {
 
         // GET DATA SENT FROM INTENT
         Bundle extras = this.getIntent().getExtras();
-        passdata = Objects.requireNonNull(extras).getString(PendanaFundReqDetail.FUND_ID_PATH);
-        passdata2 = Objects.requireNonNull(extras).getString(PendanaFundReqDetail.FUND_ID_DOC);
+        passdata = Objects.requireNonNull(extras).getString(PendanaFundReqActivity.FUND_ID_PATH);
+        passdata2 = Objects.requireNonNull(extras).getString(PendanaFundReqActivity.FUND_ID_DOC);
 
         // FIREBASE ARE HERE YOU DUMBASS!!!
         mUserID = FirebaseAuth.getInstance().getUid();
@@ -88,7 +87,7 @@ public class PendanaanPendanaActivity extends AppCompatActivity {
         mDocRef.update("id_pendana", mUserID);
         mDocRef.update("pendanaan_req", false);
         mDocRef.update("pendanaan_status", true);
-        mDocRef.update("pinjaman_status", "MENUNGGU KONFIRMASI PENDANAAN")
+        mDocRef.update("pinjaman_status", "MENUNGGU KONFIRMASI")
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

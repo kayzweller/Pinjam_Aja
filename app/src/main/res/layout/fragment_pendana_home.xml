@@ -20,6 +20,7 @@
             android:id="@+id/pendana_judul_beranda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:fontFamily="@font/fira_sans_bold"
             android:text="Pinjam Aja! - Pendana"
             android:textAlignment="center"

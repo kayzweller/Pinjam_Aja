@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".pendana_system.PendanaFundReqDetail"></activity>
+        <activity android:name=".pendana_system.PendanaFundDetailActivity"></activity>
+        <activity android:name=".pendana_system.PendanaFundReqActivity" />
         <activity android:name=".register.InfoRekeningActivity" />
         <activity android:name=".register.InfoKontakActivity" />
         <activity android:name=".register.InfoPekerjaanActivity" />

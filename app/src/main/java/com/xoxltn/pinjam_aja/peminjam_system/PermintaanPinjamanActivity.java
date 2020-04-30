@@ -40,9 +40,9 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
     private Boolean mPinjamanStatus;
 
     private Date mCurrentDate;
-    private Calendar mPayDate1, mPayDate2;
-    private Calendar mTenorDate;
+    private Calendar mPayDate1, mPayDate2, mPayDate3;
 
+    //-------------------------------------------------------------------------------------------//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +51,10 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
 
         mCurrentDate = Calendar.getInstance().getTime();
 
-        // TODO :: USEFULL FOR PENDANA
+        // TODO :: USEFULL FOR ADMIN
         mPayDate1 = Calendar.getInstance();
         mPayDate2 = Calendar.getInstance();
-        mTenorDate = Calendar.getInstance();
+        mPayDate3 = Calendar.getInstance();
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mFire = FirebaseFirestore.getInstance();
@@ -161,21 +161,24 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
                     data.put("pinjaman_tanggal_req", mCurrentDate);
 
                     data.put("pinjaman_tanggal_cair", null); //NULL [mCurrentDate]
+                    data.put("pinjaman_tanggal_transfer", null);
+                    data.put("pinjaman_tahap", 0);
 
                     mPayDate1.add(Calendar.MONTH, 1); // TODO :: PAY DATE 1
-                    data.put("pinjaman_tanggal_bayar", null); //NULL [mPayDate1.getTime()]
+                    data.put("pinjaman_tanggal_bayar_1", null); //NULL [mPayDate1.getTime()]
 
                     mPayDate2.add(Calendar.MONTH, 2); // TODO :: PAY DATE 2
-                    data.put("pinjaman_tanggal_bayar_kedua", null); //NULL [mPayDate2.getTime()]
+                    data.put("pinjaman_tanggal_bayar_2", null); //NULL [mPayDate2.getTime()]
 
-                    mTenorDate.add(Calendar.MONTH, 3); // TODO :: LAST TENOR DATE
-                    data.put("pinjaman_tanggal_akhir", null); //NULL [mTenorDate.getTime()]
+                    mPayDate3.add(Calendar.MONTH, 3); // TODO :: LAST TENOR DATE
+                    data.put("pinjaman_tanggal_bayar_3", null); //NULL [mPayDate3.getTime()]
 
                     data.put("pinjaman_besar", passdata);
                     data.put("pinjaman_total", total_kembali_pinjaman);
                     data.put("pinjaman_terbayar", 0);
                     data.put("pinjaman_denda", 0);
                     data.put("pinjaman_cicilan", 0);
+                    data.put("pinjaman_transfer", 0);
                     data.put("pinjaman_lunas", false);
 
                     mFire.collection("PEMINJAM").document(mIDPinjaman).set(data);

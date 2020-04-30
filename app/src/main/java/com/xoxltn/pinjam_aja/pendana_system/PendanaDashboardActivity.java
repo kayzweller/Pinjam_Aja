@@ -56,7 +56,6 @@ public class PendanaDashboardActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 switch (menuItem.getItemId()) {
-
                     case R.id.pendana_nav_home :
                         setFragment(mPendanaHomeFragment);
                         return true;
@@ -71,7 +70,6 @@ public class PendanaDashboardActivity extends AppCompatActivity {
 
                     default:
                         return false;
-
                 }
 
             }

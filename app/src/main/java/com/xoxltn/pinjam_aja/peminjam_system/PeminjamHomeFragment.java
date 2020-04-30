@@ -73,7 +73,7 @@ public class PeminjamHomeFragment extends Fragment {
             public void onClick(View view) {
 
                 if (CheckRegStatus()) {
-                    //TODO : SENT INTENT
+                    // SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
                             PermintaanPinjamanActivity.class);
                     intentPinjam.putExtra(EXTRA_NUMBER, 500000);
@@ -91,7 +91,7 @@ public class PeminjamHomeFragment extends Fragment {
             public void onClick(View view) {
 
                 if (CheckRegStatus()) {
-                    //TODO : SENT INTENT
+                    // SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
                             PermintaanPinjamanActivity.class);
                     intentPinjam.putExtra(EXTRA_NUMBER, 1000000);
@@ -109,7 +109,7 @@ public class PeminjamHomeFragment extends Fragment {
             public void onClick(View view) {
 
                 if (CheckRegStatus()) {
-                    //TODO : SENT INTENT
+                    // SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
                             PermintaanPinjamanActivity.class);
                     intentPinjam.putExtra(EXTRA_NUMBER, 1500000);
@@ -177,4 +177,18 @@ public class PeminjamHomeFragment extends Fragment {
         }
     }
 
+    //-------------------------------------------------------------------------------------------//
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadRegVerification();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadRegVerification();
+    }
 }

@@ -135,16 +135,15 @@ public class PeminjamFundFragment extends Fragment {
     }
 
     private void initPinjamanInfo() {
-        //mIDPinjaman = "0";
-        mStatusPinjaman = "-";
+        mStatusPinjaman = "--";
         mTglDanaCair = "-";
         mTenorPinjaman = "0 Hari";
         mPinjaman = "Rp0";
         mBayarPinjaman = "Rp0";
         mTerbayarPinjaman = "Rp0";
         mDendaPinjaman = "Rp0";
-        mTglJatuhTempo = "-";
-        mStatusPembayaran = "-";
+        mTglJatuhTempo = "--";
+        mStatusPembayaran = "--";
     }
 
     //------------------------------------------------------------------------------------------//
@@ -212,11 +211,11 @@ public class PeminjamFundFragment extends Fragment {
 
                 mTotalBayarCicilan = mNomDenda + mNomCicilan;
 
-                if (!mTglDanaCair.equals("-")) {
+                if (!mTglDanaCair.equals("--")) {
                     String loadCicilan = formatter.format(mTotalBayarCicilan);
                     mTextTotalBayarCicilan.setText(loadCicilan);
                 } else {
-                    String loadCicilan = "-";
+                    String loadCicilan = "--";
                     mTextTotalBayarCicilan.setText(loadCicilan);
                 }
 
@@ -245,7 +244,7 @@ public class PeminjamFundFragment extends Fragment {
                     }
 
                     if (done != null && done.equals("0")) {
-                        mTextIDPinjaman.setText("-");
+                        mTextIDPinjaman.setText("--");
                     }
                 }
             }
@@ -281,7 +280,7 @@ public class PeminjamFundFragment extends Fragment {
                         mTglDanaCair = DateFormat.getDateInstance(DateFormat.FULL).format(done);
                         mTextTglDanaCair.setText(mTglDanaCair); //tanggal pinjaman disetujui admin
                     } else {
-                        mTglDanaCair = "-";
+                        mTglDanaCair = "--";
                         mTextTglDanaCair.setText(mTglDanaCair); //tanggal pinjaman disetujui admin
                     }
                 }
@@ -295,9 +294,8 @@ public class PeminjamFundFragment extends Fragment {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    Date done = doc.getDate("pinjaman_tanggal_akhir");
+                    Date done = doc.getDate("pinjaman_tanggal_bayar_3");
                     if (done != null) {
-
                         long diff = done.getTime() - mCurrentDate.getTime();
                         mMasaTenor = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
@@ -369,17 +367,36 @@ public class PeminjamFundFragment extends Fragment {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    Date done = doc.getDate("pinjaman_tanggal_bayar");
-                    if (done != null) {
+                    int tahap = Math.toIntExact(doc.getLong("pinjaman_tahap"));
+                    switch (tahap) {
+                        case 0:
+                            String date0 = "--";
+                            mTextTglJatuhTempo.setText(date0);
+                            break;
 
-                        long diff = mCurrentDate.getTime() - done.getTime();
-                        mHariTelat = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+                        case 1:
+                            Date date1 = doc.getDate("pinjaman_tanggal_bayar_1");
+                            if (date1 != null) {
+                                mTextTglJatuhTempo.setText(DateFormat.getDateInstance
+                                        (DateFormat.FULL).format(date1));
+                            }
+                            break;
 
-                        mTglJatuhTempo = DateFormat.getDateInstance(DateFormat.LONG).format(done);
-                        mTextTglJatuhTempo.setText(mTglJatuhTempo); //tanggal pembayaran cicilan
-                    } else {
-                        mTglJatuhTempo = "-";
-                        mTextTglJatuhTempo.setText(mTglJatuhTempo); //tanggal pembayaran cicilan
+                        case 2:
+                            Date date2 = doc.getDate("pinjaman_tanggal_bayar_2");
+                            if (date2 != null) {
+                                mTextTglJatuhTempo.setText(DateFormat.getDateInstance
+                                        (DateFormat.FULL).format(date2));
+                            }
+                            break;
+
+                        case 3:
+                            Date date3 = doc.getDate("pinjaman_tanggal_bayar_3");
+                            if (date3 != null) {
+                                mTextTglJatuhTempo.setText(DateFormat.getDateInstance
+                                        (DateFormat.FULL).format(date3));
+                            }
+                            break;
                     }
                 }
             }
@@ -397,7 +414,7 @@ public class PeminjamFundFragment extends Fragment {
                         mStatusPembayaran = done;
                         mTextStatusPembayaran.setText(mStatusPembayaran); //status pembayaran cicilan
                     } else {
-                        mStatusPembayaran = "-";
+                        mStatusPembayaran = "--";
                         mTextStatusPembayaran.setText(mStatusPembayaran); //status pembayaran cicilan
                     }
                 }
@@ -414,7 +431,7 @@ public class PeminjamFundFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (!mIDPinjamanTransfer.equals("0") && !mTglDanaCair.equals("-")) {
+                if (!mIDPinjamanTransfer.equals("0") && !mTglDanaCair.equals("--")) {
 
                     mDocRef2.update("pinjaman_cicilan", mTotalBayarCicilan);
                     mDocRef2.update("pinjaman_denda", mNomDenda);

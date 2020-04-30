@@ -111,8 +111,6 @@ public class PendanaHomeFragment extends Fragment {
 
     }
 
-    //-------------------------------------------------------------------------------------------//
-
     private boolean checkRegStatus() {
         if (!"done".equalsIgnoreCase(info_id) | !"done".equalsIgnoreCase(info_pribadi)
                 | !"done".equalsIgnoreCase(info_pekerjaan) | !"done".equalsIgnoreCase(info_kontak)
@@ -147,7 +145,7 @@ public class PendanaHomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        // ON CLICK HERE BRO!!
+        // ON CLICK RECYCLEVIEW ITEM HERE!!
         adapter.setOnItemClickListener(new FundReqAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
@@ -156,7 +154,7 @@ public class PendanaHomeFragment extends Fragment {
 
                 // CHECK LENDER REGISTRATION STATUSES.
                 if (checkRegStatus()) {
-                    Intent toFundReqDetail = new Intent(getActivity(), PendanaFundReqDetail.class);
+                    Intent toFundReqDetail = new Intent(getActivity(), PendanaFundReqActivity.class);
                     toFundReqDetail.putExtra(SEND_DOCUMENT_PATH, path);
                     toFundReqDetail.putExtra(SEND_DOCUMENT_DOC, doc);
                     startActivity(toFundReqDetail);
@@ -172,6 +170,7 @@ public class PendanaHomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         adapter.startListening();
+        loadRegVerification();
     }
 
     @Override
@@ -180,4 +179,9 @@ public class PendanaHomeFragment extends Fragment {
         adapter.stopListening();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadRegVerification();
+    }
 }

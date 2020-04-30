@@ -1,3 +1,9 @@
+/*
+ * Created by Albert Kristaen on 30/04/20 17:44
+ * Copyright (c) 2020 . All rights reserved.
+ * Last modified 27/04/20 23:31
+ */
+
 package com.xoxltn.pinjam_aja.models;
 
 import java.util.Date;
