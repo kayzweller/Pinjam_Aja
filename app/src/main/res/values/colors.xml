@@ -17,6 +17,8 @@
     <!-- color navigation bar -->
     <color name="selected">#271431</color>
     <color name="unselected">#74697A</color>
+
+    <!--CARD-->
     <color name="type1">#EDEFD3</color>
     <color name="type2">#D3EFEB</color>
     <color name="type3">#EFD3DC</color>

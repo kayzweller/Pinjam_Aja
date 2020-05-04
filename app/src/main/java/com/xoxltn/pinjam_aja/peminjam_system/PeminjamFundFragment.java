@@ -46,11 +46,12 @@ public class PeminjamFundFragment extends Fragment {
     private TextView mTextIDPinjaman, mTextStatusPinjaman, mTextTglDanaCair, mTextTenorPinjaman;
     private TextView mTextPinjaman, mTextTotalBayarPinjaman, mTextTerbayarPinjaman;
     private TextView mTextDendaPinjaman, mTextTglJatuhTempo, mTextStatusPembayaran;
-    private TextView mTextTotalBayarCicilan;
+    private TextView mTextTotalBayarCicilan, mTextTahapPinjaman;
 
     private String mIDPinjaman = "0";
     private String mStatusPinjaman, mTglDanaCair, mTenorPinjaman, mPinjaman, mBayarPinjaman;
     private String mTerbayarPinjaman, mDendaPinjaman,mTglJatuhTempo, mStatusPembayaran;
+    private String mTahapPinjaman, mTotalCicilan;
 
     private Date mCurrentDate;
 
@@ -93,6 +94,7 @@ public class PeminjamFundFragment extends Fragment {
         mTextTglJatuhTempo = mView.findViewById(R.id.text_TglJatuhTempo);
         mTextStatusPembayaran = mView.findViewById(R.id.text_StatusPembayaran);
         mTextTotalBayarCicilan = mView.findViewById(R.id.text_TotalBayarCicilan);
+        mTextTahapPinjaman = mView.findViewById(R.id.text_tahapPinjaman);
 
         formatRupiah(); //FORMATTING TO RUPIAH //
 
@@ -136,7 +138,7 @@ public class PeminjamFundFragment extends Fragment {
 
     private void initPinjamanInfo() {
         mStatusPinjaman = "--";
-        mTglDanaCair = "-";
+        mTglDanaCair = "--";
         mTenorPinjaman = "0 Hari";
         mPinjaman = "Rp0";
         mBayarPinjaman = "Rp0";
@@ -144,6 +146,8 @@ public class PeminjamFundFragment extends Fragment {
         mDendaPinjaman = "Rp0";
         mTglJatuhTempo = "--";
         mStatusPembayaran = "--";
+        mTotalCicilan = "--";
+        mTahapPinjaman = "--";
     }
 
     //------------------------------------------------------------------------------------------//
@@ -184,6 +188,8 @@ public class PeminjamFundFragment extends Fragment {
                 mTextDendaPinjaman.setText(mDendaPinjaman); //denda pinjaman
                 mTextTglJatuhTempo.setText(mTglJatuhTempo); //tanggal pembayaran cicilan
                 mTextStatusPembayaran.setText(mStatusPembayaran); //status pembayaran cicilan
+                mTextTotalBayarCicilan.setText(mTotalCicilan); //total bayar cicilan
+                mTextTahapPinjaman.setText(mTahapPinjaman); //tahap pinjaman
 
             }
         }, 7);
@@ -193,8 +199,8 @@ public class PeminjamFundFragment extends Fragment {
 
     private void denda_TotalPinjaman() {
 
-        Handler fuckyou = new Handler();
-        fuckyou.postDelayed(new Runnable() {
+        Handler delayIt = new Handler();
+        delayIt.postDelayed(new Runnable() {
             @Override
             public void run() {
 
@@ -367,37 +373,47 @@ public class PeminjamFundFragment extends Fragment {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    int tahap = Math.toIntExact(doc.getLong("pinjaman_tahap"));
-                    switch (tahap) {
-                        case 0:
+                    Long load = doc.getLong("pinjaman_tahap");
+
+                    if (load != null) {
+                        if (load == 0) {
                             String date0 = "--";
                             mTextTglJatuhTempo.setText(date0);
-                            break;
+                            mTextTahapPinjaman.setText(date0);
+                        } else if (load == 1) {
+                            String tahap = "Cicilan-1";
+                            mTextTahapPinjaman.setText(tahap);
 
-                        case 1:
                             Date date1 = doc.getDate("pinjaman_tanggal_bayar_1");
                             if (date1 != null) {
                                 mTextTglJatuhTempo.setText(DateFormat.getDateInstance
                                         (DateFormat.FULL).format(date1));
                             }
-                            break;
+                        } else if (load == 2) {
+                            String tahap = "Cicilan-2";
+                            mTextTahapPinjaman.setText(tahap);
 
-                        case 2:
                             Date date2 = doc.getDate("pinjaman_tanggal_bayar_2");
                             if (date2 != null) {
                                 mTextTglJatuhTempo.setText(DateFormat.getDateInstance
                                         (DateFormat.FULL).format(date2));
                             }
-                            break;
+                        } else if (load == 3) {
+                            String tahap = "Cicilan-3";
+                            mTextTahapPinjaman.setText(tahap);
 
-                        case 3:
                             Date date3 = doc.getDate("pinjaman_tanggal_bayar_3");
                             if (date3 != null) {
                                 mTextTglJatuhTempo.setText(DateFormat.getDateInstance
                                         (DateFormat.FULL).format(date3));
                             }
-                            break;
+                        }
+                    } else {
+                        String date0 = "--";
+                        mTextTglJatuhTempo.setText(date0);
+                        mTextTahapPinjaman.setText(date0);
                     }
+
                 }
             }
         });

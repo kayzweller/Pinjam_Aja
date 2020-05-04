@@ -13,4 +13,5 @@
         android:id="@+id/pendana_nav_user"
         android:icon="@drawable/nav_user"
         android:title="@string/nav_user" />
+
 </menu>

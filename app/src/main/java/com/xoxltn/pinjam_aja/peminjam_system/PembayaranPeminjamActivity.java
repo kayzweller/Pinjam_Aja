@@ -103,7 +103,6 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     public void onCLickKonfimasiBayar(View view) {
-
         if (!passdata.equals("0") && mTanggalCair != null) {
             //TODO :: BUAT KONFIRMASI BAYAR DI ADMIN && UBAH TAHAP CICILAN
             mDocRef.update("pinjaman_tanggal_transfer", mCurrentDate);
@@ -121,7 +120,6 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
                     "ERROR!",
                     Toast.LENGTH_SHORT).show();
         }
-
     }
 
     //-------------------------------------------------------------------------------------------//

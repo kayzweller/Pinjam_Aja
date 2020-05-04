@@ -83,7 +83,7 @@ public class PendanaFundDetailActivity extends AppCompatActivity {
                     Date date_cair = doc.getDate("pinjaman_tanggal_cair");
                     String status = doc.getString("pinjaman_status");
                     Date tenor = doc.getDate("pinjaman_tanggal_bayar_3");
-                    int tahap = Math.toIntExact(doc.getLong("pinjaman_tahap"));
+                    Long tahap = doc.getLong("pinjaman_tahap");
                     int pinjam = Math.toIntExact(doc.getLong("pinjaman_besar"));
                     int kembali = Math.toIntExact(doc.getLong("pinjaman_terbayar"));
 
@@ -118,14 +118,12 @@ public class PendanaFundDetailActivity extends AppCompatActivity {
                     }
 
                     //[5]
-                    switch (tahap) {
-                        case 0:
+                    if (tahap != null) {
+                        if (tahap == 0) {
                             String sets0 = "--";
                             mTahapPinjam.setText(sets0);
                             mTextJatuhTempo.setText(sets0);
-                            break;
-
-                        case 1:
+                        } else if (tahap == 1) {
                             String sets1 = "Cicilan-1";
                             mTahapPinjam.setText(sets1);
                             Date date1 = doc.getDate("pinjaman_tanggal_bayar_1");
@@ -133,9 +131,7 @@ public class PendanaFundDetailActivity extends AppCompatActivity {
                                 mTextJatuhTempo.setText(DateFormat.getDateInstance(DateFormat.FULL)
                                         .format(date1));
                             }
-                            break;
-
-                        case 2:
+                        } else if (tahap == 2) {
                             String sets2 = "Cicilan-2";
                             mTahapPinjam.setText(sets2);
                             Date date2 = doc.getDate("pinjaman_tanggal_bayar_2");
@@ -143,9 +139,7 @@ public class PendanaFundDetailActivity extends AppCompatActivity {
                                 mTextJatuhTempo.setText(DateFormat.getDateInstance(DateFormat.FULL)
                                         .format(date2));
                             }
-                            break;
-
-                        case 3:
+                        } else if (tahap == 3) {
                             String sets3 = "Cicilan-3";
                             mTahapPinjam.setText(sets3);
                             Date date3 = doc.getDate("pinjaman_tanggal_bayar_3");
@@ -153,7 +147,11 @@ public class PendanaFundDetailActivity extends AppCompatActivity {
                                 mTextJatuhTempo.setText(DateFormat.getDateInstance(DateFormat.FULL)
                                         .format(date3));
                             }
-                            break;
+                        }
+                    } else {
+                        String sets0 = "--";
+                        mTahapPinjam.setText(sets0);
+                        mTextJatuhTempo.setText(sets0);
                     }
 
                     //[6]

@@ -155,7 +155,7 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
                     data.put("pendanaan_status", false);
                     data.put("pendanaan_req", false);
 
-                    data.put("pinjaman_status", "MENUNGGU PENDANAAN");
+                    data.put("pinjaman_status", "MENUNGGU KONFIRMASI");
                     data.put("pinjaman_status_pembayaran", null);
 
                     data.put("pinjaman_tanggal_req", mCurrentDate);
