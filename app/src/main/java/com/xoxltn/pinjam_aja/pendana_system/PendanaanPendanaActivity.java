@@ -87,6 +87,7 @@ public class PendanaanPendanaActivity extends AppCompatActivity {
         mDocRef.update("id_pendana", mUserID);
         mDocRef.update("pendanaan_req", false);
         mDocRef.update("pendanaan_status", true);
+        mDocRef.update("pinjaman_aktif", false);
         mDocRef.update("pinjaman_status", "KONFIRMASI PENDANAAN")
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

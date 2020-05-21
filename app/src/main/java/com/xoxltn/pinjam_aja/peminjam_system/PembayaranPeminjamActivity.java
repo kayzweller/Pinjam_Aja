@@ -84,7 +84,7 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    Long done = doc.getLong("pinjaman_cicilan");
+                    Long done = doc.getLong("pinjaman_transfer");
 
                     if (done != null && mTanggalCair != null) {
                         mSetBayarPinjaman = "Nominal Transfer : " + formatter.format(done);
@@ -104,8 +104,8 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
 
     public void onCLickKonfimasiBayar(View view) {
         if (!passdata.equals("0") && mTanggalCair != null) {
-            //TODO :: BUAT KONFIRMASI BAYAR DI ADMIN && UBAH TAHAP CICILAN
             mDocRef.update("pinjaman_tanggal_transfer", mCurrentDate);
+            mDocRef.update("pinjaman_konfirmasi_pembayaran", false);
             mDocRef.update("pinjaman_status_pembayaran", "MENUNGGU KONFIRMASI")
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

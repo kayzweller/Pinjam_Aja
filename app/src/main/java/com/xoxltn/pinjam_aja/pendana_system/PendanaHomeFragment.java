@@ -33,8 +33,8 @@ import java.util.Objects;
  */
 public class PendanaHomeFragment extends Fragment {
 
-    static final String SEND_DOCUMENT_PATH = "com.xoxltn.testfirestoreui.SEND_DOCUMENT_PATH";
-    static final String SEND_DOCUMENT_DOC = "com.xoxltn.testfirestoreui.SEND_DOCUMENT_DOC";
+    static final String SEND_DOCUMENT_PATH = "com.xoxltn.pinjam_aja.SEND_DOCUMENT_PATH";
+    static final String SEND_DOCUMENT_DOC = "com.xoxltn.pinjam_aja.SEND_DOCUMENT_DOC";
 
     private View mView;
     private CollectionReference mColRef;
@@ -57,7 +57,6 @@ public class PendanaHomeFragment extends Fragment {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String userID = mAuth.getUid(); assert userID != null;
-
 
         mColRef = FirebaseFirestore.getInstance()
                 .collection("PEMINJAM");

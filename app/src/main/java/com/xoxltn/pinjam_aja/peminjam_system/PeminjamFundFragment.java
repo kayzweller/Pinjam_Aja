@@ -46,21 +46,23 @@ public class PeminjamFundFragment extends Fragment {
     private TextView mTextIDPinjaman, mTextStatusPinjaman, mTextTglDanaCair, mTextTenorPinjaman;
     private TextView mTextPinjaman, mTextTotalBayarPinjaman, mTextTerbayarPinjaman;
     private TextView mTextDendaPinjaman, mTextTglJatuhTempo, mTextStatusPembayaran;
-    private TextView mTextTotalBayarCicilan, mTextTahapPinjaman;
+    private TextView mTextTotalBayarTransfer, mTextTahapPinjaman;
 
     private String mIDPinjaman = "0";
     private String mStatusPinjaman, mTglDanaCair, mTenorPinjaman, mPinjaman, mBayarPinjaman;
     private String mTerbayarPinjaman, mDendaPinjaman,mTglJatuhTempo, mStatusPembayaran;
-    private String mTahapPinjaman, mTotalCicilan;
+    private String mTahapPinjaman, mTotalTransfer;
 
     private Date mCurrentDate;
+
+    private Long mTahap;
 
     private double mNomPinjaman = 0;
     private double mNomKembaliPinjaman = 0;
 
-    private double mNomCicilan = 0;
+    private double mNomTransfer = 0;
     private double mNomDenda = 0;
-    private double mTotalBayarCicilan = 0;
+    private double mTotalBayarTransfer = 0;
 
     private long mHariTelat = 0;
     private long mMasaTenor = 0;
@@ -93,7 +95,7 @@ public class PeminjamFundFragment extends Fragment {
         mTextDendaPinjaman = mView.findViewById(R.id.text_DendaPinjaman);
         mTextTglJatuhTempo = mView.findViewById(R.id.text_TglJatuhTempo);
         mTextStatusPembayaran = mView.findViewById(R.id.text_StatusPembayaran);
-        mTextTotalBayarCicilan = mView.findViewById(R.id.text_TotalBayarCicilan);
+        mTextTotalBayarTransfer = mView.findViewById(R.id.text_TotalBayarTransfer);
         mTextTahapPinjaman = mView.findViewById(R.id.text_tahapPinjaman);
 
         formatRupiah(); //FORMATTING TO RUPIAH //
@@ -146,7 +148,7 @@ public class PeminjamFundFragment extends Fragment {
         mDendaPinjaman = "Rp0";
         mTglJatuhTempo = "--";
         mStatusPembayaran = "--";
-        mTotalCicilan = "--";
+        mTotalTransfer = "--";
         mTahapPinjaman = "--";
     }
 
@@ -188,7 +190,7 @@ public class PeminjamFundFragment extends Fragment {
                 mTextDendaPinjaman.setText(mDendaPinjaman); //denda pinjaman
                 mTextTglJatuhTempo.setText(mTglJatuhTempo); //tanggal pembayaran cicilan
                 mTextStatusPembayaran.setText(mStatusPembayaran); //status pembayaran cicilan
-                mTextTotalBayarCicilan.setText(mTotalCicilan); //total bayar cicilan
+                mTextTotalBayarTransfer.setText(mTotalTransfer); //total transfer cicilan
                 mTextTahapPinjaman.setText(mTahapPinjaman); //tahap pinjaman
 
             }
@@ -205,7 +207,7 @@ public class PeminjamFundFragment extends Fragment {
             public void run() {
 
                 mNomKembaliPinjaman = mNomPinjaman/100*20;
-                mNomCicilan = (mNomPinjaman + mNomKembaliPinjaman) / 3;
+                mNomTransfer = (mNomPinjaman + mNomKembaliPinjaman) / 3;
 
                 double denda_harian = (mNomPinjaman + mNomKembaliPinjaman)/1000*8;
 
@@ -215,14 +217,14 @@ public class PeminjamFundFragment extends Fragment {
                     mNomDenda = 0;
                 }
 
-                mTotalBayarCicilan = mNomDenda + mNomCicilan;
+                mTotalBayarTransfer = mNomDenda + mNomTransfer;
 
                 if (!mTglDanaCair.equals("--")) {
-                    String loadCicilan = formatter.format(mTotalBayarCicilan);
-                    mTextTotalBayarCicilan.setText(loadCicilan);
+                    String loadTransfer = formatter.format(mTotalBayarTransfer);
+                    mTextTotalBayarTransfer.setText(loadTransfer);
                 } else {
-                    String loadCicilan = "--";
-                    mTextTotalBayarCicilan.setText(loadCicilan);
+                    String loadTransfer = "--";
+                    mTextTotalBayarTransfer.setText(loadTransfer);
                 }
 
                 String loadDenda = formatter.format(mNomDenda);
@@ -425,6 +427,7 @@ public class PeminjamFundFragment extends Fragment {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+
                     String done = doc.getString("pinjaman_status_pembayaran");
                     if (done != null) {
                         mStatusPembayaran = done;
@@ -433,6 +436,9 @@ public class PeminjamFundFragment extends Fragment {
                         mStatusPembayaran = "--";
                         mTextStatusPembayaran.setText(mStatusPembayaran); //status pembayaran cicilan
                     }
+
+                    mTahap = doc.getLong("pinjaman_tahap");
+
                 }
             }
         });
@@ -449,13 +455,15 @@ public class PeminjamFundFragment extends Fragment {
 
                 if (!mIDPinjamanTransfer.equals("0") && !mTglDanaCair.equals("--")) {
 
-                    mDocRef2.update("pinjaman_cicilan", mTotalBayarCicilan);
-                    mDocRef2.update("pinjaman_denda", mNomDenda);
+                    if (mTahap == 1 || mTahap == 2 || mTahap == 3) {
+                        mDocRef2.update("pinjaman_transfer", mTotalBayarTransfer);
+                        mDocRef2.update("pinjaman_denda", mNomDenda);
 
-                    //SENT DATA THROUGH EXTRA INTENT
-                    Intent goToBayar = new Intent(getActivity(), PembayaranPeminjamActivity.class);
-                    goToBayar.putExtra(EXTRA_ID, mIDPinjamanTransfer);
-                    startActivity(goToBayar);
+                        //SENT DATA THROUGH EXTRA INTENT
+                        Intent goToBayar = new Intent(getActivity(), PembayaranPeminjamActivity.class);
+                        goToBayar.putExtra(EXTRA_ID, mIDPinjamanTransfer);
+                        startActivity(goToBayar);
+                    }
 
                 } else {
                     Toast.makeText(getActivity(), "ANDA BELUM MEMILIKI PINJAMAN AKTIF!",

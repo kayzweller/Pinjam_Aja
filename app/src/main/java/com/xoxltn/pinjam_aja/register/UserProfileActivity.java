@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.xoxltn.pinjam_aja.R;
 
-public class ActivityUserProfile extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity {
 
     Button mButtonDataIdentitas, mButtonDataPribadi, mButtonDataPekerjaan, mButtonDataKontak;
 

@@ -21,7 +21,7 @@
         <activity android:name=".register.InfoPekerjaanActivity" />
         <activity android:name=".register.InfoPribadiActivity" />
         <activity android:name=".register.InfoIdentitasActivity" />
-        <activity android:name=".register.ActivityUserProfile" />
+        <activity android:name=".register.UserProfileActivity" />
         <activity android:name=".pendana_system.PendanaanPendanaActivity" />
         <activity android:name=".peminjam_system.PembayaranPeminjamActivity" />
         <activity android:name=".AboutActivity" />

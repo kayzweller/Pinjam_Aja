@@ -27,8 +27,8 @@ import com.xoxltn.pinjam_aja.models.FundDetail;
  */
 public class PendanaFundFragment extends Fragment {
 
-    static final String SEND_PATH = "com.xoxltn.testfirestoreui.SEND_PATH";
-    static final String SEND_DOC = "com.xoxltn.testfirestoreui.SEND_DOC";
+    static final String SEND_PATH = "com.xoxltn.pinjam_aja.SEND_PATH";
+    static final String SEND_DOC = "com.xoxltn.pinjam_aja.SEND_DOC";
 
     private View mView;
     private CollectionReference mColRef;

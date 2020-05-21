@@ -248,7 +248,7 @@
                     android:textSize="36sp" />
 
                 <TextView
-                    android:id="@+id/text_TotalBayarCicilan"
+                    android:id="@+id/text_TotalBayarTransfer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fira_sans_bold_italic"

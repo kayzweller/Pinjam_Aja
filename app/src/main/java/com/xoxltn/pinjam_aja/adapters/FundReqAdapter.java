@@ -18,7 +18,8 @@ import com.xoxltn.pinjam_aja.models.FundReq;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class FundReqAdapter extends FirestoreRecyclerAdapter<FundReq, FundReqAdapter.FundReqHolder> {
+public class FundReqAdapter extends FirestoreRecyclerAdapter<FundReq,
+        FundReqAdapter.FundReqHolder> {
 
     private OnItemClickListener listener;
 
@@ -75,7 +76,7 @@ public class FundReqAdapter extends FirestoreRecyclerAdapter<FundReq, FundReqAda
         TextView mTextViewNominalPinjaman;
         CardView mCardFundRef;
 
-        public FundReqHolder(@NonNull final View itemView) {
+        FundReqHolder(@NonNull final View itemView) {
             super(itemView);
 
             mTextViewTanggal = itemView.findViewById(R.id.home_tanggal_permintaan);

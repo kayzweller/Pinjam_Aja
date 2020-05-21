@@ -117,14 +117,14 @@ public class PendanaFundDetailActivity extends AppCompatActivity {
                         mTextTenor.setText(tenor_set); //tanggal pembayaran cicilan
                     }
 
-                    //[5]
+                    //[5] -- TODO : pinjaman lunas? sets to "0"
                     if (tahap != null) {
                         if (tahap == 0) {
                             String sets0 = "--";
                             mTahapPinjam.setText(sets0);
                             mTextJatuhTempo.setText(sets0);
                         } else if (tahap == 1) {
-                            String sets1 = "Cicilan-1";
+                            String sets1 = "Cicilan Pertama";
                             mTahapPinjam.setText(sets1);
                             Date date1 = doc.getDate("pinjaman_tanggal_bayar_1");
                             if (date1 != null) {
@@ -132,7 +132,7 @@ public class PendanaFundDetailActivity extends AppCompatActivity {
                                         .format(date1));
                             }
                         } else if (tahap == 2) {
-                            String sets2 = "Cicilan-2";
+                            String sets2 = "Cicilan Kedua";
                             mTahapPinjam.setText(sets2);
                             Date date2 = doc.getDate("pinjaman_tanggal_bayar_2");
                             if (date2 != null) {
@@ -140,7 +140,7 @@ public class PendanaFundDetailActivity extends AppCompatActivity {
                                         .format(date2));
                             }
                         } else if (tahap == 3) {
-                            String sets3 = "Cicilan-3";
+                            String sets3 = "Cicilan Terakhir";
                             mTahapPinjam.setText(sets3);
                             Date date3 = doc.getDate("pinjaman_tanggal_bayar_3");
                             if (date3 != null) {
