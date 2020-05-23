@@ -220,11 +220,11 @@ public class PeminjamFundFragment extends Fragment {
                 mTotalBayarTransfer = mNomDenda + mNomTransfer;
 
                 if (!mTglDanaCair.equals("--")) {
-                    String loadTransfer = formatter.format(mTotalBayarTransfer);
-                    mTextTotalBayarTransfer.setText(loadTransfer);
+                    mTotalTransfer = formatter.format(mTotalBayarTransfer);
+                    mTextTotalBayarTransfer.setText(mTotalTransfer);
                 } else {
-                    String loadTransfer = "--";
-                    mTextTotalBayarTransfer.setText(loadTransfer);
+                    mTotalTransfer = "--";
+                    mTextTotalBayarTransfer.setText(mTotalTransfer);
                 }
 
                 String loadDenda = formatter.format(mNomDenda);
@@ -377,43 +377,48 @@ public class PeminjamFundFragment extends Fragment {
                     DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
                     Long load = doc.getLong("pinjaman_tahap");
 
+                    denda_TotalPinjaman();
+
                     if (load != null) {
                         if (load == 0) {
-                            String date0 = "--";
-                            mTextTglJatuhTempo.setText(date0);
-                            mTextTahapPinjaman.setText(date0);
+                            mTglJatuhTempo = "--";
+                            mTextTglJatuhTempo.setText(mTglJatuhTempo);
+                            mTextTahapPinjaman.setText(mTglJatuhTempo);
                         } else if (load == 1) {
-                            String tahap = "Cicilan-1";
-                            mTextTahapPinjaman.setText(tahap);
+                            mTahapPinjaman = "Cicilan-1";
+                            mTextTahapPinjaman.setText(mTahapPinjaman);
 
                             Date date1 = doc.getDate("pinjaman_tanggal_bayar_1");
                             if (date1 != null) {
-                                mTextTglJatuhTempo.setText(DateFormat.getDateInstance
-                                        (DateFormat.FULL).format(date1));
+                                mTglJatuhTempo = DateFormat.getDateInstance
+                                        (DateFormat.FULL).format(date1);
+                                mTextTglJatuhTempo.setText(mTglJatuhTempo);
                             }
                         } else if (load == 2) {
-                            String tahap = "Cicilan-2";
-                            mTextTahapPinjaman.setText(tahap);
+                            mTahapPinjaman = "Cicilan-2";
+                            mTextTahapPinjaman.setText(mTahapPinjaman);
 
                             Date date2 = doc.getDate("pinjaman_tanggal_bayar_2");
                             if (date2 != null) {
-                                mTextTglJatuhTempo.setText(DateFormat.getDateInstance
-                                        (DateFormat.FULL).format(date2));
+                                mTglJatuhTempo = DateFormat.getDateInstance
+                                        (DateFormat.FULL).format(date2);
+                                mTextTglJatuhTempo.setText(mTglJatuhTempo);
                             }
                         } else if (load == 3) {
-                            String tahap = "Cicilan-3";
-                            mTextTahapPinjaman.setText(tahap);
+                            mTahapPinjaman = "Cicilan-3";
+                            mTextTahapPinjaman.setText(mTahapPinjaman);
 
                             Date date3 = doc.getDate("pinjaman_tanggal_bayar_3");
                             if (date3 != null) {
-                                mTextTglJatuhTempo.setText(DateFormat.getDateInstance
-                                        (DateFormat.FULL).format(date3));
+                                mTglJatuhTempo = DateFormat.getDateInstance
+                                        (DateFormat.FULL).format(date3);
+                                mTextTglJatuhTempo.setText(mTglJatuhTempo);
                             }
                         }
                     } else {
-                        String date0 = "--";
-                        mTextTglJatuhTempo.setText(date0);
-                        mTextTahapPinjaman.setText(date0);
+                        mTglJatuhTempo = "--";
+                        mTextTglJatuhTempo.setText(mTglJatuhTempo);
+                        mTextTahapPinjaman.setText(mTglJatuhTempo);
                     }
 
                 }
