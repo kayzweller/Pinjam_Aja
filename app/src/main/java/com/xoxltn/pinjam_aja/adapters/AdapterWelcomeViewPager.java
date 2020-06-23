@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2020 Albert Kristaen (DBC 113 008)
- * ONLY USE UNDER PERMISSION -OR- I AM GONNA CHOP YOUR HANDS OFF!
+ * Created by Albert Kristaen (Kayzweller) on 23/06/20 13:06
+ * Copyright (c) 2020 . All rights reserved.
+ * Last modified 27/04/20 18:33
  */
 
 package com.xoxltn.pinjam_aja.adapters;
@@ -16,17 +17,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.xoxltn.pinjam_aja.models.ModelWelcomeViewPager;
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.models.WelcomeViewPager;
 
 import java.util.List;
 
-public class WelcomeViewPagerAdapter extends PagerAdapter {
+public class AdapterWelcomeViewPager extends PagerAdapter {
 
     private Context mContext;
-    private List<WelcomeViewPager> mListScreen;
+    private List<ModelWelcomeViewPager> mListScreen;
 
-    public WelcomeViewPagerAdapter(Context context, List<WelcomeViewPager> listScreen) {
+    public AdapterWelcomeViewPager(Context context, List<ModelWelcomeViewPager> listScreen) {
         this.mContext = context;
         this.mListScreen = listScreen;
     }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:theme="@style/AppTheme"
-    tools:context=".WelcomeActivity">
+    tools:context=".MainWelcomeActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/screen_viewpager"

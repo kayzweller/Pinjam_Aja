@@ -32,7 +32,7 @@ import com.xoxltn.pinjam_aja.pendana_system.PendanaDashboardActivity;
 
 import java.util.Objects;
 
-public class LoginActivity extends AppCompatActivity {
+public class MainLoginActivity extends AppCompatActivity {
 
     TextInputLayout mEmail, mPassword;
     ProgressBar mProgressBar;
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main_login);
 
         mAuth = FirebaseAuth.getInstance();
         mFireUser = mAuth.getCurrentUser();
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (Objects.equals(mUserType, PENDANA)) {
                         //user successfully login
                         toastLoginSuccess();
-                        Intent pendanaLogin = new Intent(LoginActivity.this,
+                        Intent pendanaLogin = new Intent(MainLoginActivity.this,
                                 PendanaDashboardActivity.class);
                         startActivity(pendanaLogin);
                         finish();
@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else if (Objects.equals(mUserType, PEMINJAM)) {
                         //user successfully login
                         toastLoginSuccess();
-                        Intent peminjamLogin = new Intent(LoginActivity.this,
+                        Intent peminjamLogin = new Intent(MainLoginActivity.this,
                                 PeminjamDashboardActivity.class);
                         startActivity(peminjamLogin);
                         finish();
@@ -225,7 +225,7 @@ public class LoginActivity extends AppCompatActivity {
                                         if (Objects.equals(mUserType, PENDANA)) {
                                             //user successfully login
                                             toastLoginSuccess();
-                                            Intent pendanaLogin = new Intent(LoginActivity.this,
+                                            Intent pendanaLogin = new Intent(MainLoginActivity.this,
                                                     PendanaDashboardActivity.class);
                                             startActivity(pendanaLogin);
                                             finish();
@@ -233,7 +233,7 @@ public class LoginActivity extends AppCompatActivity {
                                         } else if (Objects.equals(mUserType, PEMINJAM)) {
                                             //user successfully login
                                             toastLoginSuccess();
-                                            Intent peminjamLogin = new Intent(LoginActivity.this,
+                                            Intent peminjamLogin = new Intent(MainLoginActivity.this,
                                                     PeminjamDashboardActivity.class);
                                             startActivity(peminjamLogin);
                                             finish();
@@ -266,7 +266,7 @@ public class LoginActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     public void onClickLupaButton (View v) {
-        Intent lupaPassword = new Intent(this, LupaPasswordActivity.class);
+        Intent lupaPassword = new Intent(this, MainLupaPasswordActivity.class);
         startActivity(lupaPassword);
         finish();
     }
@@ -274,8 +274,8 @@ public class LoginActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     public void onClicktoSignUp (View v) {
-        Intent signUpActivity = new Intent(LoginActivity.this,
-                SignUpActivity.class);
+        Intent signUpActivity = new Intent(MainLoginActivity.this,
+                MainSignUpActivity.class);
         startActivity(signUpActivity);
         finish();
     }

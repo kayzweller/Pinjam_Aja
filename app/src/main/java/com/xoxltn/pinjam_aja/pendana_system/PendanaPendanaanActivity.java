@@ -21,7 +21,7 @@ import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Objects;
 
-public class PendanaanPendanaActivity extends AppCompatActivity {
+public class PendanaPendanaanActivity extends AppCompatActivity {
 
     private NumberFormat formatter;
 
@@ -92,7 +92,7 @@ public class PendanaanPendanaActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(PendanaanPendanaActivity.this,
+                        Toast.makeText(PendanaPendanaanActivity.this,
                                 "Konfirmasi transfer pendanaan terkirim!",
                                 Toast.LENGTH_SHORT).show();
                         finish();

@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class SignUpActivity extends AppCompatActivity {
+public class MainSignUpActivity extends AppCompatActivity {
 
     // Deklarasi Variabel
     TextInputLayout mFullName, mEmail, mPhone, mPassword;
@@ -54,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_main_sign_up);
 
         // set object from XML to Variable in java [HOOKS]
         mFullName = findViewById(R.id.signup_nama);
@@ -148,7 +148,7 @@ public class SignUpActivity extends AppCompatActivity {
                             mUserVer.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(SignUpActivity.this,
+                                    Toast.makeText(MainSignUpActivity.this,
                                             "Pendaftaran sukses, email verifikasi sudah terkirim!",
                                             Toast.LENGTH_LONG).show();
                                 }
@@ -157,7 +157,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (userType.equals("PENDANA")) {
                                 //user successfully login
                                 toastLoginSuccess();
-                                Intent pendanaLogin = new Intent(SignUpActivity.this,
+                                Intent pendanaLogin = new Intent(MainSignUpActivity.this,
                                         PendanaDashboardActivity.class);
                                 startActivity(pendanaLogin);
                                 finish();
@@ -165,7 +165,7 @@ public class SignUpActivity extends AppCompatActivity {
                             } else if (userType.equals("PEMINJAM")) {
                                 //user successfully login
                                 toastLoginSuccess();
-                                Intent peminjamLogin = new Intent(SignUpActivity.this,
+                                Intent peminjamLogin = new Intent(MainSignUpActivity.this,
                                         PeminjamDashboardActivity.class);
                                 startActivity(peminjamLogin);
                                 finish();
@@ -177,7 +177,7 @@ public class SignUpActivity extends AppCompatActivity {
                         } else {
 
                             progressBarUnload();
-                            Toast.makeText(SignUpActivity.this, "GAGAL! "
+                            Toast.makeText(MainSignUpActivity.this, "GAGAL! "
                                     + Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();
 
@@ -276,8 +276,8 @@ public class SignUpActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     public void onClicktoLogin(View view) {
-        Intent loginActivity = new Intent(SignUpActivity.this,
-                LoginActivity.class);
+        Intent loginActivity = new Intent(MainSignUpActivity.this,
+                MainLoginActivity.class);
         startActivity(loginActivity);
         finish();
     }

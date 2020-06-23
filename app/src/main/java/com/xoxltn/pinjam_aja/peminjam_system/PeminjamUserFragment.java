@@ -20,8 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.xoxltn.pinjam_aja.AboutActivity;
-import com.xoxltn.pinjam_aja.LoginActivity;
+import com.xoxltn.pinjam_aja.MainAboutActivity;
+import com.xoxltn.pinjam_aja.MainLoginActivity;
 import com.xoxltn.pinjam_aja.R;
 
 import java.util.Objects;
@@ -115,7 +115,7 @@ public class PeminjamUserFragment extends Fragment {
                     Toast.makeText(getActivity(), "LOGOUT SUCCESS",
                             Toast.LENGTH_SHORT).show();
 
-                    Intent backToLogin = new Intent(getActivity(), LoginActivity.class);
+                    Intent backToLogin = new Intent(getActivity(), MainLoginActivity.class);
                     backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(backToLogin);
@@ -132,7 +132,7 @@ public class PeminjamUserFragment extends Fragment {
         buttonTentangPeminjam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToAbout = new Intent(getActivity(), AboutActivity.class);
+                Intent goToAbout = new Intent(getActivity(), MainAboutActivity.class);
                 startActivity(goToAbout);
             }
         });

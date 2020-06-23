@@ -22,9 +22,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.adapters.FundReqAdapter;
-import com.xoxltn.pinjam_aja.models.FundReq;
-import com.xoxltn.pinjam_aja.register.UserRegisterDialog;
+import com.xoxltn.pinjam_aja.adapters.AdapterFundReq;
+import com.xoxltn.pinjam_aja.models.ModelFundReq;
+import com.xoxltn.pinjam_aja.register.InfoUserRegisterDialog;
 
 import java.util.Objects;
 
@@ -39,7 +39,7 @@ public class PendanaHomeFragment extends Fragment {
     private View mView;
     private CollectionReference mColRef;
     private DocumentReference mDocRef;
-    private FundReqAdapter adapter;
+    private AdapterFundReq adapter;
 
     private String info_id, info_pribadi, info_pekerjaan, info_kontak, info_rekening;
 
@@ -116,7 +116,7 @@ public class PendanaHomeFragment extends Fragment {
                 | !"done".equalsIgnoreCase(info_rekening)) {
 
             if (getFragmentManager() != null) {
-                UserRegisterDialog peminjamDialog = new UserRegisterDialog();
+                InfoUserRegisterDialog peminjamDialog = new InfoUserRegisterDialog();
                 peminjamDialog.show(getFragmentManager(), "00");
             }
             return false;
@@ -133,11 +133,11 @@ public class PendanaHomeFragment extends Fragment {
         Query query = mColRef.whereEqualTo("pendanaan_req", true)
                 .orderBy("pinjaman_tanggal_req", Query.Direction.ASCENDING);
 
-        FirestoreRecyclerOptions<FundReq> options = new FirestoreRecyclerOptions.Builder<FundReq>()
-                .setQuery(query, FundReq.class)
+        FirestoreRecyclerOptions<ModelFundReq> options = new FirestoreRecyclerOptions.Builder<ModelFundReq>()
+                .setQuery(query, ModelFundReq.class)
                 .build();
 
-        adapter = new FundReqAdapter(options);
+        adapter = new AdapterFundReq(options);
 
         RecyclerView recyclerView = mView.findViewById(R.id.recycler_view_fund_req);
         recyclerView.setHasFixedSize(true);
@@ -145,7 +145,7 @@ public class PendanaHomeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // ON CLICK RECYCLEVIEW ITEM HERE!!
-        adapter.setOnItemClickListener(new FundReqAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new AdapterFundReq.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 String doc = documentSnapshot.getId();

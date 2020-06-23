@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-public class UserRegisterDialog extends DialogFragment {
+public class InfoUserRegisterDialog extends DialogFragment {
 
     @NonNull
     @Override
@@ -22,7 +22,7 @@ public class UserRegisterDialog extends DialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent goToRegistration = new Intent(getActivity(), UserProfileActivity.class);
+                        Intent goToRegistration = new Intent(getActivity(), InfoUserProfileActivity.class);
                         startActivity(goToRegistration);
                     }
                 });

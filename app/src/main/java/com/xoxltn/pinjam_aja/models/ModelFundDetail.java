@@ -1,23 +1,23 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 30/04/20 17:47
+ * Created by Albert Kristaen (Kayzweller) on 23/06/20 13:06
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 30/04/20 17:46
+ * Last modified 30/04/20 21:16
  */
 
 package com.xoxltn.pinjam_aja.models;
 
 import java.util.Date;
 
-public class FundDetail {
+public class ModelFundDetail {
     private String pinjaman_status;
     private Date pinjaman_tanggal_bayar;
     private int pinjaman_besar;
 
-    public FundDetail() {
+    public ModelFundDetail() {
         //empty constructor needed
     }
 
-    public FundDetail(String pinjaman_status, Date pinjaman_tanggal_bayar, int pinjaman_besar) {
+    public ModelFundDetail(String pinjaman_status, Date pinjaman_tanggal_bayar, int pinjaman_besar) {
         this.pinjaman_status = pinjaman_status;
         this.pinjaman_tanggal_bayar = pinjaman_tanggal_bayar;
         this.pinjaman_besar = pinjaman_besar;

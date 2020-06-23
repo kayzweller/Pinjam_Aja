@@ -15,12 +15,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class MainSplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_main_splash_screen);
 
         AnimationStart();
         DelayToWelcome();
@@ -61,8 +61,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.
-                        this, WelcomeActivity.class);
+                Intent intent = new Intent(MainSplashScreenActivity.
+                        this, MainWelcomeActivity.class);
                 startActivity(intent);
                 finish();
             }

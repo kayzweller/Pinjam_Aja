@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class PermintaanPinjamanActivity extends AppCompatActivity {
+public class PeminjamReqPinjamanActivity extends AppCompatActivity {
 
     TextView mTextBesarPinjaman, mTextTotalBesarPinjaman, mNotifLoad;
     Button mButtonAjukanPinjaman;
@@ -46,7 +46,7 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_permintaan_pinjaman);
+        setContentView(R.layout.activity_peminjam_req_pinjaman);
 
         mCurrentDate = Calendar.getInstance().getTime();
 
@@ -179,7 +179,7 @@ public class PermintaanPinjamanActivity extends AppCompatActivity {
                     mDocRef.update("pinjaman_aktif", mIDPinjaman);
 
                 } else {
-                    Toast.makeText(PermintaanPinjamanActivity.this,
+                    Toast.makeText(PeminjamReqPinjamanActivity.this,
                             "ANDA MEMILIKI PINJAMAN AKTIF!", Toast.LENGTH_SHORT).show();
                     mButtonAjukanPinjaman.setEnabled(true);
                     mLoading.setAlpha(0);

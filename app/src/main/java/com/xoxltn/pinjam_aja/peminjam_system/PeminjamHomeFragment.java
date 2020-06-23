@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.register.UserRegisterDialog;
+import com.xoxltn.pinjam_aja.register.InfoUserRegisterDialog;
 
 import java.util.Objects;
 
@@ -75,7 +74,7 @@ public class PeminjamHomeFragment extends Fragment {
                 if (CheckRegStatus()) {
                     // SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
-                            PermintaanPinjamanActivity.class);
+                            PeminjamReqPinjamanActivity.class);
                     intentPinjam.putExtra(EXTRA_NUMBER, 500000);
                     startActivity(intentPinjam);
                 }
@@ -93,7 +92,7 @@ public class PeminjamHomeFragment extends Fragment {
                 if (CheckRegStatus()) {
                     // SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
-                            PermintaanPinjamanActivity.class);
+                            PeminjamReqPinjamanActivity.class);
                     intentPinjam.putExtra(EXTRA_NUMBER, 1000000);
                     startActivity(intentPinjam);
                 }
@@ -111,7 +110,7 @@ public class PeminjamHomeFragment extends Fragment {
                 if (CheckRegStatus()) {
                     // SENT INTENT
                     Intent intentPinjam = new Intent(getActivity(),
-                            PermintaanPinjamanActivity.class);
+                            PeminjamReqPinjamanActivity.class);
                     intentPinjam.putExtra(EXTRA_NUMBER, 1500000);
                     startActivity(intentPinjam);
                 }
@@ -167,7 +166,7 @@ public class PeminjamHomeFragment extends Fragment {
                 | !"done".equalsIgnoreCase(info_rekening)) {
 
             if (getFragmentManager() != null) {
-                UserRegisterDialog peminjamDialog = new UserRegisterDialog();
+                InfoUserRegisterDialog peminjamDialog = new InfoUserRegisterDialog();
                 peminjamDialog.show(getFragmentManager(), "00");
             }
             return false;

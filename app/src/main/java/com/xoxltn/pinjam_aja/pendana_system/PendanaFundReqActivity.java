@@ -103,7 +103,7 @@ public class PendanaFundReqActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     public void onClickDanaiPinjaman(View view) {
-        Intent goToPendanaan = new Intent(this, PendanaanPendanaActivity.class);
+        Intent goToPendanaan = new Intent(this, PendanaPendanaanActivity.class);
         goToPendanaan.putExtra(FUND_ID_PATH, mDocPath);
         goToPendanaan.putExtra(FUND_ID_DOC, id_pinjaman);
         startActivity(goToPendanaan);

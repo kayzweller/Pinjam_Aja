@@ -1,7 +1,7 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 30/04/20 20:11
+ * Created by Albert Kristaen (Kayzweller) on 23/06/20 13:06
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 30/04/20 20:11
+ * Last modified 30/04/20 22:58
  */
 
 package com.xoxltn.pinjam_aja.adapters;
@@ -18,24 +18,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.xoxltn.pinjam_aja.models.ModelFundDetail;
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.models.FundDetail;
 
 import java.text.DateFormat;
 import java.util.Date;
 
-public class FundDetailAdapter extends FirestoreRecyclerAdapter
-        <FundDetail, FundDetailAdapter.FundDetailHolder> {
+public class AdapterFundDetail extends FirestoreRecyclerAdapter
+        <ModelFundDetail, AdapterFundDetail.FundDetailHolder> {
 
     private OnItemClickListener listener;
 
-    public FundDetailAdapter(@NonNull FirestoreRecyclerOptions<FundDetail> options) {
+    public AdapterFundDetail(@NonNull FirestoreRecyclerOptions<ModelFundDetail> options) {
         super(options);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull FundDetailHolder holder,int position,
-                                    @NonNull FundDetail model) {
+                                    @NonNull ModelFundDetail model) {
 
         String status = model.getPinjaman_status();
         holder.mTextViewStatusPinjaman.setText(status);

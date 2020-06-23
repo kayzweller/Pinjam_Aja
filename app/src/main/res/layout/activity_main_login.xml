@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="25dp"
     android:theme="@style/AppTheme"
-    tools:context=".LoginActivity">
+    tools:context=".MainLoginActivity">
 
     <ImageView
         android:id="@+id/logo_login"

@@ -9,14 +9,14 @@ import android.widget.Button;
 
 import com.xoxltn.pinjam_aja.R;
 
-public class UserProfileActivity extends AppCompatActivity {
+public class InfoUserProfileActivity extends AppCompatActivity {
 
     Button mButtonDataIdentitas, mButtonDataPribadi, mButtonDataPekerjaan, mButtonDataKontak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_info_user_profile);
 
         mButtonDataIdentitas = findViewById(R.id.button_lengkapi_identitas);
         mButtonDataPribadi = findViewById(R.id.button_lengkapi_pribadi);

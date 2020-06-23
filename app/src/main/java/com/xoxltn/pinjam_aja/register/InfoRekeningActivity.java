@@ -24,7 +24,7 @@ import java.util.Objects;
 public class InfoRekeningActivity extends AppCompatActivity {
 
     private DocumentReference mDocRef;
-    String mUserID;
+    String mUserID, mUserType;
 
     private AutoCompleteTextView mNamaBank;
     private TextInputLayout mRekeningBank, mNamaRekening;
@@ -45,6 +45,7 @@ public class InfoRekeningActivity extends AppCompatActivity {
         mNamaRekening = findViewById(R.id.rekening_nama);
 
         getListBank();
+        getUserType();
         loadPreviousData();
     }
 
@@ -125,6 +126,18 @@ public class InfoRekeningActivity extends AppCompatActivity {
         });
     }
 
+    private void getUserType() {
+        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                    mUserType = doc.getString("userType");
+                }
+            }
+        });
+    }
+
     //-------------------------------------------------------------------------------------------//
 
     private boolean validasiRekeningBank() {
@@ -178,8 +191,10 @@ public class InfoRekeningActivity extends AppCompatActivity {
         mDocRef.update("rekening_namabank", rekening_namabank);
         mDocRef.update("rekening_namaholder", rekening_namaholder);
 
-        mDocRef.update("pinjaman_status", false);
-        mDocRef.update("pinjaman_aktif", "0");
+        if (mUserType.equals("PEMINJAM")) {
+            mDocRef.update("pinjaman_status", false);
+            mDocRef.update("pinjaman_aktif", "0");
+        }
 
         mDocRef.update("info_rekening", "done")
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

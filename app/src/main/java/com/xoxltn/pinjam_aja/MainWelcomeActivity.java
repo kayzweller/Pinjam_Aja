@@ -17,13 +17,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
-import com.xoxltn.pinjam_aja.models.WelcomeViewPager;
-import com.xoxltn.pinjam_aja.adapters.WelcomeViewPagerAdapter;
+import com.xoxltn.pinjam_aja.adapters.AdapterWelcomeViewPager;
+import com.xoxltn.pinjam_aja.models.ModelWelcomeViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class MainWelcomeActivity extends AppCompatActivity {
 
     // variabel
 
@@ -38,7 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_main_welcome);
 
         // call activity checking!
         SecondComing();
@@ -54,8 +54,8 @@ public class WelcomeActivity extends AppCompatActivity {
     private void SecondComing() {
 
         if (restorePrefsData()) {
-            Intent loginActivity = new Intent(WelcomeActivity.this,
-                    LoginActivity.class);
+            Intent loginActivity = new Intent(MainWelcomeActivity.this,
+                    MainLoginActivity.class);
             startActivity(loginActivity);
             finish();
         }
@@ -85,26 +85,26 @@ public class WelcomeActivity extends AppCompatActivity {
     private void WelcomeBriefing() {
 
         // informasi dalam list screen
-        final List<WelcomeViewPager> mList = new ArrayList<>();
-        mList.add(new WelcomeViewPager(R.drawable.welcome_1,
+        final List<ModelWelcomeViewPager> mList = new ArrayList<>();
+        mList.add(new ModelWelcomeViewPager(R.drawable.welcome_1,
                 "REGISTRASI MUDAH",
                 "REGISTRASI AKUN DENGAN MENGGUNAKAN EMAIL DAN NO. HANDPHONE, " +
                         "KEMUDIAN LENGKAPI DATA ANDA UNTUK DAPAT MENGAJUKAN PINJAMAN"));
-        mList.add(new WelcomeViewPager(R.drawable.welcome_2,
+        mList.add(new ModelWelcomeViewPager(R.drawable.welcome_2,
                 "DATA PENGGUNA AMAN",
                 "HANYA DATA YANG DIPERBOLEHKAN MENURUT ATURAN OJK YANG DAPAT " +
                         "DIAKSES OLEH PLATFORM DAN PENDANA"));
-        mList.add(new WelcomeViewPager(R.drawable.welcome_3,
+        mList.add(new ModelWelcomeViewPager(R.drawable.welcome_3,
                 "MUDAH DIAKSES",
                 "NIKMATI KEMUDAHAN MENJADI PENDANA ATAUPUN PEMINJAM DALAM " +
                         "PLATFORM KAMI"));
 
         // setup viewpager
-        WelcomeViewPagerAdapter welcomeViewPagerAdapter;
+        AdapterWelcomeViewPager adapterWelcomeViewPager;
 
         mScreenPager = findViewById(R.id.screen_viewpager);
-        welcomeViewPagerAdapter = new WelcomeViewPagerAdapter(this, mList);
-        mScreenPager.setAdapter(welcomeViewPagerAdapter);
+        adapterWelcomeViewPager = new AdapterWelcomeViewPager(this, mList);
+        mScreenPager.setAdapter(adapterWelcomeViewPager);
 
         // bottom part, IYKWIM! (set object from XML to Variable in java)
         mTabIndicator = findViewById(R.id.tab_indicator);
@@ -188,8 +188,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void onDaftarButtonClick (View v) {
         // menuju login activity
-        Intent signupActivity = new Intent(WelcomeActivity.this,
-                SignUpActivity.class);
+        Intent signupActivity = new Intent(MainWelcomeActivity.this,
+                MainSignUpActivity.class);
         startActivity(signupActivity);
 
         // save boolean value to storage, soo next time user run the apps

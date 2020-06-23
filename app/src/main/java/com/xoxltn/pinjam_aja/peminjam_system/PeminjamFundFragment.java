@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class PeminjamFundFragment extends Fragment {
     private String mTahapPinjaman, mTotalTransfer;
 
     private Date mCurrentDate;
+    private Date mTanggalBayar;
 
     private Long mTahap;
 
@@ -217,6 +219,13 @@ public class PeminjamFundFragment extends Fragment {
                     mNomDenda = 0;
                 }
 
+                if (mNomDenda <= mNomTransfer) {
+                    mTotalBayarTransfer = mNomDenda + mNomTransfer;
+                } if (mNomDenda > mNomTransfer) {
+                    mTotalBayarTransfer = mNomTransfer * 2;
+                    mNomDenda = mNomTransfer;
+                }
+
                 mTotalBayarTransfer = mNomDenda + mNomTransfer;
 
                 if (!mTglDanaCair.equals("--")) {
@@ -377,8 +386,6 @@ public class PeminjamFundFragment extends Fragment {
                     DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
                     Long load = doc.getLong("pinjaman_tahap");
 
-                    denda_TotalPinjaman();
-
                     if (load != null) {
                         if (load == 0) {
                             mTglJatuhTempo = "--";
@@ -389,6 +396,7 @@ public class PeminjamFundFragment extends Fragment {
                             mTextTahapPinjaman.setText(mTahapPinjaman);
 
                             Date date1 = doc.getDate("pinjaman_tanggal_bayar_1");
+                            mTanggalBayar = date1;
                             if (date1 != null) {
                                 mTglJatuhTempo = DateFormat.getDateInstance
                                         (DateFormat.FULL).format(date1);
@@ -399,6 +407,7 @@ public class PeminjamFundFragment extends Fragment {
                             mTextTahapPinjaman.setText(mTahapPinjaman);
 
                             Date date2 = doc.getDate("pinjaman_tanggal_bayar_2");
+                            mTanggalBayar = date2;
                             if (date2 != null) {
                                 mTglJatuhTempo = DateFormat.getDateInstance
                                         (DateFormat.FULL).format(date2);
@@ -409,6 +418,7 @@ public class PeminjamFundFragment extends Fragment {
                             mTextTahapPinjaman.setText(mTahapPinjaman);
 
                             Date date3 = doc.getDate("pinjaman_tanggal_bayar_3");
+                            mTanggalBayar = date3;
                             if (date3 != null) {
                                 mTglJatuhTempo = DateFormat.getDateInstance
                                         (DateFormat.FULL).format(date3);
@@ -420,6 +430,21 @@ public class PeminjamFundFragment extends Fragment {
                         mTextTglJatuhTempo.setText(mTglJatuhTempo);
                         mTextTahapPinjaman.setText(mTglJatuhTempo);
                     }
+
+                    // kalkulasi hari telat bayar
+                    if (mTanggalBayar != null) {
+                        long differ = mCurrentDate.getTime() - mTanggalBayar.getTime();
+                        if (differ > 0) {
+                            mHariTelat = TimeUnit.DAYS.convert(differ, TimeUnit.MILLISECONDS);
+                        }
+                        else {
+                            mHariTelat = 0;
+                        }
+                    }
+
+                    Log.e("Telat Pembayaran : ", String.valueOf(mHariTelat + " Hari"));
+
+                    denda_TotalPinjaman();
 
                 }
             }
@@ -464,8 +489,10 @@ public class PeminjamFundFragment extends Fragment {
                         mDocRef2.update("pinjaman_transfer", mTotalBayarTransfer);
                         mDocRef2.update("pinjaman_denda", mNomDenda);
 
+                        Log.e("Nominal Denda : ", String.valueOf("Rp. " + mNomDenda));
+
                         //SENT DATA THROUGH EXTRA INTENT
-                        Intent goToBayar = new Intent(getActivity(), PembayaranPeminjamActivity.class);
+                        Intent goToBayar = new Intent(getActivity(), PeminjamPembayaranActivity.class);
                         goToBayar.putExtra(EXTRA_ID, mIDPinjamanTransfer);
                         startActivity(goToBayar);
                     }

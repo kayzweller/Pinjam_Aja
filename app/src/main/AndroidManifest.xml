@@ -21,18 +21,18 @@
         <activity android:name=".register.InfoPekerjaanActivity" />
         <activity android:name=".register.InfoPribadiActivity" />
         <activity android:name=".register.InfoIdentitasActivity" />
-        <activity android:name=".register.UserProfileActivity" />
-        <activity android:name=".pendana_system.PendanaanPendanaActivity" />
-        <activity android:name=".peminjam_system.PembayaranPeminjamActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".LupaPasswordActivity" />
-        <activity android:name=".peminjam_system.PermintaanPinjamanActivity" />
+        <activity android:name=".register.InfoUserProfileActivity" />
+        <activity android:name=".pendana_system.PendanaPendanaanActivity" />
+        <activity android:name=".peminjam_system.PeminjamPembayaranActivity" />
+        <activity android:name=".MainAboutActivity" />
+        <activity android:name=".MainLupaPasswordActivity" />
+        <activity android:name=".peminjam_system.PeminjamReqPinjamanActivity" />
         <activity android:name=".peminjam_system.PeminjamDashboardActivity" />
         <activity android:name=".pendana_system.PendanaDashboardActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".MainLoginActivity" />
+        <activity android:name=".MainSignUpActivity" />
+        <activity android:name=".MainWelcomeActivity" />
+        <activity android:name=".MainSplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

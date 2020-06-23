@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
-public class LupaPasswordActivity extends AppCompatActivity {
+public class MainLupaPasswordActivity extends AppCompatActivity {
 
     TextInputLayout mResetEmail;
     ProgressBar mProgressBar;
@@ -31,7 +31,7 @@ public class LupaPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lupa_password);
+        setContentView(R.layout.activity_main_lupa_password);
 
         mResetEmail = findViewById(R.id.reset_email);
         mProgressBar = findViewById(R.id.reset_progress_bar);
@@ -101,8 +101,8 @@ public class LupaPasswordActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Reset link telah dikirim ke email anda!!",
                         Toast.LENGTH_LONG).show();
 
-                Intent loginActivity = new Intent(LupaPasswordActivity.this,
-                        LoginActivity.class);
+                Intent loginActivity = new Intent(MainLupaPasswordActivity.this,
+                        MainLoginActivity.class);
                 startActivity(loginActivity);
                 finish();
 
@@ -126,8 +126,8 @@ public class LupaPasswordActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent loginActivity = new Intent(LupaPasswordActivity.this,
-                LoginActivity.class);
+        Intent loginActivity = new Intent(MainLupaPasswordActivity.this,
+                MainLoginActivity.class);
         startActivity(loginActivity);
         finish();
     }

@@ -1,3 +1,9 @@
+/*
+ * Created by Albert Kristaen (Kayzweller) on 23/06/20 13:06
+ * Copyright (c) 2020 . All rights reserved.
+ * Last modified 07/05/20 15:42
+ */
+
 package com.xoxltn.pinjam_aja.adapters;
 
 import android.view.LayoutInflater;
@@ -12,24 +18,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.xoxltn.pinjam_aja.models.ModelFundReq;
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.models.FundReq;
 
 import java.text.DateFormat;
 import java.util.Date;
 
-public class FundReqAdapter extends FirestoreRecyclerAdapter<FundReq,
-        FundReqAdapter.FundReqHolder> {
+public class AdapterFundReq extends FirestoreRecyclerAdapter<ModelFundReq,
+        AdapterFundReq.FundReqHolder> {
 
     private OnItemClickListener listener;
 
-    public FundReqAdapter(@NonNull FirestoreRecyclerOptions<FundReq> options) {
+    public AdapterFundReq(@NonNull FirestoreRecyclerOptions<ModelFundReq> options) {
         super(options);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull FundReqHolder holder,int position,
-                                    @NonNull FundReq model) {
+                                    @NonNull ModelFundReq model) {
 
         Date date = model.getPinjaman_tanggal_req();
         String date_now = DateFormat.getDateInstance(DateFormat.FULL).format(date);

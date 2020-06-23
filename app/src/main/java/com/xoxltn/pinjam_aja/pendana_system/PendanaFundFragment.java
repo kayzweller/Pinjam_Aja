@@ -14,13 +14,12 @@ import android.view.ViewGroup;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.adapters.FundDetailAdapter;
-import com.xoxltn.pinjam_aja.models.FundDetail;
+import com.xoxltn.pinjam_aja.adapters.AdapterFundDetail;
+import com.xoxltn.pinjam_aja.models.ModelFundDetail;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +31,7 @@ public class PendanaFundFragment extends Fragment {
 
     private View mView;
     private CollectionReference mColRef;
-    private FundDetailAdapter adapter;
+    private AdapterFundDetail adapter;
     private String mUserID;
 
 
@@ -64,11 +63,11 @@ public class PendanaFundFragment extends Fragment {
                 .whereEqualTo("id_pendana", mUserID)
                 .orderBy("pinjaman_tanggal_req", Query.Direction.ASCENDING);
 
-        FirestoreRecyclerOptions<FundDetail> options = new FirestoreRecyclerOptions.Builder<FundDetail>()
-                .setQuery(query, FundDetail.class)
+        FirestoreRecyclerOptions<ModelFundDetail> options = new FirestoreRecyclerOptions.Builder<ModelFundDetail>()
+                .setQuery(query, ModelFundDetail.class)
                 .build();
 
-        adapter = new FundDetailAdapter(options);
+        adapter = new AdapterFundDetail(options);
 
         RecyclerView recyclerView = mView.findViewById(R.id.recycler_view_fund_detail);
         recyclerView.setHasFixedSize(true);
@@ -76,7 +75,7 @@ public class PendanaFundFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // ON CLICK RECYCLEVIEW ITEM HERE!!
-        adapter.setOnItemClickListener(new FundDetailAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new AdapterFundDetail.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 String doc = documentSnapshot.getId();

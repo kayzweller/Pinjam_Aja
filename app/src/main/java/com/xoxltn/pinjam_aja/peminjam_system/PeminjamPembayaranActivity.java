@@ -22,7 +22,7 @@ import java.util.Currency;
 import java.util.Date;
 import java.util.Objects;
 
-public class PembayaranPeminjamActivity extends AppCompatActivity {
+public class PeminjamPembayaranActivity extends AppCompatActivity {
 
     private String passdata;
 
@@ -110,13 +110,13 @@ public class PembayaranPeminjamActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(PembayaranPeminjamActivity.this,
+                            Toast.makeText(PeminjamPembayaranActivity.this,
                                     "Permintaan konfirmasi transfer terkirim!",
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
         } else {
-            Toast.makeText(PembayaranPeminjamActivity.this,
+            Toast.makeText(PeminjamPembayaranActivity.this,
                     "ERROR!",
                     Toast.LENGTH_SHORT).show();
         }
