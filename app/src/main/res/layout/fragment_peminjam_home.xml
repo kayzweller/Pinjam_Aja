@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:measureAllChildren="true"
     android:background="@color/transparent"
-    tools:context=".peminjam_system.PeminjamHomeFragment">
+    tools:context=".peminjam.PeminjamHomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:textColor="@color/text_tertier"
             android:textAlignment="center" />
 
-        <!-- TODO : PILIHAN PINJAMAN -->
+        <!-- PILIHAN PINJAMAN -->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/CardViewPinjam1"
@@ -203,7 +203,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- TODO : RINCIAN BIAYA LAYANAN-->
+        <!-- RINCIAN BIAYA LAYANAN-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/RincianBiaya"

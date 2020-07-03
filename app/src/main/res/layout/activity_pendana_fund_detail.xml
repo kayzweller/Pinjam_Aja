@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_grey"
     android:orientation="vertical"
-    tools:context=".pendana_system.PendanaFundDetailActivity">
+    tools:context=".pendana.PendanaFundDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

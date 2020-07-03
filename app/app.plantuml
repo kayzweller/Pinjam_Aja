@@ -1,0 +1,342 @@
+@startuml
+
+title __APP's Class Diagram__\n
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.AdapterWelcomeViewPager {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.BuildConfig {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.MainAboutActivity {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.MainLoginActivity {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.MainLupaPasswordActivity {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.MainRulesActivity {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.MainRulesReadActivity {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.MainSignUpActivity {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.MainSplashScreenActivity {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.MainWelcomeActivity {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    class com.xoxltn.pinjam_aja.ModelWelcomeViewPager {
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.AdapterNotif {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.ModelNotif {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.PeminjamDashboardActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.PeminjamFundFragment {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.PeminjamHomeFragment {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.PeminjamNotifFragment {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.PeminjamPembayaranActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.PeminjamReqPinjamanActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace peminjam {
+      class com.xoxltn.pinjam_aja.peminjam.PeminjamUserFragment {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.AdapterFundDetail {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.AdapterFundReq {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.ModelFundDetail {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.ModelFundReq {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.PendanaDashboardActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.PendanaFundDetailActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.PendanaFundFragment {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.PendanaFundReqActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.PendanaHomeFragment {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.PendanaPendanaanActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace pendana {
+      class com.xoxltn.pinjam_aja.pendana.PendanaUserFragment {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace registrasi {
+      class com.xoxltn.pinjam_aja.registrasi.InfoIdentitasActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace registrasi {
+      class com.xoxltn.pinjam_aja.registrasi.InfoKontakActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace registrasi {
+      class com.xoxltn.pinjam_aja.registrasi.InfoPekerjaanActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace registrasi {
+      class com.xoxltn.pinjam_aja.registrasi.InfoPribadiActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace registrasi {
+      class com.xoxltn.pinjam_aja.registrasi.InfoRekeningActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace registrasi {
+      class com.xoxltn.pinjam_aja.registrasi.InfoUserProfileActivity {
+      }
+    }
+  }
+  
+
+  namespace com.xoxltn.pinjam_aja {
+    namespace registrasi {
+      class com.xoxltn.pinjam_aja.registrasi.InfoUserRegisterDialog {
+      }
+    }
+  }
+  
+
+  com.xoxltn.pinjam_aja.AdapterWelcomeViewPager -up-|> androidx.viewpager.widget.PagerAdapter
+  com.xoxltn.pinjam_aja.MainAboutActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.MainLoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.MainLupaPasswordActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.MainRulesActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.MainRulesReadActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.MainSignUpActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.MainSplashScreenActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.MainWelcomeActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.peminjam.AdapterNotif -up-|> com.firebase.ui.firestore.FirestoreRecyclerAdapter
+  com.xoxltn.pinjam_aja.peminjam.AdapterNotif o-- com.xoxltn.pinjam_aja.peminjam.AdapterNotif.OnItemClickListener : listener
+  com.xoxltn.pinjam_aja.peminjam.PeminjamDashboardActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.peminjam.PeminjamDashboardActivity o-- com.xoxltn.pinjam_aja.peminjam.PeminjamFundFragment : mPeminjamFundFragment
+  com.xoxltn.pinjam_aja.peminjam.PeminjamDashboardActivity o-- com.xoxltn.pinjam_aja.peminjam.PeminjamHomeFragment : mPeminjamHomeFragment
+  com.xoxltn.pinjam_aja.peminjam.PeminjamDashboardActivity o-- com.xoxltn.pinjam_aja.peminjam.PeminjamNotifFragment : mPeminjamNotifFragment
+  com.xoxltn.pinjam_aja.peminjam.PeminjamDashboardActivity o-- com.xoxltn.pinjam_aja.peminjam.PeminjamUserFragment : mPeminjamUserFragment
+  com.xoxltn.pinjam_aja.peminjam.PeminjamFundFragment -up-|> androidx.fragment.app.Fragment
+  com.xoxltn.pinjam_aja.peminjam.PeminjamHomeFragment -up-|> androidx.fragment.app.Fragment
+  com.xoxltn.pinjam_aja.peminjam.PeminjamNotifFragment -up-|> androidx.fragment.app.Fragment
+  com.xoxltn.pinjam_aja.peminjam.PeminjamNotifFragment o-- com.xoxltn.pinjam_aja.peminjam.AdapterNotif : adapter
+  com.xoxltn.pinjam_aja.peminjam.PeminjamPembayaranActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.peminjam.PeminjamReqPinjamanActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.peminjam.PeminjamUserFragment -up-|> androidx.fragment.app.Fragment
+  com.xoxltn.pinjam_aja.pendana.AdapterFundDetail -up-|> com.firebase.ui.firestore.FirestoreRecyclerAdapter
+  com.xoxltn.pinjam_aja.pendana.AdapterFundDetail o-- com.xoxltn.pinjam_aja.pendana.AdapterFundDetail.OnItemClickListener : listener
+  com.xoxltn.pinjam_aja.pendana.AdapterFundReq -up-|> com.firebase.ui.firestore.FirestoreRecyclerAdapter
+  com.xoxltn.pinjam_aja.pendana.AdapterFundReq o-- com.xoxltn.pinjam_aja.pendana.AdapterFundReq.OnItemClickListener : listener
+  com.xoxltn.pinjam_aja.pendana.PendanaDashboardActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.pendana.PendanaDashboardActivity o-- com.xoxltn.pinjam_aja.pendana.PendanaFundFragment : mPendanaFundFragment
+  com.xoxltn.pinjam_aja.pendana.PendanaDashboardActivity o-- com.xoxltn.pinjam_aja.pendana.PendanaHomeFragment : mPendanaHomeFragment
+  com.xoxltn.pinjam_aja.pendana.PendanaDashboardActivity o-- com.xoxltn.pinjam_aja.pendana.PendanaUserFragment : mPendanaUserFragment
+  com.xoxltn.pinjam_aja.pendana.PendanaFundDetailActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.pendana.PendanaFundFragment -up-|> androidx.fragment.app.Fragment
+  com.xoxltn.pinjam_aja.pendana.PendanaFundFragment o-- com.xoxltn.pinjam_aja.pendana.AdapterFundDetail : adapter
+  com.xoxltn.pinjam_aja.pendana.PendanaFundReqActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.pendana.PendanaHomeFragment -up-|> androidx.fragment.app.Fragment
+  com.xoxltn.pinjam_aja.pendana.PendanaHomeFragment o-- com.xoxltn.pinjam_aja.pendana.AdapterFundReq : adapter
+  com.xoxltn.pinjam_aja.pendana.PendanaPendanaanActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.pendana.PendanaUserFragment -up-|> androidx.fragment.app.Fragment
+  com.xoxltn.pinjam_aja.registrasi.InfoIdentitasActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.registrasi.InfoKontakActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.registrasi.InfoPekerjaanActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.registrasi.InfoPribadiActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.registrasi.InfoRekeningActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.registrasi.InfoUserProfileActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.xoxltn.pinjam_aja.registrasi.InfoUserRegisterDialog -up-|> androidx.fragment.app.DialogFragment
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

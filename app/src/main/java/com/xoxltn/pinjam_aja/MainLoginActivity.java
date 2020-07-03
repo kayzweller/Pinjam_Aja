@@ -27,8 +27,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.xoxltn.pinjam_aja.peminjam_system.PeminjamDashboardActivity;
-import com.xoxltn.pinjam_aja.pendana_system.PendanaDashboardActivity;
+import com.xoxltn.pinjam_aja.peminjam.PeminjamDashboardActivity;
+import com.xoxltn.pinjam_aja.pendana.PendanaDashboardActivity;
 
 import java.util.Objects;
 

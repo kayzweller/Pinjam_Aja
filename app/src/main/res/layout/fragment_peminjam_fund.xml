@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:measureAllChildren="true"
     android:background="@color/transparent"
-    tools:context=".peminjam_system.PeminjamFundFragment">
+    tools:context=".peminjam.PeminjamFundFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:textColor="@color/text_tertier"
             android:textAlignment="center" />
 
-        <!-- TODO : RINCIAN BIAYA LAYANAN-->
+        <!-- RINCIAN BIAYA LAYANAN-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/RincianBiaya"
@@ -98,6 +98,22 @@
 
                         <TextView
                             android:id="@+id/text_StatusPinjaman"
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:gravity="end"
+                            android:padding="3dp"
+                            android:textColor="@color/text_tertier" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:fontFamily="@font/fira_sans_bold_italic"
+                            android:padding="3dp"
+                            android:text="Status Pembayaran"
+                            android:textColor="@color/unselected"
+                            />
+
+                        <TextView
+                            android:id="@+id/text_StatusPembayaran"
                             android:fontFamily="@font/fira_sans_bold_italic"
                             android:gravity="end"
                             android:padding="3dp"
@@ -245,26 +261,17 @@
                     android:fontFamily="@font/fira_sans_bold_italic"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="36sp" />
+                    android:textSize="28sp" />
 
                 <TextView
                     android:id="@+id/text_TotalBayarTransfer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/fira_sans_bold_italic"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/text_StatusPembayaran"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/fira_sans_bold_italic"
                     android:textAlignment="center"
-                    android:textColor="@color/unselected"
-                    android:textSize="16sp" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="26sp" />
 
                 <Button
                     android:id="@+id/button_BayarCicilan"

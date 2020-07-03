@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_grey"
     android:theme="@style/AppTheme"
-    tools:context=".peminjam_system.PeminjamDashboardActivity">
+    tools:context=".peminjam.PeminjamDashboardActivity">
 
     <ScrollView
         android:layout_width="fill_parent"

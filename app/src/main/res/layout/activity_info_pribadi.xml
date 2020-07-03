@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background_grey"
     android:orientation="vertical"
-    tools:context=".register.InfoPribadiActivity">
+    tools:context=".registrasi.InfoPribadiActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -117,6 +117,40 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/fira_sans"
                             android:inputType="textCapWords"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Provinsi"
+                        app:endIconMode="dropdown_menu"
+                        app:boxStrokeColor="@color/text_tertier">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/pribadi_provinsi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fira_sans"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Kota"
+                        app:endIconMode="dropdown_menu"
+                        app:boxStrokeColor="@color/text_tertier">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/pribadi_kota"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fira_sans"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 

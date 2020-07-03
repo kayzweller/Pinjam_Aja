@@ -25,4 +25,8 @@
     <color name="type4">#E0D3EF</color>
     <color name="type5">#EFD3EE</color>
 
+    <color name="true_x">#DCEDC8</color>
+    <color name="false_x">#FFC2BC</color>
+
+
 </resources>

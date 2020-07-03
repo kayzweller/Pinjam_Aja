@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:measureAllChildren="true"
     android:background="@color/transparent"
-    tools:context=".pendana_system.PendanaHomeFragment">
+    tools:context=".pendana.PendanaHomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,8 +28,6 @@
             android:textSize="24sp"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- TODO : RECYCLER VIEW PENGAJUAN PENDANAAN-->
-
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinatorLayout"
             android:layout_width="match_parent"
@@ -46,7 +44,7 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <!-- TODO : RINCIAN LAYANAN-->
+        <!-- RINCIAN LAYANAN-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -101,7 +99,7 @@
                         <TextView
                             android:fontFamily="@font/fira_sans_bold_italic"
                             android:padding="3dip"
-                            android:text="Pembalian dana pinjaman"
+                            android:text="Pengembalian dana pinjaman"
                             android:textColor="@color/unselected" />
 
                         <TextView

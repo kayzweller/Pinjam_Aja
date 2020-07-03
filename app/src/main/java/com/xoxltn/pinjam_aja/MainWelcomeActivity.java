@@ -17,8 +17,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
-import com.xoxltn.pinjam_aja.adapters.AdapterWelcomeViewPager;
-import com.xoxltn.pinjam_aja.models.ModelWelcomeViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
