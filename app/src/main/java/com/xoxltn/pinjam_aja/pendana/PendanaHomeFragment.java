@@ -28,7 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.xoxltn.pinjam_aja.R;
-import com.xoxltn.pinjam_aja.registrasi.InfoUserRegisterDialog;
+import com.xoxltn.pinjam_aja.InfoUserRegisterDialog;
 
 import java.util.Objects;
 

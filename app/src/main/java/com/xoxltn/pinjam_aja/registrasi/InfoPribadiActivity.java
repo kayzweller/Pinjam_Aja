@@ -63,6 +63,25 @@ public class InfoPribadiActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     private void getListPendidikan() {
+        mPernikahan.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                listPendidikan();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listPendidikan();
+            }
+        });
+    }
+
+    private void listPendidikan() {
         String[] items = new String[] {
                 "Sekolah Dasar (SD)", "Sekolah Menengah Pertama (SMP)",
                 "Sekolah Menengah Atas (SMA)", "D3/Akademi", "Sarjana", "Magister"
@@ -78,6 +97,24 @@ public class InfoPribadiActivity extends AppCompatActivity {
     }
 
     private void getListPernikahan() {
+        mPernikahan.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                listPernikahan();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listPernikahan();
+            }
+        });
+    }
+
+    private void listPernikahan() {
         String[] items = new String[] {
                 "Belum Menikah", "Nikah - Punya Anak", "Nikah - Tanpa Anak", "Cerai"
         };
@@ -118,7 +155,7 @@ public class InfoPribadiActivity extends AppCompatActivity {
                 "Kalimantan Selatan", "Kalimantan Tengah", "Kalimantan Timur",
                 "Kalimantan Utara", "Gorontalo", "Sulawesi Barat", "Sulawesi Selatan",
                 "Sulawesi Tengah", "Sulawesi Tenggara", "Sulawesi Utara", "Maluku",
-                "Maluku Utara", "Papua Barat", "Papua"
+                "Maluku Utara", "Papua", "Papua Barat"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -265,7 +302,6 @@ public class InfoPribadiActivity extends AppCompatActivity {
                 break;
             }
 
-            // TODO : CEK ADA MARTAPURA
             case "Sumatra Selatan": {
                 String[] items = new String[]{
                         "Pangkalan Balai", "Tebing Tinggi", "Lahat", "Muara Enim",
@@ -634,7 +670,7 @@ public class InfoPribadiActivity extends AppCompatActivity {
                 break;
             }
 
-            case "Papua Barat": {
+            case "Papua": {
                 String[] items = new String[]{
                         "Agats", "Biak", "Tanah Merah", "Tigi", "Kigamani",
                         "Sugapa", "Sentani", "Wamena", "Waris", "Serui",
@@ -652,8 +688,7 @@ public class InfoPribadiActivity extends AppCompatActivity {
                 break;
             }
 
-            // TODO : CEK FEF
-            case "Papua": {
+            case "Papua Barat": {
                 String[] items = new String[]{
                         "Fakfak", "Kaimana", "Manokwari", "Ransiki",
                         "Kumurkek", "Anggi", "Waisai", "Aimas",
@@ -673,6 +708,25 @@ public class InfoPribadiActivity extends AppCompatActivity {
     }
 
     private void getListKendaraan() {
+        mKendaraan.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                listKendaraan();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listKendaraan();
+            }
+        });
+    }
+
+    private void listKendaraan() {
         String[] items = new String[] {
                 "Tidak Memiliki Kendaraan",
                 "Sepeda Motor",

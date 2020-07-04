@@ -1,10 +1,10 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 25/06/20 02.03
+ * Created by Albert Kristaen (Kayzweller) on 03/07/20 22.25
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 23/06/20 13.19
+ * Last modified 25/06/20 10.08
  */
 
-package com.xoxltn.pinjam_aja.registrasi;
+package com.xoxltn.pinjam_aja;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

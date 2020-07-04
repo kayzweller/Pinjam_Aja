@@ -6,6 +6,8 @@
 
 package com.xoxltn.pinjam_aja.registrasi;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -99,42 +101,52 @@ public class InfoIdentitasActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     public void loadDatePicker() {
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                myCalendar.set(Calendar.YEAR, i);
-                myCalendar.set(Calendar.MONTH, i1);
-                myCalendar.set(Calendar.DAY_OF_MONTH, i2);
-                updateLabel();
-            }
+        final DatePickerDialog.OnDateSetListener date = (datePicker, i, i1, i2) -> {
+            myCalendar.set(Calendar.YEAR, i);
+            myCalendar.set(Calendar.MONTH, i1);
+            myCalendar.set(Calendar.DAY_OF_MONTH, i2);
+            updateLabel();
         };
 
         if (mTanggalLahir.getEditText() != null) {
-            mTanggalLahir.getEditText().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    new DatePickerDialog(InfoIdentitasActivity.this, date,
-                            myCalendar.get(Calendar.YEAR),
-                            myCalendar.get(Calendar.MONTH),
-                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-                }
-            });
+            mTanggalLahir.getEditText().setOnClickListener(view -> new DatePickerDialog(
+                    InfoIdentitasActivity.this, date, myCalendar.get(Calendar.YEAR),
+                    myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show());
         }
     }
 
     private void loadJenisKelaminDropdown() {
-            String[] items = new String[] {
-                    "Laki-laki",
-                    "Perempuan"
-            };
+            mJenisKelamin.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    listJenisKelamin();
+                }
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                    InfoIdentitasActivity.this,
-                    R.layout.dropdown_item,
-                    items
-            );
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
 
-            mJenisKelamin.setAdapter(adapter);
+                @Override
+                public void afterTextChanged(Editable s) {
+                    listJenisKelamin();
+                }
+            });
+    }
+
+    private void listJenisKelamin() {
+        String[] items = new String[] {
+                "Laki-laki",
+                "Perempuan"
+        };
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                InfoIdentitasActivity.this,
+                R.layout.dropdown_item,
+                items
+        );
+
+        mJenisKelamin.setAdapter(adapter);
     }
 
     private void updateLabel() {
@@ -157,82 +169,63 @@ public class InfoIdentitasActivity extends AppCompatActivity {
     }
 
     private void loadImage() {
-        mStorage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).fit().centerCrop().into(mImageViewKTP);
-            }
-        });
+        mStorage.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).fit()
+                .centerCrop().into(mImageViewKTP));
     }
 
     private void loadName() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String nama = doc.getString("name");
-                    if (mNamaLengkap.getEditText() != null) {
-                        mNamaLengkap.getEditText().setText(nama);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String nama = doc.getString("name");
+                if (mNamaLengkap.getEditText() != null) {
+                    mNamaLengkap.getEditText().setText(nama);
                 }
             }
         });
     }
 
     private void loadKTP() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String noKTP = doc.getString("noKTP");
-                    if (mNoKTP.getEditText() != null) {
-                        mNoKTP.getEditText().setText(noKTP);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String noKTP = doc.getString("noKTP");
+                if (mNoKTP.getEditText() != null) {
+                    mNoKTP.getEditText().setText(noKTP);
                 }
             }
         });
     }
 
     private void loadJenisKelamin() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String jenisKelamin = doc.getString("jenisKelamin");
-                    mJenisKelamin.setText(jenisKelamin);
-                }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String jenisKelamin = doc.getString("jenisKelamin");
+                mJenisKelamin.setText(jenisKelamin);
             }
         });
     }
 
     private void loadTempatLahir() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String tempatLahir = doc.getString("tempatLahir");
-                    if (mTempatLahir.getEditText() != null) {
-                        mTempatLahir.getEditText().setText(tempatLahir);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String tempatLahir = doc.getString("tempatLahir");
+                if (mTempatLahir.getEditText() != null) {
+                    mTempatLahir.getEditText().setText(tempatLahir);
                 }
             }
         });
     }
 
     private void loadTanggalLahir() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String tanggalLahir = doc.getString("tanggalLahir");
-                    if (mTanggalLahir.getEditText() != null) {
-                        mTanggalLahir.getEditText().setText(tanggalLahir);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String tanggalLahir = doc.getString("tanggalLahir");
+                if (mTanggalLahir.getEditText() != null) {
+                    mTanggalLahir.getEditText().setText(tanggalLahir);
                 }
             }
         });
@@ -312,14 +305,11 @@ public class InfoIdentitasActivity extends AppCompatActivity {
         mDocRef.update("tanggalLahir", tanggalLahir);
 
         mDocRef.update("info_id", "done")
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(InfoIdentitasActivity.this,
-                        "DATA IDENTITAS DIPERAHARUI!", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(InfoIdentitasActivity.this,
+                            "DATA IDENTITAS DIPERAHARUI!", Toast.LENGTH_SHORT).show();
+                    finish();
+                });
 
     }
 
@@ -375,26 +365,19 @@ public class InfoIdentitasActivity extends AppCompatActivity {
                     byte[] dataImg = baos.toByteArray();
 
                     UploadTask uploadTask = mStorage.putBytes(dataImg);
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask
-                            .TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            loadImage();
-                            mProgressBarUpload.setProgress(100);
-                            mProgressBarUpload.setAlpha(1);
-                            Toast.makeText(InfoIdentitasActivity.this,
-                                "UNGGAH BERHASIL " + taskSnapshot.getMetadata(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0 * taskSnapshot.getBytesTransferred())
-                                / taskSnapshot.getTotalByteCount();
-                            int loadProgress = (int)Math.round(progress);
-                            mProgressBarUpload.setProgress(loadProgress);
-                            mProgressBarUpload.setAlpha(1);
-                        }
+                    uploadTask.addOnSuccessListener(taskSnapshot -> {
+                        loadImage();
+                        mProgressBarUpload.setProgress(100);
+                        mProgressBarUpload.setAlpha(1);
+                        Toast.makeText(InfoIdentitasActivity.this,
+                            "UNGGAH BERHASIL " + taskSnapshot.getMetadata(),
+                                Toast.LENGTH_LONG).show();
+                    }).addOnProgressListener(taskSnapshot -> {
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred())
+                            / taskSnapshot.getTotalByteCount();
+                        int loadProgress = (int)Math.round(progress);
+                        mProgressBarUpload.setProgress(loadProgress);
+                        mProgressBarUpload.setAlpha(1);
                     });
                 }
 

@@ -10,8 +10,8 @@
     <string name="nav_user">Profil</string>
 
     <!-- bug fix, leave it there -->
-    <item name="visible" type="id" />
-    <item name="masked" type="id" />
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
 
     <string name="pinjam_500">Rp. 500.000,-</string>
     <string name="pinjam_1000">Rp. 1.000.000,-</string>
@@ -34,5 +34,8 @@
     <string name="setujui_aturan">
         Anda mengakui bahwa apabila Anda tidak memberikan informasi atau data yang relevan atau menarik persetujuan sehubungan dengan pengumpulan, penggunaan dan/atau pengungkapan informasi atau data yang relevan sebagaimana dijelaskan dalam Perjanjian ini, kami berpeluang untuk tidak dapat membuka atau melanjutkan akun Anda, atau mengakses aplikasi kami.
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

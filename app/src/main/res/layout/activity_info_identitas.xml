@@ -144,7 +144,8 @@
                         android:id="@+id/identitas_JenisKelamin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/fira_sans"/>
+                        android:fontFamily="@font/fira_sans"
+                        android:focusable="false"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 

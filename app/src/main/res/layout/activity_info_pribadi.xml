@@ -82,7 +82,8 @@
                             android:id="@+id/pribadi_pendidikan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/fira_sans"/>
+                            android:fontFamily="@font/fira_sans"
+                            android:focusable="false"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +100,8 @@
                             android:id="@+id/pribadi_pernikahan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/fira_sans"/>
+                            android:fontFamily="@font/fira_sans"
+                            android:focusable="false"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,7 +135,8 @@
                             android:id="@+id/pribadi_provinsi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/fira_sans"/>
+                            android:fontFamily="@font/fira_sans"
+                            android:focusable="false"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,7 +187,8 @@
                             android:id="@+id/pribadi_kendaraan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/fira_sans"/>
+                            android:fontFamily="@font/fira_sans"
+                            android:focusable="false"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
 

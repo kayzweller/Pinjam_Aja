@@ -1,10 +1,10 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 25/06/20 02.05
+ * Created by Albert Kristaen (Kayzweller) on 05/07/20 03.16
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 25/06/20 01.14
+ * Last modified 05/07/20 03.16
  */
 
-package com.xoxltn.pinjam_aja.peminjam;
+package com.xoxltn.pinjam_aja.pendana;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -26,7 +27,7 @@ import com.xoxltn.pinjam_aja.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PeminjamNotifFragment extends Fragment {
+public class PendanaNotifFragment extends Fragment {
 
     private View mView;
     private CollectionReference mColRef;
@@ -35,14 +36,15 @@ public class PeminjamNotifFragment extends Fragment {
 
     //-------------------------------------------------------------------------------------------//
 
-    public PeminjamNotifFragment() {
+    public PendanaNotifFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mView =  inflater.inflate(R.layout.fragment_peminjam_notif, container, false);
+
+        mView =  inflater.inflate(R.layout.fragment_pendana_notif, container, false);
 
         mUserID = FirebaseAuth.getInstance().getUid();
 
@@ -65,7 +67,7 @@ public class PeminjamNotifFragment extends Fragment {
 
         adapter = new AdapterNotif(options);
 
-        RecyclerView recyclerView = mView.findViewById(R.id.recycler_view_notif_peminjam);
+        RecyclerView recyclerView = mView.findViewById(R.id.recycler_view_notif_pendana);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -75,7 +77,6 @@ public class PeminjamNotifFragment extends Fragment {
 
             Toast.makeText(getActivity(), doc, Toast.LENGTH_SHORT).show();
         });
-
     }
 
     //-------------------------------------------------------------------------------------------//

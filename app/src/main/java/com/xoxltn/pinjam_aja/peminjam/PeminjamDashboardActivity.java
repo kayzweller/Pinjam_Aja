@@ -6,17 +6,13 @@
 
 package com.xoxltn.pinjam_aja.peminjam;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.os.Handler;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xoxltn.pinjam_aja.R;
 
@@ -58,35 +54,31 @@ public class PeminjamDashboardActivity extends AppCompatActivity {
     }
 
     private void loadFragment() {
-        mPeminjamMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView
-                .OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        mPeminjamMainNav.setOnNavigationItemSelectedListener(menuItem -> {
 
-                switch (menuItem.getItemId()) {
+            switch (menuItem.getItemId()) {
 
-                    case R.id.peminjam_nav_home :
-                        setFragment(mPeminjamHomeFragment);
-                        return true;
+                case R.id.peminjam_nav_home :
+                    setFragment(mPeminjamHomeFragment);
+                    return true;
 
-                    case R.id.peminjam_nav_fund :
-                        setFragment(mPeminjamFundFragment);
-                        return true;
+                case R.id.peminjam_nav_fund :
+                    setFragment(mPeminjamFundFragment);
+                    return true;
 
-                    case R.id.peminjam_nav_notif :
-                        setFragment(mPeminjamNotifFragment);
-                        return true;
+                case R.id.peminjam_nav_notif :
+                    setFragment(mPeminjamNotifFragment);
+                    return true;
 
-                    case R.id.peminjam_nav_user :
-                        setFragment(mPeminjamUserFragment);
-                        return true;
+                case R.id.peminjam_nav_user :
+                    setFragment(mPeminjamUserFragment);
+                    return true;
 
-                    default:
-                        return false;
-
-                }
+                default:
+                    return false;
 
             }
+
         });
     }
 
@@ -108,12 +100,7 @@ public class PeminjamDashboardActivity extends AppCompatActivity {
         Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT)
                 .show();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, DELAY_PRESS);
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, DELAY_PRESS);
     }
 
 }

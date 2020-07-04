@@ -10,6 +10,10 @@
         android:icon="@drawable/nav_fund"
         android:title="@string/nav_fund" />
     <item
+            android:id="@+id/pendana_nav_notif"
+            android:icon="@drawable/nav_notif"
+            android:title="@string/nav_notif" />
+    <item
         android:id="@+id/pendana_nav_user"
         android:icon="@drawable/nav_user"
         android:title="@string/nav_user" />

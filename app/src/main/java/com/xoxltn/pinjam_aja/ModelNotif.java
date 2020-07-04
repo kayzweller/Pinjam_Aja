@@ -1,10 +1,10 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 25/06/20 02.05
+ * Created by Albert Kristaen (Kayzweller) on 05/07/20 02.43
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 25/06/20 00.32
+ * Last modified 25/06/20 02.17
  */
 
-package com.xoxltn.pinjam_aja.peminjam;
+package com.xoxltn.pinjam_aja;
 
 import java.util.Date;
 

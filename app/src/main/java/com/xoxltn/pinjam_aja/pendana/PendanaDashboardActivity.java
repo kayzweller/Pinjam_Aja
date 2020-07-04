@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xoxltn.pinjam_aja.R;
+import com.xoxltn.pinjam_aja.peminjam.PeminjamNotifFragment;
 
 public class PendanaDashboardActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class PendanaDashboardActivity extends AppCompatActivity {
 
     private PendanaHomeFragment mPendanaHomeFragment;
     private PendanaFundFragment mPendanaFundFragment;
+    private PendanaNotifFragment mPendanaNotifFragment;
     private PendanaUserFragment mPendanaUserFragment;
 
     @Override
@@ -39,6 +41,7 @@ public class PendanaDashboardActivity extends AppCompatActivity {
 
         mPendanaHomeFragment = new PendanaHomeFragment();
         mPendanaFundFragment = new PendanaFundFragment();
+        mPendanaNotifFragment = new PendanaNotifFragment();
         mPendanaUserFragment = new PendanaUserFragment();
 
         setFragment(mPendanaHomeFragment);
@@ -56,29 +59,29 @@ public class PendanaDashboardActivity extends AppCompatActivity {
     }
 
     private void loadFragment() {
-        mPendanaMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView
-                .OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        mPendanaMainNav.setOnNavigationItemSelectedListener(menuItem -> {
 
-                switch (menuItem.getItemId()) {
-                    case R.id.pendana_nav_home :
-                        setFragment(mPendanaHomeFragment);
-                        return true;
+            switch (menuItem.getItemId()) {
+                case R.id.pendana_nav_home :
+                    setFragment(mPendanaHomeFragment);
+                    return true;
 
-                    case R.id.pendana_nav_fund :
-                        setFragment(mPendanaFundFragment);
-                        return true;
+                case R.id.pendana_nav_fund :
+                    setFragment(mPendanaFundFragment);
+                    return true;
 
-                    case R.id.pendana_nav_user :
-                        setFragment(mPendanaUserFragment);
-                        return true;
+                case R.id.pendana_nav_notif :
+                    setFragment(mPendanaNotifFragment);
+                    return true;
 
-                    default:
-                        return false;
-                }
+                case R.id.pendana_nav_user :
+                    setFragment(mPendanaUserFragment);
+                    return true;
 
+                default:
+                    return false;
             }
+
         });
     }
 
@@ -100,12 +103,7 @@ public class PendanaDashboardActivity extends AppCompatActivity {
         Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT)
                 .show();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, DELAY_PRESS);
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, DELAY_PRESS);
     }
 
 }

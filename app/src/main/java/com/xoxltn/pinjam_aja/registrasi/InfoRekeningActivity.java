@@ -6,18 +6,14 @@
 
 package com.xoxltn.pinjam_aja.registrasi;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -58,6 +54,25 @@ public class InfoRekeningActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     private void getListBank() {
+        mNamaBank.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                listBank();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listBank();
+            }
+        });
+    }
+
+    private void listBank() {
         String[] items = new String[] {
                 "Bank Central Asia (BCA)",
                 "Bank Negara Indonesia (BNI)",
@@ -88,58 +103,46 @@ public class InfoRekeningActivity extends AppCompatActivity {
     }
 
     private void loadRekeningBank() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String load = doc.getString("rekening_rekbank");
-                    if (mRekeningBank.getEditText() != null) {
-                        mRekeningBank.getEditText().setText(load);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String load = doc.getString("rekening_rekbank");
+                if (mRekeningBank.getEditText() != null) {
+                    mRekeningBank.getEditText().setText(load);
                 }
             }
         });
     }
 
     private void loadNamaBank() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String load = doc.getString("rekening_namabank");
-                    if (mNamaBank.getText() != null) {
-                        mNamaBank.setText(load);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String load = doc.getString("rekening_namabank");
+                if (mNamaBank.getText() != null) {
+                    mNamaBank.setText(load);
                 }
             }
         });
     }
 
     private void loadNamaRekening() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String load = doc.getString("rekening_namaholder");
-                    if (mNamaRekening.getEditText() != null) {
-                        mNamaRekening.getEditText().setText(load);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String load = doc.getString("rekening_namaholder");
+                if (mNamaRekening.getEditText() != null) {
+                    mNamaRekening.getEditText().setText(load);
                 }
             }
         });
     }
 
     private void getUserType() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    mUserType = doc.getString("userType");
-                }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                mUserType = doc.getString("userType");
             }
         });
     }
@@ -203,13 +206,10 @@ public class InfoRekeningActivity extends AppCompatActivity {
         }
 
         mDocRef.update("info_rekening", "done")
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(InfoRekeningActivity.this,
-                                "DATA REKENING DIPERAHARUI!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(InfoRekeningActivity.this,
+                            "DATA REKENING DIPERAHARUI!", Toast.LENGTH_SHORT).show();
+                    finish();
                 });
     }
     //-------------------------------------------------------------------------------------------//

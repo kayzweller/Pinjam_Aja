@@ -1,10 +1,10 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 25/06/20 02.05
+ * Created by Albert Kristaen (Kayzweller) on 05/07/20 02.43
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 25/06/20 01.56
+ * Last modified 05/07/20 02.41
  */
 
-package com.xoxltn.pinjam_aja.peminjam;
+package com.xoxltn.pinjam_aja;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.xoxltn.pinjam_aja.R;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -55,7 +54,7 @@ public class AdapterNotif extends FirestoreRecyclerAdapter
     @NonNull
     @Override
     public NotifHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.peminjam_notif,
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_notif,
                 parent, false);
         return new NotifHolder(v);
     }
@@ -78,15 +77,12 @@ public class AdapterNotif extends FirestoreRecyclerAdapter
             mNotifCard = itemView.findViewById(R.id.notif_card);
 
             // ON CLICK LISTENER
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION && listener != null) {
-                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
-                    }
-
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && listener != null) {
+                    listener.onItemClick(getSnapshots().getSnapshot(position), position);
                 }
+
             });
         }
     }

@@ -6,18 +6,14 @@
 
 package com.xoxltn.pinjam_aja.registrasi;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -61,6 +57,25 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
     //-------------------------------------------------------------------------------------------//
 
     private void getListJenisPekerjaan() {
+        mJenisPekerjaan.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                listPekerjaan();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listPekerjaan();
+            }
+        });
+    }
+
+    private void listPekerjaan() {
         String[] items = new String[] {
                 "Karyawan Perusahaan",
                 "Wirawastawan",
@@ -77,6 +92,25 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
     }
 
     private void getListPenghasilan() {
+        mPenghasilan.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                listPenghasilan();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listPenghasilan();
+            }
+        });
+    }
+
+    private void listPenghasilan() {
         String[] items = new String[] {
                 "Kurang dari Rp. 2.000.000,-",
                 "Rp. 2.000.000,- s/d Rp. 3.000.000,-",
@@ -103,60 +137,48 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
     }
 
     private void loadJenisPekerjaan() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String load = doc.getString("pekerjaan_jenis");
-                    if (mJenisPekerjaan.getText() != null) {
-                        mJenisPekerjaan.setText(load);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String load = doc.getString("pekerjaan_jenis");
+                if (mJenisPekerjaan.getText() != null) {
+                    mJenisPekerjaan.setText(load);
                 }
             }
         });
     }
 
     private void loadNamaInstansi() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String load = doc.getString("pekerjaan_namainstansi");
-                    if (mNamaInstansi.getEditText() != null) {
-                        mNamaInstansi.getEditText().setText(load);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String load = doc.getString("pekerjaan_namainstansi");
+                if (mNamaInstansi.getEditText() != null) {
+                    mNamaInstansi.getEditText().setText(load);
                 }
             }
         });
     }
 
     private void loadAlamatInstansi() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String load = doc.getString("pekerjaan_alamatinstansi");
-                    if (mAlamatInstansi.getEditText() != null) {
-                        mAlamatInstansi.getEditText().setText(load);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String load = doc.getString("pekerjaan_alamatinstansi");
+                if (mAlamatInstansi.getEditText() != null) {
+                    mAlamatInstansi.getEditText().setText(load);
                 }
             }
         });
     }
 
     private void loadPenghasilan() {
-        mDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
-                    String load = doc.getString("pekerjaan_penghasilan");
-                    if (mPenghasilan.getText() != null) {
-                        mPenghasilan.setText(load);
-                    }
+        mDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc =  Objects.requireNonNull(task.getResult());
+                String load = doc.getString("pekerjaan_penghasilan");
+                if (mPenghasilan.getText() != null) {
+                    mPenghasilan.setText(load);
                 }
             }
         });
@@ -231,13 +253,10 @@ public class InfoPekerjaanActivity extends AppCompatActivity {
         mDocRef.update("pekerjaan_penghasilan", pekerjaan_penghasilan);
 
         mDocRef.update("info_pekerjaan", "done")
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(InfoPekerjaanActivity.this,
-                                "DATA PEKERJAAN DIPERAHARUI!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(InfoPekerjaanActivity.this,
+                            "DATA PEKERJAAN DIPERAHARUI!", Toast.LENGTH_SHORT).show();
+                    finish();
                 });
 
     }
