@@ -213,7 +213,7 @@
                     android:fontFamily="@font/fira_sans"
                     android:layout_marginHorizontal="8dp"
                     android:textSize="12sp"
-                    android:text="2. Pendana (lender) mendapat keuntungan 15% dari setiap cicilan pengembalian dana pinjaman oleh peminjam (borrower)."
+                    android:text="2. Pendana (lender) mendapat keuntungan 15% dari setiap cicilan pengembalian dana pinjaman oleh peminjam (borrower), beserta bunga keterlambatan pembayaran sebesar 0,8% per hari."
                     android:textColor="#EF6C00"
                     android:textAlignment="textStart" />
 

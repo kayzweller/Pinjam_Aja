@@ -205,7 +205,7 @@ public class PeminjamFundFragment extends Fragment {
             mNomTransfer = (mNomPinjaman + mNomKembaliPinjaman) / 3;
 
             mNomKembaliPendana = mNomPinjaman/100*15;
-            mNomTransferPendana = (mNomPinjaman + mNomKembaliPendana) / 3;
+            mNomTransferPendana = Math.round((mNomPinjaman + mNomKembaliPendana) / 3);
 
             double denda_harian = (mNomPinjaman + mNomKembaliPinjaman)/1000*8;
             double denda_harian_pendana = (mNomPinjaman + mNomKembaliPendana)/1000*8;
@@ -230,6 +230,8 @@ public class PeminjamFundFragment extends Fragment {
 
             mTotalBayarTransfer = mNomDenda + mNomTransfer;
             mTotalBayarPendana = mNomDendaPendana + mNomTransferPendana;
+
+            Log.e("TRANSFER", String.valueOf(mTotalBayarPendana));
 
             if (!mTglDanaCair.equals("--")) {
                 mTotalTransfer = formatter.format(mTotalBayarTransfer);
