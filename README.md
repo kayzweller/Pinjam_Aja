@@ -1,2 +1,2 @@
 # Pinjam Aja!
-Pair-2-Pair Lending Aplication for my undergraduated thesis!
+Pair-2-Pair Lending Aplication for my undergraduated thesis project.
