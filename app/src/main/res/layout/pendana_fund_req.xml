@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
+  ~ Copyright (c) 2020 . All rights reserved.
+  ~ Last modified 4/30/20, 9:49 PM
+  -->
+
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

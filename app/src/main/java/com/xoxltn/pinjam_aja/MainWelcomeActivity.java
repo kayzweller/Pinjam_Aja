@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2020 Albert Kristaen (DBC 113 008)
- * ONLY USE UNDER PERMISSION -OR- I AM GONNA CHOP YOUR HANDS OFF!
+ * Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
+ * Copyright (c) 2020 . All rights reserved.
+ * Last modified 6/23/20, 1:19 PM
  */
 
 package com.xoxltn.pinjam_aja;

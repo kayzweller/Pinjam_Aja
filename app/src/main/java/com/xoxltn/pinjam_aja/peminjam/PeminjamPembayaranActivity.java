@@ -1,13 +1,12 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 25/06/20 02.05
+ * Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 23/06/20 13.19
+ * Last modified 10/22/20, 11:26 AM
  */
 
 package com.xoxltn.pinjam_aja.peminjam;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +46,7 @@ public class PeminjamPembayaranActivity extends AppCompatActivity {
 
         FormatRupiah(); //FORMATTING TO RUPIAH //
 
-        //  OBJECT LINKING ARE HERE!! WATCH IT.
+        // OBJECT LINKING ARE HERE!! WATCH IT.
         mIDPinjaman = findViewById(R.id.kode_pinjaman);
         mBayarPinjaman = findViewById(R.id.pinjaman_bayar);
 
@@ -56,7 +55,7 @@ public class PeminjamPembayaranActivity extends AppCompatActivity {
         passdata = extras.getString(PeminjamFundFragment.EXTRA_ID);
         mUserID = extras.getString(PeminjamFundFragment.USER_ID);
 
-        // FIREBASE ARE HERE YOU DUMBASS!!!
+        // FIREBASE ARE HERE!!!
         mFire = FirebaseFirestore.getInstance();
         mDocRef = mFire.collection("PEMINJAM").document(passdata);
 

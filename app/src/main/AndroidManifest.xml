@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
+  ~ Copyright (c) 2020 . All rights reserved.
+  ~ Last modified 9/14/20, 8:53 AM
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.xoxltn.pinjam_aja">
@@ -14,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".MainRulesReadActivity"></activity>
+        <activity android:name=".MainRulesReadActivity" />
         <activity android:name=".MainRulesActivity" />
         <activity android:name=".pendana.PendanaFundDetailActivity" />
         <activity android:name=".pendana.PendanaFundReqActivity" />

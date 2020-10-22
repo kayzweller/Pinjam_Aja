@@ -1,2 +1,8 @@
+/*
+ * Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
+ * Copyright (c) 2020 . All rights reserved.
+ * Last modified 5/6/20, 10:19 PM
+ */
+
 include ':app'
 rootProject.name='Pinjam Aja!'

@@ -1,7 +1,7 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 25/06/20 02.04
+ * Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 24/06/20 22.34
+ * Last modified 7/5/20, 5:20 PM
  */
 
 package com.xoxltn.pinjam_aja.pendana;

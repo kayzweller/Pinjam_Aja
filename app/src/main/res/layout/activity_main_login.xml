@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
+  ~ Copyright (c) 2020 . All rights reserved.
+  ~ Last modified 10/12/20, 4:51 AM
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,7 +22,7 @@
         android:layout_height="120dp"
         android:layout_gravity="center"
         android:contentDescription="logo"
-        android:src="@drawable/splash_logo"/>
+        android:src="@drawable/splash_logo" />
 
     <TextView
         android:id="@+id/text_login_1"
@@ -59,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fira_sans"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,13 +125,13 @@
         android:onClick="onClicktoSignUp"
         android:text="Belum Punya Akun? Daftar Sekarang"
         android:textSize="16sp"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
 
     <ProgressBar
         android:id="@+id/login_progress_bar"
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
         android:layout_width="match_parent"
         android:layout_height="28dp"
-        android:indeterminate="false"/>
+        android:indeterminate="false" />
 
 </LinearLayout>

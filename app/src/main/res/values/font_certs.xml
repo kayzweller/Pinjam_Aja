@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
+  ~ Copyright (c) 2020 . All rights reserved.
+  ~ Last modified 2/14/20, 7:02 AM
+  -->
+
 <resources>
     <array name="com_google_android_gms_fonts_certs">
         <item>@array/com_google_android_gms_fonts_certs_dev</item>

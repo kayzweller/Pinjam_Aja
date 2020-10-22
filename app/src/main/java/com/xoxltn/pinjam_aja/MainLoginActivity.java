@@ -1,14 +1,12 @@
 /*
- * Created by Albert Kristaen (Kayzweller) on 02/05/20 17:22
+ * Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
  * Copyright (c) 2020 . All rights reserved.
- * Last modified 25/04/20 20:21
+ * Last modified 9/14/20, 8:12 AM
  */
 
 package com.xoxltn.pinjam_aja;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,12 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,7 +22,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.xoxltn.pinjam_aja.peminjam.PeminjamDashboardActivity;
 import com.xoxltn.pinjam_aja.pendana.PendanaDashboardActivity;
-
 import java.util.Objects;
 
 public class MainLoginActivity extends AppCompatActivity {
@@ -44,9 +36,9 @@ public class MainLoginActivity extends AppCompatActivity {
 
     String mUserID, mUserType;
 
-    private String PENDANA = "PENDANA";
-    private String PEMINJAM = "PEMINJAM";
-    private String mKeyAdmin = "(vNSDP534cgPHAbqocLjJmgQm68d2)";
+    private final String PENDANA = "PENDANA";
+    private final String PEMINJAM = "PEMINJAM";
+    private final String mKeyAdmin = "(vNSDP534cgPHAbqocLjJmgQm68d2)";
 
     //-------------------------------------------------------------------------------------------//
 
@@ -91,35 +83,32 @@ public class MainLoginActivity extends AppCompatActivity {
             mUserID = mFireUser.getUid();
             DocumentReference docRefLog = mFire.collection("USER").document(mUserID);
 
-            docRefLog.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+            docRefLog.get().addOnCompleteListener(task -> {
 
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot docLog = Objects.requireNonNull(task.getResult());
-                        mUserType = docLog.getString("userType");
-                    } else {
-                        mUserType = null;
-                    }
-
-                    if (Objects.equals(mUserType, PENDANA)) {
-                        //user successfully login
-                        toastLoginSuccess();
-                        Intent pendanaLogin = new Intent(MainLoginActivity.this,
-                                PendanaDashboardActivity.class);
-                        startActivity(pendanaLogin);
-                        finish();
-
-                    } else if (Objects.equals(mUserType, PEMINJAM)) {
-                        //user successfully login
-                        toastLoginSuccess();
-                        Intent peminjamLogin = new Intent(MainLoginActivity.this,
-                                PeminjamDashboardActivity.class);
-                        startActivity(peminjamLogin);
-                        finish();
-                    }
-
+                if (task.isSuccessful()) {
+                    DocumentSnapshot docLog = Objects.requireNonNull(task.getResult());
+                    mUserType = docLog.getString("userType");
+                } else {
+                    mUserType = null;
                 }
+
+                if (Objects.equals(mUserType, PENDANA)) {
+                    //user successfully login
+                    toastLoginSuccess();
+                    Intent pendanaLogin = new Intent(MainLoginActivity.this,
+                            PendanaDashboardActivity.class);
+                    startActivity(pendanaLogin);
+                    finish();
+
+                } else if (Objects.equals(mUserType, PEMINJAM)) {
+                    //user successfully login
+                    toastLoginSuccess();
+                    Intent peminjamLogin = new Intent(MainLoginActivity.this,
+                            PeminjamDashboardActivity.class);
+                    startActivity(peminjamLogin);
+                    finish();
+                }
+
             });
 
         }
@@ -189,75 +178,64 @@ public class MainLoginActivity extends AppCompatActivity {
         String password = Objects.requireNonNull(mPassword.getEditText()).getText().toString();
 
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                .addOnCompleteListener(task -> {
+                    // SET STATEMENT TO CHECK WHO'S TRY TO LOG-IN!!
+                    if (task.isSuccessful()) {
 
-                        // SET STATEMENT TO CHECK WHO'S TRY TO LOG-IN!!
-                        if (task.isSuccessful()) {
+                        // CHECK USER TYPE (ADMIN or REGULAR USER [PEMINJAM or PENDANA)
+                        mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-                            // CHECK USER TYPE (ADMIN or REGULAR USER [PEMINJAM or PENDANA)
-                            mUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-
-                            if (mUserID.matches(mKeyAdmin)) {
-                                progressBarUnload();
-                                Toast.makeText(getApplicationContext(),
-                                        "GUNAKAN 'Pinjam Aja! ADMIN' UNTUK LOGIN.",
-                                        Toast.LENGTH_SHORT).show();
-
-                            } else if (!mUserID.matches(mKeyAdmin)) {
-
-                                // CALL THE USER TYPE (using document reference)
-                                DocumentReference docRef = mFire.collection("USER")
-                                        .document(mUserID);
-                                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
-                                        if (task.isSuccessful()) {
-                                            DocumentSnapshot doc = Objects.requireNonNull(task.getResult());
-                                            mUserType = doc.getString("userType");
-                                        } else {
-                                            mUserType = null;
-                                        }
-
-                                        // AUTO JUMP TO DASHBOARD ACCORDING TO USER TYPE!
-                                        if (Objects.equals(mUserType, PENDANA)) {
-                                            //user successfully login
-                                            toastLoginSuccess();
-                                            Intent pendanaLogin = new Intent(MainLoginActivity.this,
-                                                    PendanaDashboardActivity.class);
-                                            startActivity(pendanaLogin);
-                                            finish();
-
-                                        } else if (Objects.equals(mUserType, PEMINJAM)) {
-                                            //user successfully login
-                                            toastLoginSuccess();
-                                            Intent peminjamLogin = new Intent(MainLoginActivity.this,
-                                                    PeminjamDashboardActivity.class);
-                                            startActivity(peminjamLogin);
-                                            finish();
-                                        }
-
-                                    }
-                                })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                progressBarUnload();
-                                                Toast.makeText(getApplicationContext(), "DATA MISSING!! "
-                                                                + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            }
-
-                        } else {
+                        if (mUserID.matches(mKeyAdmin)) {
                             progressBarUnload();
-                            Toast.makeText(getApplicationContext(), Objects
-                                            .requireNonNull(task.getException()).getMessage(),
+                            Toast.makeText(getApplicationContext(),
+                                    "GUNAKAN 'Pinjam Aja! ADMIN' UNTUK LOGIN.",
                                     Toast.LENGTH_SHORT).show();
+
+                        } else if (!mUserID.matches(mKeyAdmin)) {
+
+                            // CALL THE USER TYPE (using document reference)
+                            DocumentReference docRef = mFire.collection("USER")
+                                    .document(mUserID);
+                            docRef.get().addOnCompleteListener(task1 -> {
+
+                                if (task1.isSuccessful()) {
+                                    DocumentSnapshot doc = Objects.requireNonNull(task1.getResult());
+                                    mUserType = doc.getString("userType");
+                                } else {
+                                    mUserType = null;
+                                }
+
+                                // AUTO JUMP TO DASHBOARD ACCORDING TO USER TYPE!
+                                if (Objects.equals(mUserType, PENDANA)) {
+                                    //user successfully login
+                                    toastLoginSuccess();
+                                    Intent pendanaLogin = new Intent(MainLoginActivity.this,
+                                            PendanaDashboardActivity.class);
+                                    startActivity(pendanaLogin);
+                                    finish();
+
+                                } else if (Objects.equals(mUserType, PEMINJAM)) {
+                                    //user successfully login
+                                    toastLoginSuccess();
+                                    Intent peminjamLogin = new Intent(MainLoginActivity.this,
+                                            PeminjamDashboardActivity.class);
+                                    startActivity(peminjamLogin);
+                                    finish();
+                                }
+
+                            })
+                                    .addOnFailureListener(e -> {
+                                        progressBarUnload();
+                                        Toast.makeText(getApplicationContext(), "DATA MISSING!! "
+                                                        + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    });
                         }
 
+                    } else {
+                        progressBarUnload();
+                        Toast.makeText(getApplicationContext(), Objects
+                                        .requireNonNull(task.getException()).getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
 
                 });
@@ -297,12 +275,7 @@ public class MainLoginActivity extends AppCompatActivity {
         Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT)
                 .show();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, DELAY_PRESS);
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, DELAY_PRESS);
     }
 
 }

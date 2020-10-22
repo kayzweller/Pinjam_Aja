@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
+  ~ Copyright (c) 2020 . All rights reserved.
+  ~ Last modified 6/25/20, 1:56 AM
+  -->
+
 <resources>
 
     <color name="colorPrimary">#271431</color>
