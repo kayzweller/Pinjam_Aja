@@ -1,11 +1,12 @@
 /*
- * Created by Albert Kristaen (s6joxx) on 10/22/20, 11:34 AM
- * Copyright (c) 2020 . All rights reserved.
- * Last modified 6/23/20, 1:11 PM
+ * Created by Albert Kristaen (s6joxx) on 2/10/21, 9:45 PM
+ * Copyright (c) 2021 . All rights reserved.
+ * Last modified 2/10/21, 9:39 PM
  */
 
 package com.xoxltn.pinjam_aja;
 
+import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -33,7 +34,7 @@ public class MainSplashScreenActivity extends AppCompatActivity {
     private void AnimationStart() {
 
         // variabel
-        Animation logoAnim, sloganAnim, ojkAnim;
+        Animation logoAnim, sloganAnim;
         ImageView logoImage;
         TextView judul, slogan;
 
@@ -59,14 +60,11 @@ public class MainSplashScreenActivity extends AppCompatActivity {
 
         // splash screen
         int SPLASH_SCREEN_DELAY = 5000;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainSplashScreenActivity.
-                        this, MainWelcomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            Intent intent = new Intent(MainSplashScreenActivity.
+                    this, MainWelcomeActivity.class);
+            startActivity(intent);
+            finish();
         }, SPLASH_SCREEN_DELAY);
     }
 
@@ -75,7 +73,6 @@ public class MainSplashScreenActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // kunci fungsi tombol kembali waktu splash screen
-        // WHILE NO METHOD HERE, IT'S MEAN DO NOTHING B*TCH !!!
     }
 
 }
